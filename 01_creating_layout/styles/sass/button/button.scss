@@ -1,0 +1,26 @@
+.button {
+  display: block;
+  border-radius: 2px;
+  background: $soft-red;
+  border: none;
+  color: $white;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background .2s;
+
+  &:hover {
+    background: darken($color: $soft-red, $amount: 3);
+  }
+  
+  &_large {
+    padding: 0 23px;
+    height: 44px;
+    font-size: 18px;
+  }
+
+  &_small {
+    padding: 0 16px;
+    height: 38px;
+    font-size: 15px;
+  }
+}
