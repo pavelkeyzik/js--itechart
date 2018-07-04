@@ -1,0 +1,9 @@
+@import 'variables';
+@import 'layout';
+@import 'navigation/navigation';
+@import 'menu/menu';
+@import 'logo/logo';
+
+body {
+  background: $very-dark-orange url(../../images/wood-texture.jpg);
+}

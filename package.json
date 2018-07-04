@@ -1,0 +1,15 @@
+{
+  "name": "js--itechart",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Pavel Keyzik",
+  "license": "MIT",
+  "scripts": {
+    "watch_01": "sass --watch 01_creating_layout\\styles\\sass\\:01_creating_layout\\styles\\css\\"
+  },
+  "dependencies": {
+    "browser-sync": "^2.24.5",
+    "gulp": "^3.9.1",
+    "gulp-sass": "^4.0.1"
+  }
+}

@@ -1,0 +1,32 @@
+.menu {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  width: 100%;
+  
+  &__link {
+    color: $middle-gray;
+    text-decoration: none;
+    transition: color .2s;
+    text-align: center;
+    padding: 10px 0;
+
+    &_selected,
+    &:hover {
+      color: $soft-cyan;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .menu {
+    flex-direction: row;
+    margin-top: 0;
+    width: unset;
+
+    &__link {
+      border-right: 1px solid $very-light-gray;
+      padding: 0 26px;
+    }
+  }
+}

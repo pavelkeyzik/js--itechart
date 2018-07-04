@@ -1,0 +1,24 @@
+.logo {
+  display: flex;
+
+  &__image {
+    margin-right: 16px;
+  }
+
+  &__title {
+    font-size: 23.62px;
+    color: $very-dark-cyan;
+
+    &_dark_bold {
+      font-weight: bold;
+    }
+
+    &_orange_light {
+      color: $soft-red;
+    }
+  }
+
+  &__caption {
+    color: $dark-gray;
+  }
+}
