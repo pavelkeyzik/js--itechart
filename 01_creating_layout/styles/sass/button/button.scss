@@ -30,10 +30,14 @@
 
     &_light {
       color: $white;
+    
+      i {
+        margin-left: 10px;
+      }
     }
 
-    i {
-      margin-left: 10px;
+    &_orange {
+      color: $soft-red;
     }
 
     &:hover {
