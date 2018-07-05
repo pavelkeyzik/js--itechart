@@ -4,6 +4,14 @@
 @import 'menu/menu';
 @import 'logo/logo';
 @import 'present/present';
+@import 'info-list/info-list';
+@import 'footer/footer';
+@import 'button/button'; 
+@import 'header/header';
+
+* {
+  box-sizing: border-box;
+}
 
 body {
   background: $very-dark-orange url(../../images/wood-texture.jpg);
