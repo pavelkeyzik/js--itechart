@@ -227,7 +227,6 @@
       margin: 0; } }
 
 .button {
-  display: block;
   border-radius: 2px;
   background: #f77462;
   border: none;
@@ -246,6 +245,16 @@
     padding: 0 16px;
     height: 38px;
     font-size: 15px; }
+  .button__more {
+    background: none;
+    transition: opacity .2s; }
+    .button__more_light {
+      color: #fff; }
+    .button__more i {
+      margin-left: 10px; }
+    .button__more:hover {
+      background: none;
+      opacity: .7; }
 
 .header {
   display: flex;
