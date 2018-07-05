@@ -123,5 +123,72 @@
     .footer__social {
       margin: 0; } }
 
+.button {
+  display: block;
+  border-radius: 2px;
+  background: #f77462;
+  border: none;
+  color: #fff;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background .2s; }
+  .button:hover {
+    background: #f66753; }
+  .button_large {
+    padding: 0 23px;
+    height: 44px;
+    font-size: 18px; }
+  .button_small {
+    padding: 0 16px;
+    height: 38px;
+    font-size: 15px; }
+
+.header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  height: 400px;
+  background: linear-gradient(#e7e7e7, #fff 70%); }
+  .header__image {
+    display: none; }
+  .header__info {
+    padding: 0 30px;
+    text-align: center;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; }
+  .header__pre-title {
+    font-size: 21px;
+    color: #003d48; }
+  .header__title {
+    font-size: 31px;
+    color: #003d48;
+    font-weight: bold; }
+  .header__description {
+    font-size: 16px;
+    color: #8b8b8b;
+    margin: 20px 0; }
+
+@media (min-width: 768px) {
+  .header__image {
+    display: block; }
+  .header__info {
+    height: unset;
+    display: block;
+    margin-bottom: 77px;
+    margin-left: 40px;
+    padding: 0;
+    text-align: left; }
+  .header__pre-title {
+    font-size: 31px; }
+  .header__title {
+    font-size: 41px; }
+  .header__description {
+    margin: 40px 0;
+    max-width: 470px;
+    font-size: 18px; } }
+
 body {
   background: #211d18 url(../../images/wood-texture.jpg); }
