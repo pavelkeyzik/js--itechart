@@ -21,4 +21,19 @@
     text-align: center;
     padding: 12px 0;
   }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    padding-top: 40px;
+  }
+}
+
+@media (min-width: 890px) {
+  .vestibul {
+    
+    &__content {
+      flex-direction: row;
+    }
+  }
 }

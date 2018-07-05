@@ -329,14 +329,23 @@
     border-bottom: 1px solid #dbdbdb;
     text-align: center;
     padding: 12px 0; }
+  .vestibul__content {
+    display: flex;
+    flex-direction: column;
+    padding-top: 40px; }
+
+@media (min-width: 890px) {
+  .vestibul__content {
+    flex-direction: row; } }
 
 .articles-with-date {
   display: flex;
   flex-direction: column;
-  padding: 40px 0px 60px; }
+  flex: 1; }
   .articles-with-date__article {
     display: flex;
     align-items: flex-start;
+    margin-right: 40px;
     margin-bottom: 60px; }
   .articles-with-date__date {
     display: flex;
@@ -373,6 +382,28 @@
     color: #787878;
     font-size: .875em;
     margin-top: 20px; }
+
+.comments {
+  display: flex;
+  flex-direction: column;
+  flex: 1; }
+  .comments__item {
+    display: flex;
+    background: #ececec;
+    border-radius: 2px;
+    padding: 34px 30px; }
+    .comments__item:not(:last-child) {
+      margin-bottom: 40px; }
+  .comments__text {
+    font-family: 'SourceSansPro-Regular';
+    font-size: .9375em;
+    color: #8c9193; }
+  .comments__user {
+    font-family: 'SourceSansPro-Bold';
+    color: #f77462;
+    margin-top: 23px; }
+  .comments__image {
+    margin-left: 30px; }
 
 * {
   box-sizing: border-box; }
