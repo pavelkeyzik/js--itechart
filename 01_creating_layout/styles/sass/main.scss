@@ -3,6 +3,11 @@
 @import 'navigation/navigation';
 @import 'menu/menu';
 @import 'logo/logo';
+@import 'info-list/info-list';
+
+* {
+  box-sizing: border-box;
+}
 
 body {
   background: $very-dark-orange url(../../images/wood-texture.jpg);
