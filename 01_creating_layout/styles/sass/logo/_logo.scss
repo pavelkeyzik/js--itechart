@@ -10,15 +10,17 @@
     color: $very-dark-cyan;
 
     &_dark_bold {
-      font-weight: bold;
+      font-family: 'Arial-Bold-MT';
     }
 
     &_orange_light {
+      font-family: 'Lato-Light';
       color: $soft-red;
     }
   }
 
   &__caption {
     color: $dark-gray;
+    font-family: 'Lato-Regular';
   }
 }

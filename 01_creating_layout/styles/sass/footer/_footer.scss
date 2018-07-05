@@ -17,12 +17,13 @@
 
   &__title {
     font-size: 20px;
-    font-weight: bold;
+    font-family: 'SourceSansPro-Bold';
     margin-bottom: 16px;
   }
 
   &__description {
     font-size: 14px;
+    font-family: 'SourceSansPro-Regular';
   }
 
   &__bottom {
@@ -37,6 +38,7 @@
 
   &__copyright {
     text-align: center;
+    font-family: 'SourceSansPro-Regular';
   }
 
   &__social {

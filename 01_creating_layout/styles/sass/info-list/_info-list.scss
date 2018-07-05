@@ -14,6 +14,7 @@
   }
 
   &__title {
+    font-family: 'SourceSansPro-Bold';
     font-weight: bold;
     color: $white;
     font-size: 18px;
@@ -24,6 +25,7 @@
     font-size: 15px;
     color: $white;
     margin: 16px 30px;
+    font-family: 'SourceSansPro-Regular';
   }
 }
 
@@ -36,11 +38,6 @@
     &__block {
       padding: 60px 0 60px 0;
       flex-direction: row;
-      // padding: 0;
-    }
-
-    &__item {
-      // border: 1px solid red;
     }
 
     &__icon {

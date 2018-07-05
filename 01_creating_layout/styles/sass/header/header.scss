@@ -20,17 +20,21 @@
   }
 
   &__pre-title {
+    font-family: 'SourceSansPro-Light';
     font-size: 21px;
     color: $very-dark-cyan;
   }
 
   &__title {
+    font-family: 'SourceSansPro-Black';
+    text-transform: uppercase;
     font-size: 31px;
     color: $very-dark-cyan;
     font-weight: bold;
   }
 
   &__description {
+    font-family: 'SourceSansPro-Regular';
     font-size: 16px;
     color: $darken-gray;
     margin: 20px 0;
