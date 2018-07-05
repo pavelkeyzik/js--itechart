@@ -17,19 +17,19 @@
     font-family: 'SourceSansPro-Bold';
     font-weight: bold;
     color: $white;
-    font-size: 18px;
+    font-size: 1.125em;
     margin-top: 20px;
   }
 
   &__description {
-    font-size: 15px;
+    font-size: .9375em;
     color: $white;
     margin: 16px 30px;
     font-family: 'SourceSansPro-Regular';
   }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 890px) {
   .info-list {
     grid-template-columns: repeat(3, 1fr);
     padding: 0 5px;
@@ -51,7 +51,7 @@
 
     &__title {
       margin: 0;
-      font-size: 20px;
+      font-size: 1.25em;
     }
 
     &__description {

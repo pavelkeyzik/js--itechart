@@ -42,7 +42,7 @@
   margin: 0 auto;
   max-width: 1170px; }
 
-@media (min-width: 768px) {
+@media (min-width: 890px) {
   .l-container {
     margin: 100px auto 105px; } }
 
@@ -55,7 +55,7 @@
   border-top-left-radius: 4px;
   border-top-right-radius: 4px; }
 
-@media (min-width: 768px) {
+@media (min-width: 890px) {
   .navigation {
     flex-direction: row;
     justify-content: space-between;
@@ -77,7 +77,7 @@
     .menu__link_selected, .menu__link:hover {
       color: #6dc5dd; }
 
-@media (min-width: 768px) {
+@media (min-width: 890px) {
   .menu {
     flex-direction: row;
     margin-top: 0;
@@ -87,11 +87,12 @@
       padding: 0 26px; } }
 
 .logo {
-  display: flex; }
+  display: flex;
+  align-items: flex-start; }
   .logo__image {
     margin-right: 16px; }
   .logo__title {
-    font-size: 23.62px;
+    font-size: 1.47625em;
     color: #003d48; }
     .logo__title_dark_bold {
       font-family: 'Arial-Bold-MT'; }
@@ -112,11 +113,11 @@
   min-height: 206px; }
   .present__title {
     font-family: 'SourceSansPro-Bold';
-    font-size: 32px;
+    font-size: 2em;
     margin-bottom: 10px; }
   .present__description {
     font-family: 'SourceSansPro-Light';
-    font-size: 18px;
+    font-size: 1.125em;
     margin: 0 22%; }
 
 .info-list {
@@ -133,15 +134,15 @@
     font-family: 'SourceSansPro-Bold';
     font-weight: bold;
     color: #fff;
-    font-size: 18px;
+    font-size: 1.125em;
     margin-top: 20px; }
   .info-list__description {
-    font-size: 15px;
+    font-size: .9375em;
     color: #fff;
     margin: 16px 30px;
     font-family: 'SourceSansPro-Regular'; }
 
-@media (min-width: 768px) {
+@media (min-width: 890px) {
   .info-list {
     grid-template-columns: repeat(3, 1fr);
     padding: 0 5px;
@@ -156,7 +157,7 @@
       text-align: left; }
     .info-list__title {
       margin: 0;
-      font-size: 20px; }
+      font-size: 1.25em; }
     .info-list__description {
       margin: 30px 0; } }
 
@@ -173,11 +174,11 @@
     color: #fff;
     padding: 20px 0; }
   .footer__title {
-    font-size: 20px;
+    font-size: 1.25em;
     font-family: 'SourceSansPro-Bold';
     margin-bottom: 16px; }
   .footer__description {
-    font-size: 14px;
+    font-size: .875em;
     font-family: 'SourceSansPro-Regular'; }
   .footer__bottom {
     display: flex;
@@ -210,7 +211,7 @@
     .footer__social-item:hover {
       opacity: .8; }
 
-@media (min-width: 768px) {
+@media (min-width: 890px) {
   .footer {
     border-bottom-left-radius: 3px;
     border-bottom-right-radius: 3px; }
@@ -227,7 +228,6 @@
       margin: 0; } }
 
 .button {
-  display: block;
   border-radius: 2px;
   background: #f77462;
   border: none;
@@ -241,11 +241,21 @@
   .button_large {
     padding: 0 23px;
     height: 44px;
-    font-size: 18px; }
+    font-size: 1.125em; }
   .button_small {
     padding: 0 16px;
     height: 38px;
-    font-size: 15px; }
+    font-size: .9375em; }
+  .button__more {
+    background: none;
+    transition: opacity .2s; }
+    .button__more_light {
+      color: #fff; }
+    .button__more i {
+      margin-left: 10px; }
+    .button__more:hover {
+      background: none;
+      opacity: .7; }
 
 .header {
   display: flex;
@@ -265,21 +275,21 @@
     justify-content: center; }
   .header__pre-title {
     font-family: 'SourceSansPro-Light';
-    font-size: 21px;
+    font-size: 1.3125em;
     color: #003d48; }
   .header__title {
     font-family: 'SourceSansPro-Black';
     text-transform: uppercase;
-    font-size: 31px;
+    font-size: 1.9375em;
     color: #003d48;
     font-weight: bold; }
   .header__description {
     font-family: 'SourceSansPro-Regular';
-    font-size: 16px;
+    font-size: 1em;
     color: #8b8b8b;
     margin: 20px 0; }
 
-@media (min-width: 768px) {
+@media (min-width: 890px) {
   .header__image {
     display: block; }
   .header__info {
@@ -290,13 +300,13 @@
     padding: 0;
     text-align: left; }
   .header__pre-title {
-    font-size: 31px; }
+    font-size: 1.9375em; }
   .header__title {
-    font-size: 41px; }
+    font-size: 2.5625em; }
   .header__description {
     margin: 40px 0;
     max-width: 470px;
-    font-size: 18px; } }
+    font-size: 1.125em; } }
 
 * {
   box-sizing: border-box; }

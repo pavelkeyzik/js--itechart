@@ -1,5 +1,4 @@
 .button {
-  display: block;
   border-radius: 2px;
   background: $soft-red;
   border: none;
@@ -16,12 +15,30 @@
   &_large {
     padding: 0 23px;
     height: 44px;
-    font-size: 18px;
+    font-size: 1.125em;
   }
 
   &_small {
     padding: 0 16px;
     height: 38px;
-    font-size: 15px;
+    font-size: .9375em;
+  }
+
+  &__more {
+    background: none;
+    transition: opacity .2s;
+
+    &_light {
+      color: $white;
+    }
+
+    i {
+      margin-left: 10px;
+    }
+
+    &:hover {
+      background: none;
+      opacity: .7;
+    }
   }
 }

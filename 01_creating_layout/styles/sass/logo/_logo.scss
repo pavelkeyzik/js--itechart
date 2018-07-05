@@ -1,12 +1,13 @@
 .logo {
   display: flex;
+  align-items: flex-start;
 
   &__image {
     margin-right: 16px;
   }
 
   &__title {
-    font-size: 23.62px;
+    font-size: 1.47625em;
     color: $very-dark-cyan;
 
     &_dark_bold {
