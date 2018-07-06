@@ -1,0 +1,74 @@
+$border-width: 2px;
+$border: $border-width solid $gray-light;
+$border-radius: 3px;
+
+.tabs {
+  flex: 4;
+
+  &__tab {
+    position: relative;
+    bottom: -$border-width;
+    display: inline-flex;
+    align-items: center;
+    padding: 0 22px;
+    height: 40px;
+    font-family: 'SourceSansPro-Bold';
+    color: $middle-gray;
+    border: none;
+    background: none;
+    border-left: $border;
+    border-top: $border;
+    border-right: $border;
+    border-top-left-radius: $border-radius;
+    border-top-right-radius: $border-radius;
+    cursor: pointer;
+
+    &_active {
+      background: $very-dark-cyan;
+      color: $soft-red;
+    }
+  }
+
+  &__current-info {
+    background: $very-dark-cyan;
+    padding: 30px;
+    border: $border;
+  }
+
+  &__title {
+    font-family: 'SourceSansPro-Bold';
+    color: $soft-cyan;
+    font-size: 1.25em;
+    margin-bottom: 20px;
+  }
+
+  &__description {
+    color: $white;
+    font-family: 'SourceSansPro-Regular';
+    font-size: .9375em;
+  }
+
+  &__list {
+    padding: 40px 30px;
+    margin: 0;
+    border-left: $border;
+    border-bottom: $border;
+    border-right: $border;
+    border-bottom-left-radius: $border-radius;
+    border-bottom-right-radius: $border-radius;
+  }
+
+  &__list-item {
+    font-family: 'SourceSansPro-Regular';
+    font-size: .9375em;
+    color: $middle-gray;
+    list-style: none;
+    border-bottom: 1px solid $gray-light;
+    padding: 12px 0;
+  }
+
+  &__list-arrow {
+    color: $soft-red;
+    margin-right: 17px;
+  }
+}

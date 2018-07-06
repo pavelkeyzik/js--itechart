@@ -3,8 +3,31 @@
   max-width: 1170px;
 }
 
+.l-about-us {
+  display: flex;
+  flex-direction: column;
+  background: $white;
+  padding: 60px 30px;
+
+  .tabs {
+    margin-top: 40px;
+  }
+}
+
 @media (min-width: 890px) {
   .l-container {
     margin:  100px auto 105px;
+  }
+
+  .l-about-us {
+    flex-direction: row;
+    
+    .reviews {
+      margin-right: 30px;
+    }
+
+    .tabs {
+      margin-top: 0;
+    }
   }
 }
