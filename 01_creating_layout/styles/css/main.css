@@ -194,7 +194,8 @@
     margin-bottom: 16px; }
   .footer__description {
     font-size: .875em;
-    font-family: 'SourceSansPro-Regular'; }
+    font-family: 'SourceSansPro-Regular';
+    line-height: 27.2px; }
   .footer__bottom {
     display: flex;
     flex-direction: column;
@@ -241,6 +242,10 @@
       flex-direction: row; }
     .footer__social {
       margin: 0; } }
+
+@media (min-width: 460px) and (max-width: 889px) {
+  .footer__top {
+    grid-template-columns: repeat(2, 1fr); } }
 
 .button {
   border-radius: 2px;
