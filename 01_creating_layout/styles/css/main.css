@@ -430,7 +430,12 @@
     color: #f77462;
     margin-top: 23px; }
   .comments__image {
-    margin-left: 30px; }
+    display: none; }
+
+@media (min-width: 460px) {
+  .comments__image {
+    display: block;
+    margin-left: 30px; } }
 
 .reviews {
   display: flex;
