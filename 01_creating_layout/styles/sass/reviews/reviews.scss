@@ -1,14 +1,14 @@
 .reviews {
   display: flex;
   flex-direction: column;
+  flex: 8;
 
   &__item {
     display: flex;
     align-items: flex-start;
-    margin: 0 30px 60px;
-    
-    &:first-child {
-      margin-top: 60px;
+
+    &:not(:last-child) {
+      margin-bottom: 60px;
     }
   }
 

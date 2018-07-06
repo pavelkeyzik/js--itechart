@@ -1,9 +1,0 @@
-.about-us {
-  display: flex;
-  flex-direction: column;
-  background: $white;
-}
-
-@media (min-width: 890px) {
-  flex-direction: row;
-}
