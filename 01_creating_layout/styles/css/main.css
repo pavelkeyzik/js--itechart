@@ -207,6 +207,11 @@
   .footer__copyright {
     text-align: center;
     font-family: 'SourceSansPro-Regular'; }
+  .footer__link {
+    color: #fff;
+    text-decoration: none; }
+    .footer__link:hover {
+      text-decoration: underline; }
   .footer__social {
     display: flex;
     margin-top: 30px; }
