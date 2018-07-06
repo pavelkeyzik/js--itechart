@@ -5,9 +5,25 @@ $border-radius: 3px;
 .tabs {
   flex: 4;
 
+  &__row {
+    display: flex;
+    width: 100%;
+    position: relative;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      bottom: 0;
+      left: 0;
+      border-bottom: $border;
+      height: 2px;
+    }
+  }
+
   &__tab {
     position: relative;
-    bottom: -$border-width;
+    z-index: 2;
     display: inline-flex;
     align-items: center;
     padding: 0 22px;
@@ -15,24 +31,56 @@ $border-radius: 3px;
     font-family: 'SourceSansPro-Bold';
     color: $middle-gray;
     border: none;
-    background: none;
     border-left: $border;
     border-top: $border;
     border-right: $border;
     border-top-left-radius: $border-radius;
     border-top-right-radius: $border-radius;
     cursor: pointer;
+    border-bottom: $border;
+    background: $white;
+
+    &:not(:last-child) {
+      margin-right: 10px;
+    }
 
     &_active {
       background: $very-dark-cyan;
       color: $soft-red;
+      border-bottom: $very-dark-cyan;
+    
+      &::after {
+        content: '';
+        position: absolute;
+        right: -6px;
+        bottom: 0;
+        width: 6px;
+        height: 6px;
+        background: $white;
+        border-bottom-left-radius: 3px;
+        border-left: $border;
+        border-bottom: $border;
+        box-sizing: border-box;
+      }
+
+      &::before {
+        content: '';
+        width: 3px;
+        height: 3px;
+        position: absolute;
+        right: -3px;
+        bottom: 0;
+        background: $very-dark-cyan;
+      }
     }
   }
 
   &__current-info {
     background: $very-dark-cyan;
     padding: 30px;
-    border: $border;
+    border-left: $border;
+    border-right: $border;
+    border-bottom: $border;
   }
 
   &__title {
