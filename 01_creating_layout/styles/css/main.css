@@ -402,6 +402,8 @@
     color: #f77462;
     font-size: .875em;
     text-decoration: none; }
+    .articles-with-date__count-of-coments:hover {
+      text-decoration: underline; }
   .articles-with-date__text {
     font-family: 'SourceSansPro-Regular';
     color: #787878;

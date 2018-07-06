@@ -48,6 +48,10 @@
     color: $soft-red;
     font-size: .875em;
     text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 
   &__text {
