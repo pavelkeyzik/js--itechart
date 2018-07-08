@@ -49,28 +49,33 @@ $border-radius: 3px;
       color: $soft-red;
       border-bottom: $very-dark-cyan;
     
-      &::after {
-        content: '';
-        position: absolute;
-        right: -6px;
-        bottom: 0;
-        width: 6px;
-        height: 6px;
-        background: $white;
-        border-bottom-left-radius: 3px;
-        border-left: $border;
-        border-bottom: $border;
+      &::after,
+      &::before {
         box-sizing: border-box;
+        position: absolute;
+        content: '';
+        bottom: 0;
+        width: 4px;
+        height: 4px;
+        background: none;
+        border-radius: 2px;
       }
 
-      &::before {
-        content: '';
-        width: 3px;
-        height: 3px;
-        position: absolute;
-        right: -3px;
-        bottom: 0;
-        background: $very-dark-cyan;
+      &::after {
+        right: -4px;
+        border-left: $border;
+        box-shadow: -2px 2px $very-dark-cyan;
+        border-bottom: $border;
+      }
+
+      &:not(:first-child) {
+        
+        &::before {
+          left: -4px;
+          border-right: $border;
+          box-shadow: 2px 2px $very-dark-cyan;
+          border-bottom: $border;
+        }
       }
     }
   }
