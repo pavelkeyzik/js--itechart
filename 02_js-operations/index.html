@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>iTechArt | 02_js-operations</title>
+</head>
+<body>
+  <header>
+    <h1>Task 02 | Operations and algorithms</h1>
+  </header>
+  <main>
+    <section>
+      <h2>Array Processin Tool</h2>
+      <h3>Sub Sum</h3>
+      <p>На входе массив чисел, например: arr = [1, -2, 3, 4, -9, 6].<br>Задача — найти непрерывный подмассив arr, сумма элементов которого максимальна.<br>Функция должна возвращать только эту сумму.</p>
+      <ol>
+        <li>getMaxSubSum([-1, <b><u>2, 3</u></b>, -9]) = 5</li>
+        <li>getMaxSubSum([<b><u>2, -1, 2, 3</u></b>, -9]) = 6</li>
+        <li>getMaxSubSum([-1, 2, 3, -9, <b><u>11</u></b>]) = 11</li>
+        <li>getMaxSubSum([-2, -1, <b><u>1, 2</u></b>]) = 3</li>
+        <li>getMaxSubSum([<b><u>100</u></b>, -9, 2, -3, 5]) = 100</li>
+        <li>getMaxSubSum([<b><u>1, 2, 3</u></b>]) = 6</li>
+        <li>getMaxSubSum([-1, -2, -3]) = 0</li>
+      </ol>
+      <p>Написать два решения, сложность O(n<sup>2</sup>) и O(n).</p>
+      <article>
+        <h4>Решение за O(n<sup>2</sup>)</h4>
+        <div id="sub-sum-slow">Loading...</div>
+      </article>
+      <article>
+          <h4>Решение за O(n)</h4>
+          <div id="sub-sum-fast">Loading...</div>
+        </article>
+    </section>
+  </main>
+  <script src="js/main.js"></script>
+</body>
+</html>
