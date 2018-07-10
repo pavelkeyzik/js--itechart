@@ -24,10 +24,11 @@
     flex-direction: row;
     margin-top: 0;
     width: unset;
+    box-sizing: border-box;
 
     &__link {
       border-right: 1px solid $very-light-gray;
-      padding: 0 26px;
+      padding: 0 28px;
     }
   }
 }

@@ -2,7 +2,7 @@
   background: $white;
   display: flex;
   flex-direction: column;
-  padding: 60px 30px;
+  padding: 50px 30px;
 
   &__title {
     color: $very-dark-cyan;
@@ -31,6 +31,7 @@
 
 @media (min-width: 890px) {
   .vestibul {
+    padding-bottom: 0;
     
     &__content {
       flex-direction: row;
