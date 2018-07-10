@@ -12,17 +12,22 @@
 <body>
   <div class="l-container">
     <nav class="navigation">
-      <a href="/" class="logo">
-        <img class="logo__image" src="images/logo.png" alt="Logotype image">
-        <div class="logo__info">
-          <div class="logo__title">
-            <span class="logo__title_dark_bold">Site</span>
-            <span class="logo__title_orange_light">Name</span>
+      <div class="navigation__with-hamburger">
+        <a href="/" class="logo">
+          <img class="logo__image" src="images/logo.png" alt="Logotype image">
+          <div class="logo__info">
+            <div class="logo__title">
+              <span class="logo__title_dark_bold">Site</span>
+              <span class="logo__title_orange_light">Name</span>
+            </div>
+            <div class="logo__caption">your caption here</div>
           </div>
-          <div class="logo__caption">your caption here</div>
-        </div>
-      </a>
-      <div class="menu">
+        </a>
+        <button class="js-navigation__hamburger navigation__hamburger">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+      <div class="menu js-menu menu_closed">
         <a href="#" class="menu__link menu__link_selected">Home</a>
         <a href="#" class="menu__link">About</a>
         <a href="#" class="menu__link">Services</a>
@@ -230,5 +235,6 @@
       </div>
     </footer>
   </div>
+  <script src="js/index.js"></script>
 </body>
 </html>

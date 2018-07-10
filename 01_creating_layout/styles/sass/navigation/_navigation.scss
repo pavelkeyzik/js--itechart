@@ -4,6 +4,26 @@
   align-items: center;
   background: $white;
   padding: 16px 4px;
+
+  &__with-hamburger {
+    display: flex;
+    width: 100%;
+    padding: 0 20px;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__hamburger {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: none;
+    border: none;
+  }
 }
 
 @media (min-width: 890px) {
@@ -14,5 +34,13 @@
     padding: 0 4px 0 30px;
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
+  
+    &__with-hamburger {
+      padding: 0;
+    }
+
+    &__hamburger {
+      display: none;
+    }
   }
 }
