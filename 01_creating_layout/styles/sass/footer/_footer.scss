@@ -87,17 +87,24 @@
 
     &__top {
       grid-template-columns: repeat(6, 1fr);
-      grid-column-gap: 20px;
-      padding-top: 60px;
-      padding-bottom: 60px;
+      grid-gap: 20px;
+      padding-top: 50px;
+      padding-bottom: 54px;
     }
 
     &__item {
       text-align: left;
+      padding: 0;
+      line-height: 1.7em;
     }
 
     &__bottom {
       flex-direction: row;
+      height: 105px;
+    }
+
+    &__title {
+      margin-bottom: 5px;
     }
 
     &__social {

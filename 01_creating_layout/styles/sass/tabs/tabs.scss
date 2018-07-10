@@ -3,7 +3,8 @@ $border: $border-width solid $gray-light;
 $border-radius: 3px;
 
 .tabs {
-  flex: 4;
+  // flex: 4;
+  width: 340px;
 
   &__row {
     display: flex;
@@ -102,7 +103,7 @@ $border-radius: 3px;
   }
 
   &__list {
-    padding: 40px 30px;
+    padding: 28px 30px;
     margin: 0;
     border-left: $border;
     border-bottom: $border;
@@ -117,7 +118,7 @@ $border-radius: 3px;
     color: $middle-gray;
     list-style: none;
     border-bottom: 1px solid $gray-light;
-    padding: 12px 0;
+    padding: 9px 0;
   }
 
   &__list-arrow {
