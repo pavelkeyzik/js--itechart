@@ -30,8 +30,12 @@
 
     &_light {
       color: $white;
+      text-transform: unset;
+      font-size: 1em;
+      font-family: 'SourceSansPro-Bold';
     
       i {
+        font-size: .875em;
         margin-left: 10px;
       }
     }
