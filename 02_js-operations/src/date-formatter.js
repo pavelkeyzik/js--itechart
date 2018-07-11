@@ -49,10 +49,16 @@ var MONTH = [
   }
 ];
 
-function DateFormatter(dateString) {
-  this._day = dateString.substring(0, 2).padStart(2, '0');
-  this._year = dateString.substring(4);
-  this._month = dateString.substring(2, 4).padStart(2, '0');
+function DateFormatter(date) {
+  if(typeof date === 'number') {
+    this._day = new Date(date).getDate().toString().substring(0, 2).padStart(2, '0');
+    this._year = new Date(date).getFullYear().toString();
+    this._month = (new Date(date).getMonth()+1).toString().padStart(2, '0');
+  } else {
+    this._day = date.substring(0, 2).padStart(2, '0');
+    this._year = date.substring(4);
+    this._month = date.substring(2, 4).padStart(2, '0');
+  }
 
   this.isValid = function() {
     let dateForCheck = `${this._month}-${this._day}-${this._year}`;
