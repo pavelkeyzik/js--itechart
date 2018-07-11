@@ -63,5 +63,8 @@ dateDisplayBlock.innerHTML = `
     <li>'02012018'.format('full'): <b>${new dateFormat('02012018').format('full')}</b></li>
     <li>'02012018'.format('DD/MM/YYYY'): <b>${new dateFormat('02012018').format('DD/MM/YYYY')}</b></li>
     <li>'02012018'.format('DD/MM/YY'): <b>${new dateFormat('02012018').format('DD/MM/YY')}</b></li>
+    <li>'02012018'.fromNow(): <b>${new dateFormat('02012018').fromNow()}</b></li>
+    <li>'02012015'.fromNow(): <b>${new dateFormat('02012015').fromNow()}</b></li>
+    <li>'02012019'.fromNow(): <b>${new dateFormat('02012019').fromNow()}</b></li>
   </ul>
 `;

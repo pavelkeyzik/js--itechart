@@ -83,4 +83,17 @@ DateFormatter.prototype.format = function(param) {
   }
 }
 
+DateFormatter.prototype.fromNow = function() {
+  let currentYear = new Date().getFullYear();
+  let countOfYears = currentYear - this._year;
+
+  if(countOfYears == 0) {
+    return `This year`; 
+  } else if (countOfYears < 0) {
+    return `In ${Math.abs(countOfYears)} years from now`; 
+  } else {
+    return `${countOfYears} years ago`; 
+  }
+}
+
 export default DateFormatter;
