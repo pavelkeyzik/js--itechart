@@ -78,12 +78,41 @@
       return Math.max(...array);
     }
 
+    /**
+     * Function for search the maximum length of the increasing sequence
+     * @param {Array} array Array of Numbers
+     */
+    function searchMaxLengthOfIncreasingSequence(array) {
+      var startIndex = 0;
+      var res = [];
+      
+      if(array.length === 2) {
+        return array[0] < array[1] ? array : [];
+      }
+
+      for(var i = 1; i < array.length; i++) {
+        if(array[i] > array[i-1]) {
+          if(i - startIndex > res.length - 1 && i === array.length - 1) {
+            res = array.slice(startIndex, i + 1);
+          }
+        } else {
+          if(i - startIndex > res.length) {
+            res = array.slice(startIndex, i);
+          }
+          startIndex = i;
+        }
+      }
+
+      return res;
+    }
+
     return {
       subSum,
       subSumFast,
       searchMedianNumber,
       searchMinNumber,
       searchMaxNumber,
+      searchMaxLengthOfIncreasingSequence,
     }
   }
 
@@ -92,6 +121,7 @@
   var subSumSlowResultBlock = document.getElementById('sub-sum-slow');
   var subSumFastResultBlock = document.getElementById('sub-sum-fast');
   var numbersMinMaxBlock = document.getElementById('numbers-min-max');
+  var selectionTaskBlock = document.getElementById('selection-task');
 
   var timerStartSlow = performance.now();
   subSumSlowResultBlock.innerHTML = `
@@ -131,6 +161,14 @@
       <li>Максимальное из чисел <b>[${forSearchMinMax.toString()}]</b>: ${arrayHandler.searchMaxNumber(forSearchMinMax)}</li>
       <li>Медиана чисел <b>[${forSearchMedianEven.toString()}]</b>: ${arrayHandler.searchMedianNumber(forSearchMedianEven)}</li>
       <li>Медиана чисел <b>[${forSearchMedianOdd.toString()}]</b>: ${arrayHandler.searchMedianNumber(forSearchMedianOdd)}</li>
+    </ul>
+  `;
+
+  var forSearchSequence = [1, 3, 7, 4, 6, 7, 8, 1, 2, 5, 7, 8, 90, 1];
+
+  selectionTaskBlock.innerHTML = `
+    <ul>
+      <li>Sequence of <b>[${forSearchSequence}]</b>: ${arrayHandler.searchMaxLengthOfIncreasingSequence(forSearchSequence)}</li>
     </ul>
   `;
 
