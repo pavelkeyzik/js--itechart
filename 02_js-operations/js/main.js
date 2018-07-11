@@ -44,9 +44,46 @@
       return maxSoFar;
     }
 
+    /**
+     * Function for search median number in arrray
+     * @param {Array} array Array of Numbers 
+     */
+    function searchMedianNumber(array) {
+      var result = 0;
+      var arrayMiddle = array.length / 2;
+      array = array.sort((firstNumber,secondNumber) => firstNumber - secondNumber);
+
+      if(array.length % 2 === 0) {
+        result = (array[arrayMiddle-1] + array[arrayMiddle]) / 2;
+      } else {
+        result = array[Math.floor(array.length / 2)];
+      }
+
+      return result;
+    }
+
+    /**
+     * Function for search MIN value in array of numbers
+     * @param {Array} array Array of Numbers 
+     */
+    function searchMinNumber(array) {
+      return Math.min(...array);
+    }
+
+    /**
+     * Function for search MAX value in array of numbers
+     * @param {Array} array Array of Numbers 
+     */
+    function searchMaxNumber(array) {
+      return Math.max(...array);
+    }
+
     return {
       subSum,
-      subSumFast
+      subSumFast,
+      searchMedianNumber,
+      searchMinNumber,
+      searchMaxNumber,
     }
   }
 
@@ -54,6 +91,7 @@
 
   var subSumSlowResultBlock = document.getElementById('sub-sum-slow');
   var subSumFastResultBlock = document.getElementById('sub-sum-fast');
+  var numbersMinMaxBlock = document.getElementById('numbers-min-max');
 
   var timerStartSlow = performance.now();
   subSumSlowResultBlock.innerHTML = `
@@ -81,6 +119,19 @@
     <li>arrayHandler.subSumFast([-1, -2, -3]) = ${arrayHandler.subSumFast([-1, -2, -3])}</li>
   </ul>
   <b>Работы выполнена за ${performance.now() - timerStartFast}ms</b>
+  `;
+
+  var forSearchMedianEven = [23, 76, 34, 115, 6, 58, 88, 39, 17, 25, 7, 54, 49, 52];
+  var forSearchMedianOdd = [123, 78, 11, 95, 34, 67, 101, 356, 44, 73, 47];
+  var forSearchMinMax = [67, 101, 356];
+
+  numbersMinMaxBlock.innerHTML = `
+    <ul>
+      <li>Минимальное из чисел <b>[${forSearchMinMax.toString()}]</b>: ${arrayHandler.searchMinNumber(forSearchMinMax)}</li>
+      <li>Максимальное из чисел <b>[${forSearchMinMax.toString()}]</b>: ${arrayHandler.searchMaxNumber(forSearchMinMax)}</li>
+      <li>Медиана чисел <b>[${forSearchMedianEven.toString()}]</b>: ${arrayHandler.searchMedianNumber(forSearchMedianEven)}</li>
+      <li>Медиана чисел <b>[${forSearchMedianOdd.toString()}]</b>: ${arrayHandler.searchMedianNumber(forSearchMedianOdd)}</li>
+    </ul>
   `;
 
 })();
