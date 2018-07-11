@@ -15,6 +15,7 @@ module.exports = {
       template: 'index.html',
       filename: '../index.html',
       jsPath: 'js',
+      inject: false,
     }),
     new BrowserSyncPlugin({
       host: 'localhost',
