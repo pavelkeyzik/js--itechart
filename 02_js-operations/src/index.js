@@ -1,9 +1,11 @@
 import arrayHandler from './array-processing.js';
+import dateFormat from './date-formatter';
 
 var subSumSlowResultBlock = document.getElementById('sub-sum-slow');
 var subSumFastResultBlock = document.getElementById('sub-sum-fast');
 var numbersMinMaxBlock = document.getElementById('numbers-min-max');
 var selectionTaskBlock = document.getElementById('selection-task');
+var dateDisplayBlock = document.getElementById('date-display');
 
 var timerStartSlow = performance.now();
 subSumSlowResultBlock.innerHTML = `
@@ -51,5 +53,15 @@ var forSearchSequence = [1, 3, 7, 4, 6, 7, 8, 1, 2, 5, 7, 8, 90, 1];
 selectionTaskBlock.innerHTML = `
   <ul>
     <li>Sequence of <b>[${forSearchSequence}]</b>: ${arrayHandler.searchMaxLengthOfIncreasingSequence(forSearchSequence)}</li>
+  </ul>
+`;
+
+dateDisplayBlock.innerHTML = `
+  <ul>
+    <li>'02012018'.format(): <b>${new dateFormat('02012018').format()}</b></li>
+    <li>'02012018'.format('dots'): <b>${new dateFormat('02012018').format('dots')}</b></li>
+    <li>'02012018'.format('full'): <b>${new dateFormat('02012018').format('full')}</b></li>
+    <li>'02012018'.format('DD/MM/YYYY'): <b>${new dateFormat('02012018').format('DD/MM/YYYY')}</b></li>
+    <li>'02012018'.format('DD/MM/YY'): <b>${new dateFormat('02012018').format('DD/MM/YY')}</b></li>
   </ul>
 `;
