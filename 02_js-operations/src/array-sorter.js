@@ -16,4 +16,18 @@ ArraySorter.prototype.bubbleSort = function() {
   return result;
 }
 
+ArraySorter.prototype.insertionSort = function() {
+  let array = this._array.slice();
+
+  for(var i = 1; i < array.length; i++) {
+    for(var j = i; j > 0; j--) {
+      if(array[j] < array[j-1]) {
+        [array[j], array[j-1]] = [array[j-1], array[j]];
+      }
+    }
+  }
+
+  return array;
+}
+
 export default ArraySorter;
