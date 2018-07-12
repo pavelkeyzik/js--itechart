@@ -1,6 +1,7 @@
 import arrayHandler from './array-processing.js';
 import dateFormat from './date-formatter';
 import textFormat from './text-formatter';
+import stringCalculator from './string-calculator';
 
 var subSumSlowResultBlock = document.getElementById('sub-sum-slow');
 var subSumFastResultBlock = document.getElementById('sub-sum-fast');
@@ -8,6 +9,7 @@ var numbersMinMaxBlock = document.getElementById('numbers-min-max');
 var selectionTaskBlock = document.getElementById('selection-task');
 var dateDisplayBlock = document.getElementById('date-display');
 var textFormatterBlock = document.getElementById('text-formatter');
+var stringCalculatorBlock = document.getElementById('string-calculator');
 
 var timerStartSlow = performance.now();
 subSumSlowResultBlock.innerHTML = `
@@ -78,5 +80,18 @@ textFormatterBlock.innerHTML = `
     <li>textFormat('Hi boy!\\nHow are you?', 0, 0, 'without'): <pre>${textFormat('Hi boy!\nHow are you?', 0, 0, 'without')}</pre></li>
     <li>textFormat('Are you kidding me?', 0, 0, 'word'): <pre>${textFormat('Are you kidding me?', 0, 0, 'word')}</pre></li>
     <li>textFormat('Hello my and etc. name is Pasha. I"m Full stack developer. How are you? - I"m fine', 4, 8, 'word'): <pre>${textFormat('Hello my and etc. name is Pasha. I"m Full stack developer. How are you? - I"m fine', 4, 8, 'word')}</pre></li>
+  </ul>
+`;
+
+stringCalculatorBlock.innerHTML = `
+  <ul>
+    <li>stringCalculator('2', '4', '+'): ${stringCalculator('2', '4', '+')}</li>
+    <li>stringCalculator('4', '2', '-'): ${stringCalculator('4', '2', '-')}</li>
+    <li>stringCalculator('14', '4', '*'): ${stringCalculator('14', '4', '*')}</li>
+    <li>stringCalculator('14', '4', '/'): ${stringCalculator('14', '4', '/')}</li>
+    <li>stringCalculator('0.2', '0.1', '+'): ${stringCalculator('0.2', '0.1', '+')}</li>
+    <li>stringCalculator('0.2', '0.1', '-'): ${stringCalculator('0.2', '0.1', '-')}</li>
+    <li>stringCalculator('0.2', '0.1', '*'): ${stringCalculator('0.2', '0.1', '*')}</li>
+    <li>stringCalculator('0.4', '0.2', '/'): ${stringCalculator('0.4', '0.2', '/')}</li>
   </ul>
 `;
