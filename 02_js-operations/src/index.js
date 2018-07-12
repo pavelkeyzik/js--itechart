@@ -2,6 +2,7 @@ import arrayHandler from './array-processing.js';
 import dateFormat from './date-formatter';
 import textFormat from './text-formatter';
 import stringCalculator from './string-calculator';
+import arraySorter from './array-sorter';
 
 var subSumSlowResultBlock = document.getElementById('sub-sum-slow');
 var subSumFastResultBlock = document.getElementById('sub-sum-fast');
@@ -10,6 +11,7 @@ var selectionTaskBlock = document.getElementById('selection-task');
 var dateDisplayBlock = document.getElementById('date-display');
 var textFormatterBlock = document.getElementById('text-formatter');
 var stringCalculatorBlock = document.getElementById('string-calculator');
+var arraySorterBlock = document.getElementById('array-sorter');
 
 var timerStartSlow = performance.now();
 subSumSlowResultBlock.innerHTML = `
@@ -93,5 +95,15 @@ stringCalculatorBlock.innerHTML = `
     <li>stringCalculator('0.2', '0.1', '-'): ${stringCalculator('0.2', '0.1', '-')}</li>
     <li>stringCalculator('0.2', '0.1', '*'): ${stringCalculator('0.2', '0.1', '*')}</li>
     <li>stringCalculator('0.4', '0.2', '/'): ${stringCalculator('0.4', '0.2', '/')}</li>
+  </ul>
+`;
+
+var forSortingArray = [3, 5, 1, 3, 4, 5, 4, 2];
+var arraySort = new arraySorter(forSortingArray);
+
+arraySorterBlock.innerHTML = `
+  <span>${forSortingArray}</span>
+  <ul>
+    <li>Bubble sort: ${arraySort.bubbleSort(forSortingArray)}</li>
   </ul>
 `;
