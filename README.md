@@ -14,3 +14,8 @@ After that you can run server with gulp:
 $ cd XX_project_name
 $ gulp
 ```
+
+### 02_js-operations
+```
+$ webpack --watch
+```
