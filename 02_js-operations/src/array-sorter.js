@@ -63,4 +63,18 @@ function _quick(array, low, high) {
   _quick(array, j+1, high);
 }
 
+ArraySorter.prototype.selectionSort = function() {
+  let array = this._array.slice();
+
+  for(var i = 0; i < array.length; i++) {
+    for(var j = i + 1; j < array.length; j++) {
+      if(array[i] > array[j]) {
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+    }
+  }
+
+  return array;
+}
+
 export default ArraySorter;
