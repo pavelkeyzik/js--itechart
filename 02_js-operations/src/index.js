@@ -105,6 +105,7 @@ arraySorterBlock.innerHTML = `
   <span>${forSortingArray}</span>
   <ul>
     <li>Bubble sort: ${arraySort.bubbleSort(forSortingArray)}</li>
-    <li>Bubble sort: ${arraySort.insertionSort(forSortingArray)}</li>
+    <li>Insertion sort: ${arraySort.insertionSort(forSortingArray)}</li>
+    <li>Quick sort: ${arraySort.quickSort(forSortingArray)}</li>
   </ul>
 `;
