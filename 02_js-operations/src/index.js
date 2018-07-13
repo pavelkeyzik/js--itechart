@@ -4,6 +4,8 @@ import textFormat from './text-formatter';
 import stringCalculator from './string-calculator';
 import arraySorter from './array-sorter';
 import binaryConverter from './binary-converter';
+import cachingCalculator from './caching-calculator';
+import cachingFunction from './caching-functions';
 
 var subSumSlowResultBlock = document.getElementById('sub-sum-slow');
 var subSumFastResultBlock = document.getElementById('sub-sum-fast');
@@ -14,6 +16,10 @@ var textFormatterBlock = document.getElementById('text-formatter');
 var stringCalculatorBlock = document.getElementById('string-calculator');
 var arraySorterBlock = document.getElementById('array-sorter');
 var binaryConverterBlock = document.getElementById('binary-converter');
+var cachingCalculatorBlock = document.getElementById('caching-calculator');
+var cachingCalculatorButton = document.getElementById('caching-calculator__button');
+var cachingCalculatorResult = document.getElementById('caching-calculator__result');
+var cachingFunctionsResult = document.getElementById('caching-function');
 
 var timerStartSlow = performance.now();
 subSumSlowResultBlock.innerHTML = `
@@ -125,3 +131,64 @@ binaryConverterBlock.innerHTML = `
     <li>'#000aaf' to Binary: ${new binaryConverter('#000aaf').toBinary()}</li>
   </ul>
 `;
+
+let calculate = new cachingCalculator();
+
+cachingCalculatorButton.addEventListener('mouseup', () => {
+  let firstNumber = +document.querySelector('#caching-calculator__first-number').value;
+  let secondNumber = +document.querySelector('#caching-calculator__second-number').value;
+
+  let timeStart = performance.now();
+  let result = calculate(firstNumber, secondNumber);
+  let timeEnd = performance.now() - timeStart;
+  
+  cachingCalculatorResult.innerText = result;
+  document.querySelector('#caching-calculator__time').innerText = timeEnd;
+});
+
+// [START] CODE FOR CACHING FUNCTION TEST
+function forCheckCachingFirst(param) {
+  return `First function ${param}`;
+}
+
+function forCheckCachingSecond(param) {
+  return `Second function ${param}`;
+}
+
+forCheckCachingFirst = cachingFunction(forCheckCachingFirst);
+forCheckCachingSecond = cachingFunction(forCheckCachingSecond);
+
+let timeNoCachingFirstStart = performance.now();
+console.log(forCheckCachingFirst(1));
+let timeNoCachingFirstEnd = performance.now() - timeNoCachingFirstStart;
+
+let timeCachingFirstStart = performance.now();
+console.log(forCheckCachingFirst(1));
+let timeCachingFirstEnd = performance.now() - timeCachingFirstStart;
+
+let timeNoCachingSecondStart = performance.now();
+console.log(forCheckCachingSecond('eee'));
+let timeNoCachingSecondEnd = performance.now() - timeNoCachingSecondStart;
+
+let timeCachingSecondStart = performance.now();
+console.log(forCheckCachingSecond('eee'));
+let timeCachingSecondEnd = performance.now() - timeCachingSecondStart;
+
+cachingFunctionsResult.innerHTML = `
+  <ul>
+    <li>forCheckCachingFirst(1)
+      <ul>
+        <li>NO CACHED: ${timeNoCachingFirstEnd}ms</li>
+        <li>__ CACHED: ${timeCachingFirstEnd}ms</li>
+      </ul>
+    </li>
+    <li>forCheckCachingSecond(1)
+      <ul>
+        <li>NO CACHED: ${timeNoCachingSecondEnd}ms</li>
+        <li>__ CACHED: ${timeCachingSecondEnd}ms</li>
+      </ul>
+    </li>
+  </ul>
+`;
+
+// [END] CODE FOR CACHING FUNCTION TEST
