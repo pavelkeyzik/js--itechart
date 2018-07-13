@@ -30,4 +30,37 @@ ArraySorter.prototype.insertionSort = function() {
   return array;
 }
 
+ArraySorter.prototype.quickSort = function() {
+  let array = this._array.slice();
+  _quick(array, 0, array.length - 1);
+  return array;
+}
+
+function _quick(array, low, high) {
+  if(high <= low) return;
+
+  var i = low;
+  var j = high + 1;
+
+  do {
+    while(array[++i] < array[low]) {
+      if(i == high) break;
+    }
+
+    while(array[--j] > array[low]) {
+      if(j == low) break;
+    }
+
+    if(i < j) {
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+
+  } while(i < j);
+
+  [array[low], array[j]] = [array[j], array[low]];
+
+  _quick(array, low, j - 1);
+  _quick(array, j+1, high);
+}
+
 export default ArraySorter;
