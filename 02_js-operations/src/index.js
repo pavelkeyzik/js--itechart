@@ -3,6 +3,7 @@ import dateFormat from './date-formatter';
 import textFormat from './text-formatter';
 import stringCalculator from './string-calculator';
 import arraySorter from './array-sorter';
+import binaryConverter from './binary-converter';
 
 var subSumSlowResultBlock = document.getElementById('sub-sum-slow');
 var subSumFastResultBlock = document.getElementById('sub-sum-fast');
@@ -12,6 +13,7 @@ var dateDisplayBlock = document.getElementById('date-display');
 var textFormatterBlock = document.getElementById('text-formatter');
 var stringCalculatorBlock = document.getElementById('string-calculator');
 var arraySorterBlock = document.getElementById('array-sorter');
+var binaryConverterBlock = document.getElementById('binary-converter');
 
 var timerStartSlow = performance.now();
 subSumSlowResultBlock.innerHTML = `
@@ -107,5 +109,19 @@ arraySorterBlock.innerHTML = `
     <li>Bubble sort: ${arraySort.bubbleSort(forSortingArray)}</li>
     <li>Insertion sort: ${arraySort.insertionSort(forSortingArray)}</li>
     <li>Quick sort: ${arraySort.quickSort(forSortingArray)}</li>
+    <li>Selection sort: ${arraySort.selectionSort(forSortingArray)}</li>
+  </ul>
+`;
+
+var forBinaryConverter = new binaryConverter([0,0,1]);
+
+binaryConverterBlock.innerHTML = `
+  <ul>
+    <li>[0, 0, 1] to Dec: ${forBinaryConverter.toDec()}</li>
+    <li>[0, 0, 1] to Hex: ${forBinaryConverter.toHex()}</li>
+    <li>15 to Binary: ${new binaryConverter(15).toBinary()}</li>
+    <li>15 to Hex: ${new binaryConverter(15).toHex()}</li>
+    <li>'#000aaf' to Dec: ${new binaryConverter('#000aaf').toDec()}</li>
+    <li>'#000aaf' to Binary: ${new binaryConverter('#000aaf').toBinary()}</li>
   </ul>
 `;
