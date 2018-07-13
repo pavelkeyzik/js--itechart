@@ -159,19 +159,15 @@ forCheckCachingFirst = cachingFunction(forCheckCachingFirst);
 forCheckCachingSecond = cachingFunction(forCheckCachingSecond);
 
 let timeNoCachingFirstStart = performance.now();
-console.log(forCheckCachingFirst(1));
 let timeNoCachingFirstEnd = performance.now() - timeNoCachingFirstStart;
 
 let timeCachingFirstStart = performance.now();
-console.log(forCheckCachingFirst(1));
 let timeCachingFirstEnd = performance.now() - timeCachingFirstStart;
 
 let timeNoCachingSecondStart = performance.now();
-console.log(forCheckCachingSecond('eee'));
 let timeNoCachingSecondEnd = performance.now() - timeNoCachingSecondStart;
 
 let timeCachingSecondStart = performance.now();
-console.log(forCheckCachingSecond('eee'));
 let timeCachingSecondEnd = performance.now() - timeCachingSecondStart;
 
 cachingFunctionsResult.innerHTML = `
