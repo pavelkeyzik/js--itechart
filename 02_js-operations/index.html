@@ -95,6 +95,19 @@
         <div id="binary-converter">Loading...</div>
       </article>
     </section>
+    <section>
+      <h2>* Caching calculator</h2>
+      <p>Написать функционал позволяющий производить операции над двумя числами и кэширование результата выполнения операции так, чтобы при повторном вызове функционала с теми же параметрами взялось закэшированное значение и не производилось перевычисление результата. Функционал обернуть в объект и сделать демонстрационную страницу для тестирования функционала.</p>
+      <div id="caching-calculator">
+        <input id="caching-calculator__first-number" type="number" value="1" placeholder="1">
+        <input id="caching-calculator__second-number" type="number" value="2" placeholder="2">
+        <button id="caching-calculator__button" type="button">Суммировать</button>
+        <i id="caching-calculator__time"><- Click to count</i>
+        <br>
+        <b>Ответ:</b>
+        <span id="caching-calculator__result">3</span>
+      </div>
+    </section>
   </main>
   <script src="<%= htmlWebpackPlugin.options.jsPath %>/main.js"></script>
 </body>

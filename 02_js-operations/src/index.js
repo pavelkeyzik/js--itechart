@@ -4,6 +4,7 @@ import textFormat from './text-formatter';
 import stringCalculator from './string-calculator';
 import arraySorter from './array-sorter';
 import binaryConverter from './binary-converter';
+import cachingCalculator from './caching-calculator';
 
 var subSumSlowResultBlock = document.getElementById('sub-sum-slow');
 var subSumFastResultBlock = document.getElementById('sub-sum-fast');
@@ -14,6 +15,9 @@ var textFormatterBlock = document.getElementById('text-formatter');
 var stringCalculatorBlock = document.getElementById('string-calculator');
 var arraySorterBlock = document.getElementById('array-sorter');
 var binaryConverterBlock = document.getElementById('binary-converter');
+var cachingCalculatorBlock = document.getElementById('caching-calculator');
+var cachingCalculatorButton = document.getElementById('caching-calculator__button');
+var cachingCalculatorResult = document.getElementById('caching-calculator__result');
 
 var timerStartSlow = performance.now();
 subSumSlowResultBlock.innerHTML = `
@@ -125,3 +129,17 @@ binaryConverterBlock.innerHTML = `
     <li>'#000aaf' to Binary: ${new binaryConverter('#000aaf').toBinary()}</li>
   </ul>
 `;
+
+let calculate = new cachingCalculator();
+
+cachingCalculatorButton.addEventListener('mouseup', () => {
+  let firstNumber = +document.querySelector('#caching-calculator__first-number').value;
+  let secondNumber = +document.querySelector('#caching-calculator__second-number').value;
+
+  let timeStart = performance.now();
+  let result = calculate(firstNumber, secondNumber);
+  let timeEnd = performance.now() - timeStart;
+  
+  cachingCalculatorResult.innerText = result;
+  document.querySelector('#caching-calculator__time').innerText = timeEnd;
+});
