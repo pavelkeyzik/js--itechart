@@ -1,4 +1,4 @@
-var MONTH = [
+const MONTH = [
   {
     name: 'Jan',
     countOfDays: 31
@@ -49,135 +49,138 @@ var MONTH = [
   }
 ];
 
-function DateFormatter(date) {
-  if(!date) {
-    return;
-  }
-  if(typeof date === 'number') {
-    this._day = new Date(date).getDate().toString().substring(0, 2).padStart(2, '0');
-    this._year = new Date(date).getFullYear().toString();
-    this._month = (new Date(date).getMonth()+1).toString().padStart(2, '0');
-  } else {
-    this._day = date.substring(0, 2).padStart(2, '0');
-    this._year = date.substring(4);
-    this._month = date.substring(2, 4).padStart(2, '0');
-  }
+class DateFormatter {
 
-  this.isValid = function() {
-    let dateForCheck = `${this._month}-${this._day}-${this._year}`;
-    return !isNaN(new Date(dateForCheck).getTime());
-  }
-};
-
-DateFormatter.prototype.format = function(param) {
-  if(!this.isValid()) return 'Invalid Date';
-  
-  let d = this._day;
-  let m = this._month;
-  let M = MONTH[this._month-1].name;
-  let y = this._year.substr(-2);
-  let Y = this._year;
-
-  switch(param) {
-  case 'dots':
-    return `${d}.${m}.${Y}`;
-  case 'full':
-    return `${d} ${MONTH[this._month-1].name} ${this._year}`;
-  case 'DD/MM/YYYY':
-    return `${d}/${m}/${Y}`;
-  case 'DD/MM/YY':
-    return `${d}/${m}/${y}`;
-  default:
-    return `${d}-${m}-${Y}`;
-  }
-}
-
-DateFormatter.prototype.parse = function(date, from, to) {
-  const regExpDateParse = /D{2}|M{2}|Y{2|4}|(Y{4})/g;
-  const delimiterFrom = from.replace(regExpDateParse, '')[0];
-  from = from.replace(/[\\\/\.-?]/g, '');
-  const setFrom = new Set(from);
-
-  const newDate = date.split(delimiterFrom);
-  let delimiterTo, setTo;
-  
-  if(to) {
-    delimiterTo = to.replace(regExpDateParse, '')[0];
-    to = to.replace(/[\\\/\.-?]/g, '');
-    setTo = new Set(to);
-  }
-
-  let d, m, y;
-  let result = [];
-  let index = 0;
-  
-  setFrom.forEach(i => {
-    switch(i) {
-    case 'D':
-      d = newDate[_searchIndexOfSet(setFrom, 'D')];
-      result[index] = d;
-      break;
-    case 'M':
-      m =  newDate[_searchIndexOfSet(setFrom, 'M')];
-      result[index] = m;
-      break;
-    case 'Y':
-      y = newDate[_searchIndexOfSet(setFrom, 'Y')];
-      result[index] = y;
-      break;
+  constructor(date) {
+    if(!date) {
+      return;
     }
 
-    index++;
-  });
+    if(typeof date === 'number') {
+      this._day = new Date(date).getDate().toString().substring(0, 2).padStart(2, '0');
+      this._year = new Date(date).getFullYear().toString();
+      this._month = (new Date(date).getMonth()+1).toString().padStart(2, '0');
+    } else {
+      this._day = date.substring(0, 2).padStart(2, '0');
+      this._year = date.substring(4);
+      this._month = date.substring(2, 4).padStart(2, '0');
+    }
 
+    this.isValid = function() {
+      let dateForCheck = `${this._month}-${this._day}-${this._year}`;
+      return !isNaN(new Date(dateForCheck).getTime());
+    }
+  }
 
-  if(setTo) {
+  format(param) {
+    if(!this.isValid()) return 'Invalid Date';
+    
+    let d = this._day;
+    let m = this._month;
+    let M = MONTH[this._month-1].name;
+    let y = this._year.substr(-2);
+    let Y = this._year;
+  
+    switch(param) {
+    case 'dots':
+      return `${d}.${m}.${Y}`;
+    case 'full':
+      return `${d} ${MONTH[this._month-1].name} ${this._year}`;
+    case 'DD/MM/YYYY':
+      return `${d}/${m}/${Y}`;
+    case 'DD/MM/YY':
+      return `${d}/${m}/${y}`;
+    default:
+      return `${d}-${m}-${Y}`;
+    }
+  }
+
+  parse(date, from, to) {
+    const regExpDateParse = /D{2}|M{2}|Y{2|4}|(Y{4})/g;
+    const delimiterFrom = from.replace(regExpDateParse, '')[0];
+    from = from.replace(/[\\\/\.-?]/g, '');
+    const setFrom = new Set(from);
+  
+    const newDate = date.split(delimiterFrom);
+    let delimiterTo, setTo;
+    
+    if(to) {
+      delimiterTo = to.replace(regExpDateParse, '')[0];
+      to = to.replace(/[\\\/\.-?]/g, '');
+      setTo = new Set(to);
+    }
+  
+    let d, m, y;
+    let result = [];
     let index = 0;
-
-    setTo.forEach(i => {
+    
+    setFrom.forEach(i => {
       switch(i) {
       case 'D':
+        d = newDate[this._searchIndexOfSet(setFrom, 'D')];
         result[index] = d;
         break;
       case 'M':
+        m =  newDate[this._searchIndexOfSet(setFrom, 'M')];
         result[index] = m;
         break;
       case 'Y':
+        y = newDate[this._searchIndexOfSet(setFrom, 'Y')];
         result[index] = y;
         break;
       }
-      
+  
       index++;
     });
-  }
-
-  let delimiter = delimiterTo || delimiterFrom;
   
-  return result.join(delimiter);
-}
-
-function _searchIndexOfSet(items, elementToSearch) {
-  let index = 0;
+    if(setTo) {
+      let index = 0;
   
-  for(let item of items) {
-    if(item === elementToSearch) {
-      return index;
+      setTo.forEach(i => {
+        switch(i) {
+        case 'D':
+          result[index] = d;
+          break;
+        case 'M':
+          result[index] = m;
+          break;
+        case 'Y':
+          result[index] = y;
+          break;
+        }
+        
+        index++;
+      });
     }
-    index++;
+  
+    let delimiter = delimiterTo || delimiterFrom;
+    
+    return result.join(delimiter);
   }
-}
 
-DateFormatter.prototype.fromNow = function() {
-  let currentYear = new Date().getFullYear();
-  let countOfYears = currentYear - this._year;
-
-  if(countOfYears == 0) {
-    return `This year`; 
-  } else if (countOfYears < 0) {
-    return `In ${Math.abs(countOfYears)} years from now`; 
-  } else {
-    return `${countOfYears} years ago`; 
+  _searchIndexOfSet(items, elementToSearch) {
+    let index = 0;
+    
+    for(let item of items) {
+      if(item === elementToSearch) {
+        return index;
+      }
+      index++;
+    }
   }
-}
+
+  fromNow() {
+    let currentYear = new Date().getFullYear();
+    let countOfYears = currentYear - this._year;
+  
+    if(countOfYears == 0) {
+      return `This year`; 
+    } else if (countOfYears < 0) {
+      return `In ${Math.abs(countOfYears)} years from now`; 
+    } else {
+      return `${countOfYears} years ago`; 
+    }
+  }
+};
 
 export default DateFormatter;

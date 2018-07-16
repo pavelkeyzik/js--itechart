@@ -7,21 +7,21 @@ import binaryConverter from './binary-converter';
 import cachingCalculator from './caching-calculator';
 import cachingFunction from './caching-functions';
 
-var subSumSlowResultBlock = document.getElementById('sub-sum-slow');
-var subSumFastResultBlock = document.getElementById('sub-sum-fast');
-var numbersMinMaxBlock = document.getElementById('numbers-min-max');
-var selectionTaskBlock = document.getElementById('selection-task');
-var dateDisplayBlock = document.getElementById('date-display');
-var textFormatterBlock = document.getElementById('text-formatter');
-var stringCalculatorBlock = document.getElementById('string-calculator');
-var arraySorterBlock = document.getElementById('array-sorter');
-var binaryConverterBlock = document.getElementById('binary-converter');
-var cachingCalculatorBlock = document.getElementById('caching-calculator');
-var cachingCalculatorButton = document.getElementById('caching-calculator__button');
-var cachingCalculatorResult = document.getElementById('caching-calculator__result');
-var cachingFunctionsResult = document.getElementById('caching-function');
+const subSumSlowResultBlock = document.getElementById('sub-sum-slow');
+const subSumFastResultBlock = document.getElementById('sub-sum-fast');
+const numbersMinMaxBlock = document.getElementById('numbers-min-max');
+const selectionTaskBlock = document.getElementById('selection-task');
+const dateDisplayBlock = document.getElementById('date-display');
+const textFormatterBlock = document.getElementById('text-formatter');
+const stringCalculatorBlock = document.getElementById('string-calculator');
+const arraySorterBlock = document.getElementById('array-sorter');
+const binaryConverterBlock = document.getElementById('binary-converter');
+const cachingCalculatorBlock = document.getElementById('caching-calculator');
+const cachingCalculatorButton = document.getElementById('caching-calculator__button');
+const cachingCalculatorResult = document.getElementById('caching-calculator__result');
+const cachingFunctionsResult = document.getElementById('caching-function');
 
-var timerStartSlow = performance.now();
+const timerStartSlow = performance.now();
 subSumSlowResultBlock.innerHTML = `
 <ul>
   <li>arrayHandler.subSum([-1, 2, 3]) = ${arrayHandler.subSum([-1, 2, 3])}</li>
@@ -35,7 +35,7 @@ subSumSlowResultBlock.innerHTML = `
 <b>Работы выполнена за ${performance.now() - timerStartSlow}ms</b>
 `;
 
-var timerStartFast = performance.now();
+const timerStartFast = performance.now();
 subSumFastResultBlock.innerHTML = `
 <ul>
   <li>arrayHandler.subSumFast([-1, 2, 3]) = ${arrayHandler.subSumFast([-1, 2, 3])}</li>
@@ -49,9 +49,9 @@ subSumFastResultBlock.innerHTML = `
 <b>Работы выполнена за ${performance.now() - timerStartFast}ms</b>
 `;
 
-var forSearchMedianEven = [23, 76, 34, 115, 6, 58, 88, 39, 17, 25, 7, 54, 49, 52];
-var forSearchMedianOdd = [123, 78, 11, 95, 34, 67, 101, 356, 44, 73, 47];
-var forSearchMinMax = [67, 101, 356];
+const forSearchMedianEven = [23, 76, 34, 115, 6, 58, 88, 39, 17, 25, 7, 54, 49, 52];
+const forSearchMedianOdd = [123, 78, 11, 95, 34, 67, 101, 356, 44, 73, 47];
+const forSearchMinMax = [67, 101, 356];
 
 numbersMinMaxBlock.innerHTML = `
   <ul>
@@ -62,7 +62,7 @@ numbersMinMaxBlock.innerHTML = `
   </ul>
 `;
 
-var forSearchSequence = [1, 3, 7, 4, 6, 7, 8, 1, 2, 5, 7, 8, 90, 1];
+const forSearchSequence = [1, 3, 7, 4, 6, 7, 8, 1, 2, 5, 7, 8, 90, 1];
 
 selectionTaskBlock.innerHTML = `
   <ul>
@@ -108,8 +108,8 @@ stringCalculatorBlock.innerHTML = `
   </ul>
 `;
 
-var forSortingArray = [3, 5, 1, 3, 4, 5, 4, 2];
-var arraySort = new arraySorter(forSortingArray);
+const forSortingArray = [3, 5, 1, 3, 4, 5, 4, 2];
+const arraySort = new arraySorter(forSortingArray);
 
 arraySorterBlock.innerHTML = `
   <span>${forSortingArray}</span>
@@ -121,7 +121,7 @@ arraySorterBlock.innerHTML = `
   </ul>
 `;
 
-var forBinaryConverter = new binaryConverter([0,0,1]);
+const forBinaryConverter = new binaryConverter([0,0,1]);
 
 binaryConverterBlock.innerHTML = `
   <ul>
@@ -134,15 +134,15 @@ binaryConverterBlock.innerHTML = `
   </ul>
 `;
 
-let calculate = new cachingCalculator();
+const calculate = new cachingCalculator();
 
 cachingCalculatorButton.addEventListener('mouseup', () => {
-  let firstNumber = +document.querySelector('#caching-calculator__first-number').value;
-  let secondNumber = +document.querySelector('#caching-calculator__second-number').value;
+  const firstNumber = +document.querySelector('#caching-calculator__first-number').value;
+  const secondNumber = +document.querySelector('#caching-calculator__second-number').value;
 
-  let timeStart = performance.now();
-  let result = calculate(firstNumber, secondNumber);
-  let timeEnd = performance.now() - timeStart;
+  const timeStart = performance.now();
+  const result = calculate(firstNumber, secondNumber);
+  const timeEnd = performance.now() - timeStart;
   
   cachingCalculatorResult.innerText = result;
   document.querySelector('#caching-calculator__time').innerText = timeEnd;
@@ -160,21 +160,21 @@ function forCheckCachingSecond(param) {
 forCheckCachingFirst = cachingFunction(forCheckCachingFirst);
 forCheckCachingSecond = cachingFunction(forCheckCachingSecond);
 
-let timeNoCachingFirstStart = performance.now();
+const timeNoCachingFirstStart = performance.now();
 forCheckCachingFirst(1);
-let timeNoCachingFirstEnd = performance.now() - timeNoCachingFirstStart;
+const timeNoCachingFirstEnd = performance.now() - timeNoCachingFirstStart;
 
-let timeCachingFirstStart = performance.now();
+const timeCachingFirstStart = performance.now();
 forCheckCachingFirst(1);
-let timeCachingFirstEnd = performance.now() - timeCachingFirstStart;
+const timeCachingFirstEnd = performance.now() - timeCachingFirstStart;
 
-let timeNoCachingSecondStart = performance.now();
+const timeNoCachingSecondStart = performance.now();
 forCheckCachingSecond('eee');
-let timeNoCachingSecondEnd = performance.now() - timeNoCachingSecondStart;
+const timeNoCachingSecondEnd = performance.now() - timeNoCachingSecondStart;
 
-let timeCachingSecondStart = performance.now();
+const timeCachingSecondStart = performance.now();
 forCheckCachingSecond('eee');
-let timeCachingSecondEnd = performance.now() - timeCachingSecondStart;
+const timeCachingSecondEnd = performance.now() - timeCachingSecondStart;
 
 cachingFunctionsResult.innerHTML = `
   <ul>
