@@ -50,6 +50,9 @@ var MONTH = [
 ];
 
 function DateFormatter(date) {
+  if(!date) {
+    return;
+  }
   if(typeof date === 'number') {
     this._day = new Date(date).getDate().toString().substring(0, 2).padStart(2, '0');
     this._year = new Date(date).getFullYear().toString();
@@ -86,6 +89,81 @@ DateFormatter.prototype.format = function(param) {
     return `${d}/${m}/${y}`;
   default:
     return `${d}-${m}-${Y}`;
+  }
+}
+
+DateFormatter.prototype.parse = function(date, from, to) {
+  const regExpDateParse = /D{2}|M{2}|Y{2|4}|(Y{4})/g;
+  const delimiterFrom = from.replace(regExpDateParse, '')[0];
+  from = from.replace(/[\\\/\.-?]/g, '');
+  const setFrom = new Set(from);
+
+  const newDate = date.split(delimiterFrom);
+  let delimiterTo, setTo;
+  
+  if(to) {
+    delimiterTo = to.replace(regExpDateParse, '')[0];
+    to = to.replace(/[\\\/\.-?]/g, '');
+    setTo = new Set(to);
+  }
+
+  let d, m, y;
+  let result = [];
+  let index = 0;
+  
+  setFrom.forEach(i => {
+    switch(i) {
+    case 'D':
+      d = newDate[_searchIndexOfSet(setFrom, 'D')];
+      result[index] = d;
+      break;
+    case 'M':
+      m =  newDate[_searchIndexOfSet(setFrom, 'M')];
+      result[index] = m;
+      break;
+    case 'Y':
+      y = newDate[_searchIndexOfSet(setFrom, 'Y')];
+      result[index] = y;
+      break;
+    }
+
+    index++;
+  });
+
+
+  if(setTo) {
+    let index = 0;
+
+    setTo.forEach(i => {
+      switch(i) {
+      case 'D':
+        result[index] = d;
+        break;
+      case 'M':
+        result[index] = m;
+        break;
+      case 'Y':
+        result[index] = y;
+        break;
+      }
+      
+      index++;
+    });
+  }
+
+  let delimiter = delimiterTo || delimiterFrom;
+  
+  return result.join(delimiter);
+}
+
+function _searchIndexOfSet(items, elementToSearch) {
+  let index = 0;
+  
+  for(let item of items) {
+    if(item === elementToSearch) {
+      return index;
+    }
+    index++;
   }
 }
 
