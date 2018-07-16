@@ -5,7 +5,8 @@
   "author": "Pavel Keyzik",
   "license": "MIT",
   "scripts": {
-    "watch_01": "sass --watch 01_creating_layout\\styles\\sass\\:01_creating_layout\\styles\\css\\"
+    "watch_01": "sass --watch 01_creating_layout\\styles\\sass\\:01_creating_layout\\styles\\css\\",
+    "test_03": "jest 03_functional-advanced --watch"
   },
   "dependencies": {
     "browser-sync": "^2.24.5",
@@ -16,6 +17,7 @@
     "browser-sync-webpack-plugin": "^2.2.2",
     "copy-webpack-plugin": "^4.5.2",
     "html-webpack-plugin": "^3.2.0",
+    "jest": "^23.4.1",
     "webpack": "^4.15.1",
     "webpack-cli": "^3.0.8",
     "webpack-dev-server": "^3.1.4"

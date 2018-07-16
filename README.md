@@ -19,3 +19,8 @@ $ gulp
 ```
 $ webpack --watch
 ```
+
+### 03_functional-advanced
+```
+$ node file.js
+```
