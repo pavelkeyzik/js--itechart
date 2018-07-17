@@ -1,8 +1,9 @@
 function linearFold(array, cb, initialValue) {
   let previousValue = initialValue || array[0];
-  let result;
+  let result = initialValue;
+  const startIndex = initialValue ? 0 : 1;
 
-  for(let i = 1; i < array.length; i++) {
+  for(let i = startIndex; i < array.length; i++) {
     result = cb(previousValue, array[i], i, 4);
     cb(previousValue, result, i,2);
     previousValue = result;
