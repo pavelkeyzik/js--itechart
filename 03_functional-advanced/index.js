@@ -7,6 +7,7 @@ const filter = require('./filter');
 const averageOfEven = require('./average-of-even');
 const sumOfRandom = require('./sum-of-random');
 const first = require('./first');
+const lazyEvaluation = require('./lazy-evaluation');
 
 console.log('\n-- PROBLEM 1: Partial Application');
 
@@ -79,3 +80,28 @@ const arrayForFirst = [3, 4, 5, 6, 7];
 const resultFirst = first(arrayForFirst, (el) => el > 4 && el < 7);
 
 console.log('RESULT:', resultFirst);
+
+console.log('\n-- PROBLEM 10: Lazy evaluation');
+
+function sum1(a, b) {
+  return a + b;
+}
+function sum2(a, b) {
+  return a + b;
+}
+
+sum1 = lazyEvaluation(sum1);
+
+console.time('lazy');
+console.log(sum1(5 * 10 ** 8, 2 + 3));
+console.timeEnd('lazy');
+console.time('lazy');
+console.log(sum1(5 * 10 ** 8, 2 + 3));
+console.timeEnd('lazy');
+
+console.time('non-lazy');
+console.log(sum2(15 * 4 ** 13, 1 + 9));
+console.timeEnd('non-lazy');
+console.time('non-lazy');
+console.log(sum2(15 * 4 ** 13, 1 + 9));
+console.timeEnd('non-lazy');
