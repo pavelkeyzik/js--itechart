@@ -8,9 +8,4 @@ function map(array, cb) {
   return result;
 }
 
-const arrayForTesting = [1,2,3,4];
-
-let result = map(arrayForTesting, (x) => x + 3);
-console.log('RESULT::', result);
-
 module.exports = map;

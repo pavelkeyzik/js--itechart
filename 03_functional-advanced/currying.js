@@ -25,10 +25,4 @@ function currying(f) {
   }
 }
 
-const sum = (...args) => args.reduce((prev, current) => prev + current * 2);
-const curry = currying(sum);
-
-console.log(curry(1)(2)(3)(4).valueOf());
-console.log(curry(1,2,3,4).valueOf());
-
 module.exports = currying;

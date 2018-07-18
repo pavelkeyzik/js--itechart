@@ -9,8 +9,4 @@ function linearUnfold(cb, init) {
   return sequence;
 }
 
-const result = linearUnfold((element) => element < 20 ? element + 1 : false, 10);
-
-console.log(result);
-
 module.exports = linearUnfold;

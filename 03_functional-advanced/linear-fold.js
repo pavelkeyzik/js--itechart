@@ -11,18 +11,4 @@ function linearFold(array, cb, initialValue) {
   return result;
 }
 
-const arrayForTesting = [1, 2, 3, 4, 5];
-
-const resultWithoutInitial = linearFold(arrayForTesting, (previousValue, currentValue) => {
-  return previousValue + currentValue;
-});
-
-const resultWithInitial = linearFold(arrayForTesting, (previousValue, currentValue, index, arr) => {
-  console.log(index, arr);
-  return previousValue + currentValue;
-}, 15);
-
-console.log('RESULT WITHOUT INITIAL:', resultWithoutInitial);
-console.log('RESULT WITH INITIAL:', resultWithInitial);
-
 module.exports = linearFold;
