@@ -8,8 +8,5 @@ function averageOfEven(array) {
   return sumOfElements / filteredArray.length;
 }
 
-const result = averageOfEven([1, 23, 2, 6, 12, 0]);
-console.log("RESULT::", result);
-
 module.exports = averageOfEven;
 
