@@ -5,6 +5,7 @@ const linearUnfold = require('./linear-unfold');
 const map = require('./map');
 const filter = require('./filter');
 const averageOfEven = require('./average-of-even');
+const sumOfRandom = require('./sum-of-random');
 
 console.log('\n-- PROBLEM 1: Partial Application');
 
@@ -65,3 +66,8 @@ const arrayForAverageOfEven = [1, 23, 2, 6, 12, 0];
 const resultAverageOfEven = averageOfEven(arrayForAverageOfEven);
 
 console.log('RESULT::', arrayForAverageOfEven, '->', resultAverageOfEven);
+
+console.log('\n-- PROBLEM 8: Sum of random numbers');
+
+console.log(`RESULT 1:`, sumOfRandom());
+console.log(`RESULT 2:`, sumOfRandom());
