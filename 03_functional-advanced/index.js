@@ -6,6 +6,7 @@ const map = require('./map');
 const filter = require('./filter');
 const averageOfEven = require('./average-of-even');
 const sumOfRandom = require('./sum-of-random');
+const first = require('./first');
 
 console.log('\n-- PROBLEM 1: Partial Application');
 
@@ -71,3 +72,10 @@ console.log('\n-- PROBLEM 8: Sum of random numbers');
 
 console.log(`RESULT 1:`, sumOfRandom());
 console.log(`RESULT 2:`, sumOfRandom());
+
+console.log('\n-- PROBLEM 9: First');
+
+const arrayForFirst = [3, 4, 5, 6, 7];
+const resultFirst = first(arrayForFirst, (el) => el > 4 && el < 7);
+
+console.log('RESULT:', resultFirst);
