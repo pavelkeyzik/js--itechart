@@ -117,7 +117,7 @@ router = memoization(router, '/');
 
 router.set('/home');
 console.log('Last route:', router.previous());
-router.set('/contacts');
+router.set();
 console.log('Last route:', router.previous());
 router.set('/about');
 console.log('Last route:', router.previous());

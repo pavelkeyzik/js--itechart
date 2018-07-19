@@ -1,8 +1,10 @@
-function memoization(func, initialValue) {
-  let previousValue = initialValue;
+function memoization(func, defaultValue) {
+  let previousValue = defaultValue;
   let cache = [];
 
   function set(value) {
+    if(Number.isNaN(value) || !value) value = defaultValue;
+
     let lastElement = cache[cache.length - 1];
 
     if(lastElement && lastElement.value === value) {

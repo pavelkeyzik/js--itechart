@@ -15,5 +15,5 @@ describe('memoization', () => {
     expect(router.previous()).toEqual('/home');
 
   });
-
+  
 });
