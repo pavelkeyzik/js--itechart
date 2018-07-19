@@ -1,7 +1,7 @@
 function map(array, cb) {
-  let result = new Array(array.length);
+  const result = new Array(array.length);
 
-  for(let i = 0; i < array.length; i++) {
+  for (let i = 0; i < array.length; i++) {
     result[i] = cb(array[i]);
   }
 

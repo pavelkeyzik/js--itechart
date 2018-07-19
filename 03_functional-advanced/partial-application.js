@@ -1,8 +1,8 @@
 function partialApplication(func, ...argggs) {
-  return function(...args) {
-    args = [...args, ...argggs];
-    return func(...args);
-  }
+  return function partialApplicationReturn(...args) {
+    const params = [...args, ...argggs];
+    return func(...params);
+  };
 }
 
 module.exports = partialApplication;

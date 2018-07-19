@@ -1,19 +1,16 @@
 const memoization = require('./memoization');
 
 describe('memoization', () => {
-
   test('should return previous value', () => {
-    
-    function router(route) {
+    function routerFunction(route) {
       return route;
     }
 
-    router = memoization(router, '/');
+    const router = memoization(routerFunction, '/');
 
     router.set('/home');
     router.set('/contacts');
-    expect(router.previous()).toEqual('/home');
 
+    expect(router.previous()).toEqual('/home');
   });
-  
 });

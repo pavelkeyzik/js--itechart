@@ -1,8 +1,8 @@
 function filter(array, cb) {
-  let result = [];
+  const result = [];
 
-  array.forEach((item) => cb(item) && result.push(item));
-  
+  array.forEach(item => cb(item) && result.push(item));
+
   return result;
 }
 
