@@ -1,9 +1,9 @@
 function lazyEvaluation(func) {
   const cache = new Map();
 
-  return function(...args) {
+  return function lazyEvaluatuionReturn(...args) {
     const key = `${func.name}||${args}`;
-    if(cache.has(key)) {
+    if (cache.has(key)) {
       return cache.get(key);
     }
 
@@ -11,7 +11,7 @@ function lazyEvaluation(func) {
 
     cache.set(key, result);
     return result;
-  }
+  };
 }
 
 module.exports = lazyEvaluation;

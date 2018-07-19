@@ -1,18 +1,20 @@
 function memoization(func, defaultValue) {
   let previousValue = defaultValue;
-  let cache = [];
+  const cache = [];
 
-  function set(value) {
-    if(Number.isNaN(value) || !value) value = defaultValue;
+  function set(_value) {
+    let value = _value;
+    if (Number.isNaN(value) || !value) value = defaultValue;
 
-    let lastElement = cache[cache.length - 1];
+    const lastElement = cache[cache.length - 1];
 
-    if(lastElement && lastElement.value === value) {
+    if (lastElement && lastElement.value === value) {
       return lastElement;
     }
 
-    cache.push({value, previousValue});
+    cache.push({ value, previousValue });
     previousValue = func(value);
+    return lastElement;
   }
 
   function previous() {
@@ -21,8 +23,8 @@ function memoization(func, defaultValue) {
 
   return {
     previous,
-    set
-  }
+    set,
+  };
 }
 
 module.exports = memoization;

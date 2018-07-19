@@ -1,8 +1,9 @@
 function linearUnfold(cb, init) {
-  let sequence = [init];
+  const sequence = [init];
   let currentValue = init;
-  
-  while(currentValue = cb(currentValue)) {  
+
+  while (cb(currentValue)) {
+    currentValue = cb(currentValue);
     sequence.push(currentValue);
   }
 
