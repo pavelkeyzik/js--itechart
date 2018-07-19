@@ -8,6 +8,7 @@ const averageOfEven = require('./average-of-even');
 const sumOfRandom = require('./sum-of-random');
 const first = require('./first');
 const lazyEvaluation = require('./lazy-evaluation');
+const memoization = require('./memoization');
 
 console.log('\n-- PROBLEM 1: Partial Application');
 
@@ -105,3 +106,24 @@ console.timeEnd('non-lazy');
 console.time('non-lazy');
 console.log(sum2(15 * 4 ** 13, 1 + 9));
 console.timeEnd('non-lazy');
+
+console.log('\n-- PROBLEM 11: Memoization');
+
+function router(route) {
+  return route;
+}
+
+router = memoization(router, '/');
+
+router.set('/home');
+console.log('Last route:', router.previous());
+router.set('/contacts');
+console.log('Last route:', router.previous());
+router.set('/about');
+console.log('Last route:', router.previous());
+router.set('/about/en');
+console.log('Last route:', router.previous());
+router.set('/about/ru');
+console.log('Last route:', router.previous());
+router.set('/about/ru');
+console.log('Last route:', router.previous());
