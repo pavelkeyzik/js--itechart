@@ -1,4 +1,4 @@
-function lazyEvaluation(func) {
+function lazyEvaluationHighOrder(func) {
   const cache = new Map();
 
   return function lazyEvaluatuionReturn(...args) {
@@ -12,6 +12,13 @@ function lazyEvaluation(func) {
     cache.set(key, result);
     return result;
   };
+}
+
+function lazyEvaluation(...functions) {
+  const funcs = [];
+  functions.forEach(func => funcs.push(lazyEvaluationHighOrder(func)));
+
+  return funcs;
 }
 
 module.exports = lazyEvaluation;
