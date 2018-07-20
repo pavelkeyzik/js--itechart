@@ -1,4 +1,4 @@
-const map = require('./map');
+const map = require('../src/map');
 
 describe('map', () => {
   test('map work correctly', () => {
