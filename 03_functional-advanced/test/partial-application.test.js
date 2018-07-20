@@ -1,4 +1,4 @@
-const F = require('./partial-application');
+const F = require('../src/partial-application');
 
 test('partial', () => {
   function G(...args) {

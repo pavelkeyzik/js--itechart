@@ -1,4 +1,4 @@
-const memoization = require('./memoization');
+const memoization = require('../src/memoization');
 
 describe('memoization', () => {
   test('should return previous value', () => {

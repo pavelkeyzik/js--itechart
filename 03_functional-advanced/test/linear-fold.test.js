@@ -1,4 +1,4 @@
-const linear = require('./linear-fold');
+const linear = require('../src/linear-fold');
 
 describe('linear-fold', () => {
   test('sum of elements', () => {

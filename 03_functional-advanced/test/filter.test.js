@@ -1,4 +1,4 @@
-const filter = require('./filter');
+const filter = require('../src/filter');
 
 describe('filter', () => {
   test('filter should work', () => {

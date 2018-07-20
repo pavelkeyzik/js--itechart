@@ -1,4 +1,4 @@
-const curry = require('./currying');
+const curry = require('../src/currying');
 
 describe('curry', () => {
   test('should curry the given function', () => {

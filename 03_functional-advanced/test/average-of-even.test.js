@@ -1,4 +1,4 @@
-const averageOfEven = require('./average-of-even');
+const averageOfEven = require('../src/average-of-even');
 
 describe('average of even', () => {
   test('should work', () => {

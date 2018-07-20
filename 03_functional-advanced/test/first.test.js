@@ -1,4 +1,4 @@
-const first = require('./first');
+const first = require('../src/first');
 
 describe('testing first function', () => {
   test('should return first element that satisfies given condition', () => {
