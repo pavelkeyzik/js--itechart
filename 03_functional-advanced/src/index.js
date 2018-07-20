@@ -94,24 +94,31 @@ function sumFunctionFirst(a, b) {
   return a + b;
 }
 
-function sum2(a, b) {
+function sumFunctionSecond(a, b) {
   return a + b;
 }
 
-const sum1 = lazyEvaluation(sumFunctionFirst);
+const [sum1, sum2] = lazyEvaluation(sumFunctionFirst, sumFunctionSecond);
 
 console.time('lazy');
 console.log(sum1(5 * (10 ** 8), 2 + 3));
 console.timeEnd('lazy');
 console.time('lazy');
 console.log(sum1(5 * (10 ** 8), 2 + 3));
+console.timeEnd('lazy');
+
+console.time('lazy');
+console.log(sum2(5 * (10 ** 8), 2 + 3));
+console.timeEnd('lazy');
+console.time('lazy');
+console.log(sum2(5 * (10 ** 8), 2 + 3));
 console.timeEnd('lazy');
 
 console.time('non-lazy');
-console.log(sum2(15 * (4 ** 13), 1 + 9));
+console.log(sumFunctionSecond(15 * (4 ** 13), 1 + 9));
 console.timeEnd('non-lazy');
 console.time('non-lazy');
-console.log(sum2(15 * (4 ** 13), 1 + 9));
+console.log(sumFunctionSecond(15 * (4 ** 13), 1 + 9));
 console.timeEnd('non-lazy');
 
 console.log('\n-- PROBLEM 11: Memoization');
