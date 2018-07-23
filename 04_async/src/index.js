@@ -7,5 +7,3 @@ const listView = new ListView(listModel, {
   list: document.getElementById('promise'),
 });
 const listController = new ListController(listModel, listView);
-
-listView.render();

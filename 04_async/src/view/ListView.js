@@ -4,10 +4,10 @@ class ListView {
     this._elements = elements;
   }
 
-  render() {
+  render(city) {
     this._elements.list.innerHTML = 'Loading...';
     let itemsString = '';
-    this._model.getItems('Minsk').then(data => {
+    this._model.getItems(city).then(data => {
       data.forEach(item => {
         itemsString += this.renderItem(item);
       });
