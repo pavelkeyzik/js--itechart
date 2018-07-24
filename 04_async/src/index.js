@@ -1,19 +1,35 @@
 const searchInput = document.getElementById('search-input'),
   submitButton = document.getElementById('submit-button'),
-  promiseBlock = document.getElementById('promise');
+  promiseBlock = document.getElementById('promise'),
+  promiseUpdateButton = document.getElementById('promise-update');
+
+let lastSearchPromise;
 
 submitButton.addEventListener('click', (ev) => {
   ev.preventDefault();
   const value = searchInput.value;
   if (!value) return;
-  promiseBlock.innerHTML = 'is loading...';
+  lastSearchPromise = value;
 
-  getFromApiPromise(value)
-    .then((data) => {
-      promiseBlock.innerHTML = renderItems(data.DailyForecasts);
-    })
-    .catch(() => promiseBlock.innerHTML = 'City not found...');
+  renderList(promiseBlock, value);
 });
+
+promiseUpdateButton.addEventListener('click', (ev) => {
+  ev.preventDefault();
+  if(!lastSearchPromise) return;
+
+  renderList(promiseBlock, lastSearchPromise);
+});
+
+function renderList(container, city) {
+  container.innerHTML = 'is loading...';
+
+  getFromApiPromise(city)
+    .then((data) => {
+      container.innerHTML = renderItems(data.DailyForecasts);
+    })
+    .catch(() => container.innerHTML = 'City not found...');
+}
 
 function getFromApiPromise(city) {
   return fetch(`http://dataservice.accuweather.com/locations/v1/cities/search?apikey=tokKLS48aSf50X3PHoQQ13PQIh3Lo7mM&q=${city}`)
