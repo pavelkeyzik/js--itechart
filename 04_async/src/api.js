@@ -7,7 +7,7 @@ class Api {
     
     this._lastSearchPromise;
     this._lastSearchAwait;
-    this.__lastSearchCallback;
+    this._lastSearchCallback;
   }
 
   get lastSearchPromise() {
