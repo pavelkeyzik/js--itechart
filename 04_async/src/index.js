@@ -35,10 +35,10 @@ function renderList(container, city) {
 }
 
 function getFromApiPromise(city) {
-  return fetch(`http://dataservice.accuweather.com/locations/v1/cities/search?apikey=tokKLS48aSf50X3PHoQQ13PQIh3Lo7mM&q=${city}`)
+  return fetch(`http://dataservice.accuweather.com/locations/v1/cities/search?apikey=6siIQEQG3T15ZRWGdna9zv3sbsIIDHM0&q=${city}`)
     .then(res => res.json())
     .then(items => items[0].Key)
-    .then(cityKey => fetch(`http://dataservice.accuweather.com/forecasts/v1/daily/5day/${cityKey}?apikey=tokKLS48aSf50X3PHoQQ13PQIh3Lo7mM`))
+    .then(cityKey => fetch(`http://dataservice.accuweather.com/forecasts/v1/daily/5day/${cityKey}?apikey=6siIQEQG3T15ZRWGdna9zv3sbsIIDHM0`))
     .then(d => d.json());
 }
 
