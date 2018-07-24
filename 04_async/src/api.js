@@ -6,6 +6,7 @@ class Api {
     this._searchWeatherURL = `${this._siteURL}forecasts/v1/daily/5day/`;
     
     this._lastSearchPromise;
+    this._lastSearchAwait;
   }
 
   get lastSearchPromise() {
@@ -16,13 +17,30 @@ class Api {
     this._lastSearchPromise = newValue;
   }
 
+  get lastSearchAwait() {
+    return this._lastSearchAwait;
+  }
+
+  set lastSearchAwait(newValue) {
+    this._lastSearchAwait = newValue;
+  }
+
   getInformationPromise(city) {
     this.lastSearchPromise = city;
-    return this._search(city);
+    return this._search(city)
+      .catch(err => {
+        this.lastSearchPromise = undefined;
+        // console.error(err);
+      });
   }
 
   async getInformationAwait(city) {
-    return await this._search(city);
+    this.lastSearchAwait = city;
+    return await this._search(city)
+      .catch(err => {
+        this.lastSearchAwait = undefined;
+        // console.error(err);
+      });
   }
 
   _search(city) {
@@ -30,11 +48,7 @@ class Api {
       .then(res => res.json())
       .then(items => items[0].Key)
       .then(cityKey => fetch(`${this._searchWeatherURL}${cityKey}?${this._apiKey}`))
-      .then(d => d.json())
-      .catch(err => {
-        this.lastSearchPromise = undefined;
-        console.error(err);
-      });
+      .then(d => d.json());
   }
 }
 
