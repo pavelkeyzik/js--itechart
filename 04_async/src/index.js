@@ -1,4 +1,5 @@
 import Api from './api';
+import Render from './render';
 
 const searchInput = document.getElementById('search-input'),
   submitButton = document.getElementById('submit-button'),
@@ -21,31 +22,13 @@ promiseUpdateButton.addEventListener('click', (ev) => {
 });
 
 function renderList(container, city) {
-  container.innerHTML = 'is loading...';
+  Render.loader(container);
 
   Api.getInformationPromise(city)
     .then((data) => {
-      container.innerHTML = renderItems(data.DailyForecasts);
+      Render.weatherList(container, data.DailyForecasts)
     })
     .catch(() => {
-      container.innerHTML = 'City not found...';
+      Render.notFound(container);
     });
-}
-
-function renderItems(items) {
-  let string = '';
-
-  items.forEach((item) => {
-    const temperature = item.Temperature;
-    string += `<div>
-      <hr>
-      <h3>${new Date(item.Date).toDateString()}</h3>
-      <div>
-        Min <b>${temperature.Minimum.Value}${temperature.Minimum.Unit}</b>
-        Max <b>${temperature.Maximum.Value}${temperature.Maximum.Unit}</b>
-      </div>
-    </div>`;
-  });
-
-  return string;
 }
