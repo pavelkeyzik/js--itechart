@@ -16,6 +16,18 @@ const searchInputCallback = document.getElementById('search-input-callback'),
   callbackBlock = document.getElementById('callback'),
   callbackUpdateButton = document.getElementById('callback-update');
 
+const nextDays = document.getElementById('next-days'),
+  countOfDays = document.getElementById('count-of-days');
+
+countOfDays.innerHTML = Api.countOfDays.toString();
+
+nextDays.addEventListener('click', (ev) => {
+  ev.preventDefault();
+
+  Api.nextDays();
+  countOfDays.innerHTML = Api.countOfDays.toString();
+});
+
 promiseSubmitButton.addEventListener('click', (ev) => {
   ev.preventDefault();
   const city = searchInput.value;

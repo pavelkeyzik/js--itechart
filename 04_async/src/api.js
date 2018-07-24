@@ -3,11 +3,29 @@ class Api {
     this._siteURL = 'http://dataservice.accuweather.com/';
     this._apiKey = 'apikey=6siIQEQG3T15ZRWGdna9zv3sbsIIDHM0';
     this._searchCityURL = `${this._siteURL}locations/v1/cities/search?${this._apiKey}&q=`;
-    this._searchWeatherURL = `${this._siteURL}forecasts/v1/daily/5day/`;
+    this._searchWeatherURL = `${this._siteURL}forecasts/v1/daily`;
     
+    this._perDayGenerator = this._getPerDay();
+    this._perDay = this._perDayGenerator.next().value;
+
     this._lastSearchPromise;
     this._lastSearchAwait;
     this._lastSearchCallback;
+  }
+
+  * _getPerDay(params) {
+      while(true) {
+        yield 1;
+        yield 5;
+      }
+  }
+
+  nextDays() {
+    this._perDay = this._perDayGenerator.next().value;
+  }
+
+  get countOfDays() {
+    return this._perDay;
   }
 
   get lastSearchPromise() {
@@ -66,7 +84,7 @@ class Api {
     return fetch(`${this._searchCityURL}${city}`)
       .then(res => res.json())
       .then(items => items[0].Key)
-      .then(cityKey => fetch(`${this._searchWeatherURL}${cityKey}?${this._apiKey}`))
+      .then(cityKey => fetch(`${this._searchWeatherURL}/${this._perDay}day/${cityKey}?${this._apiKey}`))
       .then(d => d.json());
   }
 }
