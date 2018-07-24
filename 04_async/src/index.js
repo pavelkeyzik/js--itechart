@@ -1,45 +1,35 @@
+import Api from './api';
+
 const searchInput = document.getElementById('search-input'),
   submitButton = document.getElementById('submit-button'),
   promiseBlock = document.getElementById('promise'),
   promiseUpdateButton = document.getElementById('promise-update');
 
-let lastSearchPromise;
-
 submitButton.addEventListener('click', (ev) => {
   ev.preventDefault();
   const value = searchInput.value;
   if (!value) return;
-  lastSearchPromise = value;
 
   renderList(promiseBlock, value);
 });
 
 promiseUpdateButton.addEventListener('click', (ev) => {
   ev.preventDefault();
-  if(!lastSearchPromise) return;
+  if(!Api.lastSearchPromise) return;
 
-  renderList(promiseBlock, lastSearchPromise);
+  renderList(promiseBlock, Api.lastSearchPromise);
 });
 
 function renderList(container, city) {
   container.innerHTML = 'is loading...';
 
-  getFromApiPromise(city)
+  Api.getInformationPromise(city)
     .then((data) => {
       container.innerHTML = renderItems(data.DailyForecasts);
     })
     .catch(() => {
-      lastSearchPromise = undefined;
       container.innerHTML = 'City not found...';
     });
-}
-
-function getFromApiPromise(city) {
-  return fetch(`http://dataservice.accuweather.com/locations/v1/cities/search?apikey=6siIQEQG3T15ZRWGdna9zv3sbsIIDHM0&q=${city}`)
-    .then(res => res.json())
-    .then(items => items[0].Key)
-    .then(cityKey => fetch(`http://dataservice.accuweather.com/forecasts/v1/daily/5day/${cityKey}?apikey=6siIQEQG3T15ZRWGdna9zv3sbsIIDHM0`))
-    .then(d => d.json());
 }
 
 function renderItems(items) {
