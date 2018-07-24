@@ -2,26 +2,26 @@ import Api from './api';
 import Render from './render';
 
 const searchInput = document.getElementById('search-input'),
-  submitButton = document.getElementById('submit-button'),
+  promiseSubmitButton = document.getElementById('submit-button'),
   promiseBlock = document.getElementById('promise'),
   promiseUpdateButton = document.getElementById('promise-update');
 
-submitButton.addEventListener('click', (ev) => {
+promiseSubmitButton.addEventListener('click', (ev) => {
   ev.preventDefault();
-  const value = searchInput.value;
-  if (!value) return;
+  const city = searchInput.value;
+  if (!city) return;
 
-  renderList(promiseBlock, value);
+  getWeatherPromise(promiseBlock, city);
 });
 
 promiseUpdateButton.addEventListener('click', (ev) => {
   ev.preventDefault();
   if(!Api.lastSearchPromise) return;
 
-  renderList(promiseBlock, Api.lastSearchPromise);
+  getWeatherPromise(promiseBlock, Api.lastSearchPromise);
 });
 
-function renderList(container, city) {
+function getWeatherPromise(container, city) {
   Render.loader(container);
 
   Api.getInformationPromise(city)
