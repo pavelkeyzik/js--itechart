@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router';
-import PersonalArea from '../PersonalArea';
-import PageNotFound from '../../components/PageNotFound';
+import PersonalArea from '@/containers/PersonalArea';
+import PageNotFound from '@/components/PageNotFound';
 
 class App extends React.Component {
   render() {
