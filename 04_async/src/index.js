@@ -28,7 +28,10 @@ function renderList(container, city) {
     .then((data) => {
       container.innerHTML = renderItems(data.DailyForecasts);
     })
-    .catch(() => container.innerHTML = 'City not found...');
+    .catch(() => {
+      lastSearchPromise = undefined;
+      container.innerHTML = 'City not found...';
+    });
 }
 
 function getFromApiPromise(city) {
