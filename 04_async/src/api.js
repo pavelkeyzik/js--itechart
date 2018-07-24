@@ -7,6 +7,7 @@ class Api {
     
     this._lastSearchPromise;
     this._lastSearchAwait;
+    this.__lastSearchCallback;
   }
 
   get lastSearchPromise() {
@@ -25,6 +26,14 @@ class Api {
     this._lastSearchAwait = newValue;
   }
 
+  get lastSearchCallback() {
+    return this._lastSearchCallback;
+  }
+
+  set lastSearchCallback(newValue) {
+    this._lastSearchCallback = newValue;
+  }
+
   getInformationPromise(city) {
     this.lastSearchPromise = city;
     return this._search(city)
@@ -38,6 +47,18 @@ class Api {
     return await this._search(city)
       .catch(err => {
         this.lastSearchAwait = undefined;
+      });
+  }
+
+  getInformationCallback(city, cb) {
+    this._search(city)
+      .then(data => {
+        this.lastSearchCallback = city;
+        cb(data);
+      })
+      .catch(() => {
+        this.lastSearchCallback = undefined;
+        cb(null);
       });
   }
 

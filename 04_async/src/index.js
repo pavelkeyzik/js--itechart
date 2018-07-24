@@ -11,6 +11,11 @@ const searchInputAwait = document.getElementById('search-input-await'),
   awaitBlock = document.getElementById('await'),
   awaitUpdateButton = document.getElementById('await-update');
 
+const searchInputCallback = document.getElementById('search-input-callback'),
+  callbackSubmitButton = document.getElementById('submit-button-callback'),
+  callbackBlock = document.getElementById('callback'),
+  callbackUpdateButton = document.getElementById('callback-update');
+
 promiseSubmitButton.addEventListener('click', (ev) => {
   ev.preventDefault();
   const city = searchInput.value;
@@ -41,6 +46,21 @@ awaitUpdateButton.addEventListener('click', (ev) => {
   getWeatherAwait(awaitBlock, Api.lastSearchAwait);
 });
 
+callbackSubmitButton.addEventListener('click', (ev) => {
+  ev.preventDefault();
+  const city = searchInputCallback.value;
+  if(!city) return;
+
+  getWeatherCallback(callbackBlock, city);
+});
+
+callbackUpdateButton.addEventListener('click', (ev) => {
+  ev.preventDefault();
+  if(!Api.lastSearchCallback) return;
+
+  getWeatherCallback(callbackBlock, Api.lastSearchCallback);
+});
+
 function getWeatherPromise(container, city) {
   Render.loader(container);
 
@@ -63,4 +83,17 @@ function getWeatherAwait(container, city) {
     .catch(() => {
       Render.notFound(container);
     });
+}
+
+function getWeatherCallback(container, city) {
+  Render.loader(container);
+  Api.getInformationCallback(city, weatherCallBack.bind(null, container));
+}
+
+function weatherCallBack(container, data) {
+  if(!data) {
+    Render.notFound(container);
+    return;
+  }
+  Render.weatherList(container, data.DailyForecasts);
 }
