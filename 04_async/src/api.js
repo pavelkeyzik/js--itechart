@@ -30,7 +30,6 @@ class Api {
     return this._search(city)
       .catch(err => {
         this.lastSearchPromise = undefined;
-        // console.error(err);
       });
   }
 
@@ -39,7 +38,6 @@ class Api {
     return await this._search(city)
       .catch(err => {
         this.lastSearchAwait = undefined;
-        // console.error(err);
       });
   }
 
