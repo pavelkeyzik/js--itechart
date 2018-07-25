@@ -1,4 +1,5 @@
 import React from 'react';
+import './index.scss';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {personalAreaIsLoading, personalAreaIsLoaded} from '@/actions';
@@ -16,36 +17,29 @@ class PersonalArea extends React.Component {
 
     const {userInformation} = this.props.personalArea;
     return (
-      <div>
-        <h1>Personal Area Page</h1>
-        <table>
-          <tbody>
-            <tr>
-              <th>Поле</th>
-              <th>Значение</th>
-            </tr>
-            <tr>
-              <td>ID</td>
-              <td>{userInformation.id}</td>
-            </tr>
-            <tr>
-              <td>Имя</td>
-              <td>{userInformation.name}</td>
-            </tr>
-            <tr>
-              <td>Фамилия</td>
-              <td>{userInformation.surname}</td>
-            </tr>
-            <tr>
-              <td>E-mail</td>
-              <td>{userInformation.email}</td>
-            </tr>
-            <tr>
-              <td>Номер телефона</td>
-              <td>{userInformation.phoneNumber}</td>
-            </tr>
-          </tbody>
-        </table>
+      <div className="personal">
+        <div className="personal__content">
+          <div className="personal__row">
+            <div className="personal__label">Id</div>
+            <div className="personal__field">{userInformation.id}</div>
+          </div>
+          <div className="personal__row">
+            <div className="personal__label">Name</div>
+            <div className="personal__field">{userInformation.name}</div>
+          </div>
+          <div className="personal__row">
+            <div className="personal__label">Surname</div>
+            <div className="personal__field">{userInformation.surname}</div>
+          </div>
+          <div className="personal__row">
+            <div className="personal__label">E-mail</div>
+            <div className="personal__field">{userInformation.email}</div>
+          </div>
+          <div className="personal__row">
+            <div className="personal__label">Phone number</div>
+            <div className="personal__field">{userInformation.phoneNumber}</div>
+          </div>
+        </div>
       </div>
     );
   }
