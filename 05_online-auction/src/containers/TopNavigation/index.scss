@@ -1,0 +1,44 @@
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  padding: 0 30px;
+  background: #333;
+  color: #fff;
+
+  a {
+    color: #fff;
+  }
+
+  &__left {
+    display: flex;
+    align-items: center;
+  }
+
+  &__menu {
+    margin: 0 20px;
+  }
+
+  &__link {
+    text-decoration: none;
+    
+    &:not(:last-child) {
+      margin-right: 10px;
+    }
+
+    &:hover {
+      opacity: .7;
+    }
+  }
+
+  &__logo {
+
+    img {
+      width: 35px;
+      padding: 5px;
+      background: #fff;
+      border-radius: 50%;
+    }
+  }
+}
