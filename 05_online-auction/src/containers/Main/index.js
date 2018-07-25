@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
-import PersonalArea from '@/containers/PersonalArea';
 import TopNavigation from '@/containers/TopNavigation';
-import { Switch, Route } from 'react-router';
+import { Switch, Route } from 'react-router-dom';
+import RouteWithSubRoutes from '@/containers/RouteWithSubRoutes';
 
 class Main extends Component {
   render() {
     return (
-      <div>
-        <TopNavigation />
-        <Switch>
-          <Route exact path="/" component={PersonalArea} />
-        </Switch>
-      </div>
+      <Route>
+        <div>
+          <TopNavigation />
+          <Switch>
+            {this.props.routes.map((route, i) => <RouteWithSubRoutes key={i} {...route} />)}
+          </Switch>
+        </div>
+      </Route>
     );
   }
 }
