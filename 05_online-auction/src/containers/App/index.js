@@ -1,15 +1,16 @@
 import React from 'react';
-import { Switch, Route } from 'react-router';
-import PersonalArea from '@/containers/PersonalArea';
-import PageNotFound from '@/components/PageNotFound';
+import { Switch, BrowserRouter as Router } from 'react-router-dom';
+import routes from '@/routes';
+import RouteWithSubRoutes from '@/containers/RouteWithSubRoutes';
 
 class App extends React.Component {
   render() {
     return (
-      <Switch>
-        <Route exact path="/" component={PersonalArea} />
-        <Route component={PageNotFound} />
-      </Switch>
+      <Router>
+        <Switch>
+          {routes.map((route, i) => <RouteWithSubRoutes key={i} {...route} />)}
+        </Switch>
+      </Router>
     );
   }
 }
