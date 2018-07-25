@@ -1,0 +1,25 @@
+.personal {
+
+  &__title {
+    margin: 0;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    border-bottom: 1px solid #e8e8e8;
+  }
+
+  &__content {
+    padding: 20px 30px;
+  }
+
+  &__label {
+    color: #999;
+    margin-bottom: 5px;
+  }
+
+  &__field {
+    margin-bottom: 15px;
+  }
+}
