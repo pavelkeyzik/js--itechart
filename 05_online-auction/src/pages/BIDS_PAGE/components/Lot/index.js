@@ -3,6 +3,15 @@ import './index.scss';
 import moment from 'moment';
 
 class Lot extends Component {
+
+  state = {
+    timer: 'Loading...',
+  };
+
+  componentDidMount() {
+    this.dateFormat(this.props.data.time_to_end);
+  }
+
   render() {
     const { data } = this.props;
 
@@ -10,7 +19,7 @@ class Lot extends Component {
       <div className="lot">
         <div className="lot__head">
           <div className="lot__time-to-end">
-            {moment().to(moment(data.time_to_end))}
+            {this.state.timer}
           </div>
           <div className="lot__image">
             <img width="150" src={data.image_url} alt={data.description}/>
@@ -28,6 +37,16 @@ class Lot extends Component {
       </div>
     );
   }
+
+  dateFormat = (date) => {
+    const d = moment(moment.utc(date).diff(moment.utc())).utc();
+    setInterval(() => {
+      d.subtract(1, 'seconds');
+      this.setState({
+        timer: `${d.hours()}h ${d.minutes()}m ${d.seconds()}s`,
+      })
+    }, 1000);
+  } 
 }
 
 export default Lot;
