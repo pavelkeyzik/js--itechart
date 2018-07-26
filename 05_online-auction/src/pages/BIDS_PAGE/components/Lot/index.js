@@ -6,10 +6,14 @@ class Lot extends Component {
 
   state = {
     timer: 'Loading...',
+    currentBid: null,
   };
 
   componentDidMount() {
     this.dateFormat(this.props.data.time_to_end);
+    this.setState({
+      currentBid: this.props.data.current_bid
+    });
   }
 
   render() {
@@ -24,18 +28,36 @@ class Lot extends Component {
           <div className="lot__image">
             <img width="150" src={data.image_url} alt={data.description}/>
           </div>
-          <div className="lot__current-bid">Current bid: <b>{data.current_bid}$</b></div>
+          <div className="lot__current-bid">Current bid: <b>{this.state.currentBid}$</b></div>
         </div>
         <div className="lot__bottom">
           <div className="lot__information">{data.description}</div>
           <div className="lot__buttons">
-            <button className="lot__button">+5%</button>
-            <button className="lot__button">+10%</button>
-            <button className="lot__button">+20%</button>
+            <button className="lot__button" onClick={this.raseByFivePercent}>+5%</button>
+            <button className="lot__button" onClick={this.raseByTenPercent}>+10%</button>
+            <button className="lot__button" onClick={this.raseByTwenyPercent}>+20%</button>
           </div>
         </div>
       </div>
     );
+  }
+  
+  raseByFivePercent = () => {
+    this.rasePrice(1.05);
+  }
+
+  raseByTenPercent = () => {
+    this.rasePrice(1.10);
+  }
+
+  raseByTwenyPercent = () => {
+    this.rasePrice(1.20);
+  }
+
+  rasePrice = (count) => {
+    this.setState({
+      currentBid: (this.state.currentBid * count).toFixed(2),
+    });
   }
 
   dateFormat = (date) => {
