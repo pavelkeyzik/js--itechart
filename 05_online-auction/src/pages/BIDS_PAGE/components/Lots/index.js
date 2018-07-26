@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Lot from '../Lot';
 import lots from '@/shared/data/lots';
+import './index.scss';
 
 class Lots extends Component {
 
@@ -16,9 +17,11 @@ class Lots extends Component {
     if(!lots.data) return (<p>No data..</p>);
 
     return (
-      <div>
+      <div className="lots">
         <h2>Lots:</h2>
-        {lots.data.map(lot => <Lot key={lot.id} data={lot} />)}
+        <div className="lots__items">
+          {lots.data.map(lot => <Lot className="lots__item" key={lot.id} data={lot} />)}
+        </div>
       </div>
     );
   }
