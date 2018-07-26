@@ -1,11 +1,8 @@
-import React from 'react';
-import './index.scss';
-import {bindActionCreators} from 'redux';
-import {connect} from 'react-redux';
-import {personalAreaIsLoading, personalAreaIsLoaded} from '@/actions';
+import React, { Component } from 'react';
 import userInfo from '@/shared/data/personalUserInfo';
+import './index.scss';
 
-class PersonalArea extends React.Component {
+class PersonalArea extends Component {
 
   componentWillMount() {
     this.props.personalAreaIsLoading();
@@ -41,19 +38,8 @@ class PersonalArea extends React.Component {
           </div>
         </div>
       </div>
-    );
+    );      
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    personalArea: state.personalArea
-  }
-};
-
-const mapDispatchToProps = (dispatch) => bindActionCreators({
-  personalAreaIsLoading,
-  personalAreaIsLoaded,
-}, dispatch);
-
-export default connect(mapStateToProps, mapDispatchToProps)(PersonalArea);
+export default PersonalArea;

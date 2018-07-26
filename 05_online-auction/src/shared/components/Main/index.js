@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import TopNavigation from '@/containers/TopNavigation';
+import TopNavigation from '../TopNavigation';
 import { Switch, Route } from 'react-router-dom';
-import RouteWithSubRoutes from '@/containers/RouteWithSubRoutes';
+import RouteWithSubRoutes from '../RouteWithSubRoutes';
 
 class Main extends Component {
   render() {

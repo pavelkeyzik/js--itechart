@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import personalArea from '@/reducers/personalArea';
+import homePage from '@/pages/HOME_PAGE/reducers';
 
 const appReducers = combineReducers({
-  personalArea
+  personalArea: homePage.personalArea
 });
 
 export default appReducers;
