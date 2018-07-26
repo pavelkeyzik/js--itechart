@@ -1,0 +1,81 @@
+$gray: #d1d5da;
+
+.lot {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: #fff;
+  border: 1px solid $gray;
+  border-radius: 3px;
+  height: 100%;
+
+  &__head {
+    position: relative;
+    background: #eee;
+  }
+
+  &__image {
+    height: 300px;
+
+    img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__time-to-end {
+    $height: 30px;
+    position: absolute;
+    top: 10px;
+    left: 0;
+    display: flex;
+    align-items: center;
+    height: $height;
+    background: #4990e2;
+    color: #fff;
+    padding: 5px 10px;
+    border-top-right-radius: $height;
+    border-bottom-right-radius: $height;
+  }
+
+  &__current-bid {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, .6);
+    color: #fff;
+    padding: 5px 10px;
+  }
+
+  &__information {
+    padding: 20px;
+    font-weight: bold;
+  }
+
+  &__buttons {
+    display: flex;
+    border-top: 1px solid $gray;
+  }
+
+  &__button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px; 
+    width: 100%;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-weight: bold;
+
+    &:not(:last-child) {
+      border-right: 1px solid $gray;
+    }
+
+    &:hover {
+      background: #4990e2;
+      color: #fff;
+    }
+  }
+}
