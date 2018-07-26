@@ -1,7 +1,8 @@
-import Main from '@/containers/Main';
-import PageNotFound from '@/components/PageNotFound';
-import PersonalArea from '@/containers/PersonalArea';
-import BidsPage from '@/containers/BidsPage';
+import Main from '@/shared/components/Main';
+import PageNotFound from '@/shared/components/PageNotFound';
+
+import HomePage from '@/pages/HOME_PAGE';
+import BidsPage from '@/pages/BIDS_PAGE';
 
 const routes = [
   {
@@ -10,7 +11,7 @@ const routes = [
     routes: [
       {
         path: '/app/',
-        component: PersonalArea,
+        component: HomePage,
         exact: true,
       },
       {

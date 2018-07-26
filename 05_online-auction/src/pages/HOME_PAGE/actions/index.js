@@ -1,4 +1,4 @@
-import * as typeAction from '@/actions/actions';
+import * as typeAction from './actions';
 
 export const personalAreaIsLoading = () => {
   return {

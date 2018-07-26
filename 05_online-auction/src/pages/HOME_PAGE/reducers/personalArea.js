@@ -1,4 +1,4 @@
-import * as typeAction from '@/actions/actions';
+import * as typeAction from '../actions/actions';
 
 const personalAreaReducer = (state = {isLoading: true}, action) => {
   switch (action.type) {
