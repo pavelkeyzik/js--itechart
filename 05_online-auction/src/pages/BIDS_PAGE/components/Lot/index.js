@@ -16,6 +16,10 @@ class Lot extends Component {
     });
   }
 
+  componentWillUnmount() {
+    clearInterval(this.timeToEndOfBidInterval);
+  }
+
   render() {
     const { data } = this.props;
 
@@ -62,7 +66,7 @@ class Lot extends Component {
 
   dateFormat = (date) => {
     const d = moment(moment.utc(date).diff(moment.utc())).utc();
-    setInterval(() => {
+    this.timeToEndOfBidInterval = setInterval(() => {
       d.subtract(1, 'seconds');
       this.setState({
         timer: `${d.hours()}h ${d.minutes()}m ${d.seconds()}s`,

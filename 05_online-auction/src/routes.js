@@ -1,4 +1,4 @@
-import Main from '@/shared/components/Main';
+import MainContainer from '@/shared/containers/MainContainer';
 import PageNotFound from '@/shared/components/PageNotFound';
 
 import HomePage from '@/pages/HOME_PAGE';
@@ -7,7 +7,7 @@ import BidsPage from '@/pages/BIDS_PAGE';
 const routes = [
   {
     path: "/app",
-    component: Main,
+    component: MainContainer,
     routes: [
       {
         path: '/app/',
