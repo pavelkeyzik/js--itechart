@@ -3,6 +3,7 @@ import PageNotFound from '@/shared/components/PageNotFound';
 
 import HomePage from '@/pages/HOME_PAGE';
 import BidsPage from '@/pages/BIDS_PAGE';
+import AuthPage from '@/pages/AUTH_PAGE';
 
 const routes = [
   {
@@ -22,6 +23,10 @@ const routes = [
         component: PageNotFound,
       }
     ],
+  },
+  {
+    page: '/auth',
+    component: AuthPage,
   },
   {
     component: PageNotFound,
