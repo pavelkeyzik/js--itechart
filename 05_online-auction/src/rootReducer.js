@@ -7,6 +7,7 @@ const appReducers = combineReducers({
   personalArea: homePage.personalArea,
   lots: bidsPage.lots,
   auth: shared.auth,
+  reg: shared.reg,
 });
 
 export default appReducers;
