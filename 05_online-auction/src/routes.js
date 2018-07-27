@@ -25,7 +25,7 @@ const routes = [
     ],
   },
   {
-    page: '/auth',
+    path: '/auth',
     component: AuthPage,
   },
   {

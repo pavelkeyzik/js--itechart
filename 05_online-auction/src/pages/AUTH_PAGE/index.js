@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import Registration from './components/Registration';
+import RegistrationContainer from '@/shared/containers/RegistrationContainer';
 
 class AuthPage extends Component {
   render() {
     return (
       <div>
-        <Registration />
+        <RegistrationContainer />
       </div>
     );
   }
