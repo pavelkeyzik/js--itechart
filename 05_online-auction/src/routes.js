@@ -7,6 +7,11 @@ import AuthPage from '@/pages/AUTH_PAGE';
 
 const routes = [
   {
+    path: '/',
+    component: AuthPage,
+    exact: true,
+  },
+  {
     path: "/app",
     component: MainContainer,
     routes: [
@@ -23,10 +28,6 @@ const routes = [
         component: PageNotFound,
       }
     ],
-  },
-  {
-    path: '/auth',
-    component: AuthPage,
   },
   {
     component: PageNotFound,
