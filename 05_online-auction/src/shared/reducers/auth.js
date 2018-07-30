@@ -1,13 +1,13 @@
 import * as actionType from '../actions/actions';
 
 const initialState = {
-  isAuthorized: false,
+  token: null,
 }
 
 const authReducer = (state = initialState, action) => {
   switch(action.type) {
   case actionType.USER_AUTHORIZED_SUCCESSFUL:
-    return {...state, isAuthorized: true};
+    return {...state, token: 'unique_token:1233'};
   default:
     return state;
   }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import RegistrationContainer from '@/shared/containers/RegistrationContainer';
-import Authorization from '@/shared/components/Authorization';
+import AuthorizationContainer from '@/shared/containers/AuthorizationContainer';
 import './index.scss';
 import Welcome from './components/Welcome';
 
@@ -23,7 +23,7 @@ class AuthPage extends Component {
           <div className="auth__right">
             <div>
               {this.state.showBlock === regBlock && <RegistrationContainer />}
-              {this.state.showBlock === authBlock && <Authorization />}
+              {this.state.showBlock === authBlock && <AuthorizationContainer />}
             </div>
             <div className="auth__alternative">
               {this.state.showBlock === regBlock &&
