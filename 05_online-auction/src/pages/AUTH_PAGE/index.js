@@ -3,7 +3,15 @@ import RegistrationContainer from '@/shared/containers/RegistrationContainer';
 import './index.scss';
 import Welcome from './components/Welcome';
 
+const regBlock = 'registration',
+      authBlock = 'authorization';
+
 class AuthPage extends Component {
+
+  state = {
+    showBlock: regBlock,
+  };
+
   render() {
     return (
       <div className="auth">
@@ -13,10 +21,28 @@ class AuthPage extends Component {
           </div>
           <div className="auth__right">
             <RegistrationContainer />
+            <div className="auth__alternative">
+              {this.state.showBlock === regBlock &&
+                <div>Have an account? <a onClick={this.changeBlock}>Sign In</a></div>}
+              {this.state.showBlock === authBlock &&
+                <div>Don't have an account? <a onClick={this.changeBlock}>Registration</a></div>}
+            </div>
           </div>
         </div>
       </div>
     );
+  }
+
+  changeBlock = () => {
+    if(this.state.showBlock === regBlock) {
+      return this.setState({
+        showBlock: authBlock,
+      });
+    }
+
+    this.setState({
+      showBlock: regBlock,
+    });
   }
 }
 
