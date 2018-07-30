@@ -29,6 +29,12 @@
     &:focus {
       border-bottom-color: #4990e2;
     }
+
+    &_error,
+    &_error:focus {
+      color: #ff1f1f;
+      border-bottom-color: #ff1f1f;
+    }
   }
 
   &__submit {
