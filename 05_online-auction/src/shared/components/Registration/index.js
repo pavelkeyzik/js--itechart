@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import './index.scss';
+import '@/shared/styles/form.scss';
 
 class Registration extends Component {
   render() {
