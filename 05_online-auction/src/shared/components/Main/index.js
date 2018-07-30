@@ -7,7 +7,7 @@ import RouteWithSubRoutes from '../RouteWithSubRoutes';
 class Main extends Component {
   render() {
     if(!localStorage.getItem('authorizedUserToken')) {
-      return (<Redirect to="/auth" />)
+      return (<Redirect to="/" />)
     }
 
     return (

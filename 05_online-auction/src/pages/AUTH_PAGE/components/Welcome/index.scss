@@ -1,0 +1,31 @@
+.welcome {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 30px;
+  height: 100%;
+  
+  &__title {
+    text-align: center;
+    color: #fff;
+    font-size: 2em;
+    font-weight: bold;
+  }
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    background: #fff;
+    border-radius: 50%;
+    box-sizing: border-box;
+    margin-top: 30px;
+    
+    img {
+      width: 70%;
+    }
+  }
+}
