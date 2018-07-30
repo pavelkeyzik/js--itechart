@@ -35,4 +35,20 @@
     margin: 40px;
     border-radius: 5px;
   }
+
+  &__alternative {
+    text-align: center;
+    padding: 20px 0;
+    color: #333;
+
+    a {
+      color: #3498db;
+      text-decoration: none;
+      cursor: pointer;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
 }
