@@ -12,14 +12,14 @@ class Registration extends Component {
 
     return (
       <div className="registration">
-        <h1 className="registration__title">Регистрация</h1>
+        <h1 className="registration__title">Registration</h1>
         <form className="form">
           <div className="form__row">
-            <label className="form__label" htmlFor="reg-name">Имя</label>
+            <label className="form__label" htmlFor="reg-name">First name</label>
             <input ref="name" className="form__input" type="text" id="reg-name"/>
           </div>
           <div className="form__row">
-            <label className="form__label" htmlFor="reg-surname">Фамилия</label>
+            <label className="form__label" htmlFor="reg-surname">Last name</label>
             <input ref="surname" className="form__input" type="text" id="reg-surname"/>
           </div>
           <div className="form__row">
@@ -27,10 +27,10 @@ class Registration extends Component {
             <input ref="email" className="form__input" type="email" id="reg-email"/>
           </div>
           <div className="form__row">
-            <label className="form__label" htmlFor="reg-phone-number">Номер телефона</label>
+            <label className="form__label" htmlFor="reg-phone-number">Phone number</label>
             <input ref="phone" className="form__input" type="text" id="reg-phone-number"/>
           </div>
-          <button onClick={this.onSubmit} className="form__submit" type="submit">Зарегистрироваться</button>
+          <button onClick={this.onSubmit} className="form__submit" type="submit">Sign Up</button>
         </form>
       </div>
     );
