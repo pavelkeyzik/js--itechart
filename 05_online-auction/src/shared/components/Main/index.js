@@ -6,17 +6,18 @@ import RouteWithSubRoutes from '../RouteWithSubRoutes';
 
 class Main extends Component {
   render() {
-    if(!localStorage.getItem('authorizedUserToken')) {
-      return (<Redirect to="/" />)
-    }
-
     return (
       <Route>
         <div>
-          <TopNavigation />
-          <Switch>
-            {this.props.routes.map((route, i) => <RouteWithSubRoutes key={i} {...route} />)}
-          </Switch>
+        {!localStorage.getItem('authorizedUserToken') && <Redirect to="/" />}
+        {localStorage.getItem('authorizedUserToken') &&
+          <div>
+            <TopNavigation />
+            <Switch>
+              {this.props.routes.map((route, i) => <RouteWithSubRoutes key={i} {...route} />)}
+            </Switch>
+          </div>
+        }
         </div>
       </Route>
     );

@@ -11,11 +11,6 @@ class Authorization extends Component {
   };
 
   render() {
-    if(this.props.auth.token) {
-      localStorage.setItem('authorizedUserToken', this.props.auth.token);
-      this.props.history.push('/app');
-    }
-
     return (
       <div className="authorization">
         <h1 className="authorization__title">Authorization</h1>
@@ -48,6 +43,8 @@ class Authorization extends Component {
     this.props.userAuthorizedSuccessful();
 
     localStorage.setItem('authorizedUserInfo', JSON.stringify(params));
+    localStorage.setItem('authorizedUserToken', this.props.auth.token);
+    this.props.history.push('/app');
   }
 
   handleKeyUp = () => {
