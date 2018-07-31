@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, NavLink } from 'react-router-dom';
 import './index.scss';
 
 class UserInfo extends Component {
@@ -15,6 +15,7 @@ class UserInfo extends Component {
         <div className="user-info__popup" hidden={this.state.isPopUpHidden}>
           <span className="user-info__signed-as">Signed as <b>2980645</b></span>
           <nav className="user-info__links">
+            <NavLink className="user-info__link" to="/app/personal-info">Personal info</NavLink>
             <a className="user-info__link" onClick={this.handleSignOut}>Sign out</a>
           </nav>
         </div>
