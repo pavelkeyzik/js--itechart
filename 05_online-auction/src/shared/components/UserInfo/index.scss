@@ -23,6 +23,7 @@
     box-shadow: 0 2px 5px #ccc;
     border-radius: 3px;
     min-width: 180px;
+    z-index: 999;
     
     &:before {
       content: '';
