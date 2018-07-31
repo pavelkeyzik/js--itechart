@@ -14,11 +14,6 @@ class Registration extends Component {
   };
 
   render() {
-    if(this.props.reg.token) {
-      localStorage.setItem('authorizedUserToken', this.props.reg.token);
-      this.props.history.push('/app');
-    }
-
     return (
       <div className="registration">
         <h1 className="registration__title">Registration</h1>
@@ -90,6 +85,8 @@ class Registration extends Component {
     this.props.userRegistredSuccessful();
 
     localStorage.setItem('authorizedUserInfo', JSON.stringify(params));
+    localStorage.setItem('authorizedUserToken', this.props.reg.token);
+    this.props.history.push('/app');
   }
 
   validateText = (refName, stateField, type) => {
