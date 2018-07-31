@@ -14,11 +14,10 @@ class Lots extends Component {
     const { lots } = this.props;
 
     if(lots.isLoading) return (<p>Data is loading...</p>);
-    if(!lots.data) return (<p>No data..</p>);
+    if(!lots.data || lots.data.length === 0) return (<p>No data..</p>);
 
     return (
       <div className="lots">
-        <h2>Lots:</h2>
         <div className="lots__items">
           {lots.data.map(lot => <Lot className="lots__item" key={lot.id} data={lot} />)}
         </div>
