@@ -13,6 +13,7 @@ class TopNavigation extends Component {
           </NavLink>
           <nav className="navigation__menu">
             <NavLink to="/app/bids" className="navigation__link" activeClassName="navigation__link_active">Bids</NavLink>
+            <NavLink to="/app/new-lote" className="navigation__link" activeClassName="navigation__link_active">Add new lote</NavLink>
           </nav>
         </div>
         <div className="navigation__right">
