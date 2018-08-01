@@ -16,6 +16,10 @@ class LeftNavigation extends Component {
             <i className="fas fa-bars"></i>
           </div>
           <nav className="left-navigation__menu">
+            <NavLink exact to="/app/" activeClassName="left-navigation__link_active" className="left-navigation__link">
+              <i class="fas fa-home"></i>
+              <span className="left-navigation__link-text">Home</span>
+            </NavLink>
             <NavLink to="/app/new-lote" activeClassName="left-navigation__link_active" className="left-navigation__link">
               <i className="fas fa-plus-square"></i>
               <span className="left-navigation__link-text">Add new lot</span>
