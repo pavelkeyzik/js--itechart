@@ -17,7 +17,7 @@ class LeftNavigation extends Component {
           </div>
           <nav className="left-navigation__menu">
             <NavLink exact to="/app/" activeClassName="left-navigation__link_active" className="left-navigation__link">
-              <i class="fas fa-home"></i>
+              <i className="fas fa-home"></i>
               <span className="left-navigation__link-text">Home</span>
             </NavLink>
             <NavLink to="/app/new-lote" activeClassName="left-navigation__link_active" className="left-navigation__link">
