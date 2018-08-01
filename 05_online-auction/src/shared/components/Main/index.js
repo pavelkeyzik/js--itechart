@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import TopNavigation from '../TopNavigation';
 import LeftNavigation from '../LeftNavigation';
 import { Switch, Route } from 'react-router-dom';
 import { Redirect } from 'react-router';
@@ -18,9 +17,11 @@ class Main extends Component {
               <div className="main__navigation">
                 <LeftNavigation />
               </div>
-              <Switch>
-                {this.props.routes.map((route, i) => <RouteWithSubRoutes key={i} {...route} />)}
-              </Switch>
+              <div className="main__content">
+                <Switch>
+                  {this.props.routes.map((route, i) => <RouteWithSubRoutes key={i} {...route} />)}
+                </Switch>
+              </div>
             </div>
           </div>
         }
