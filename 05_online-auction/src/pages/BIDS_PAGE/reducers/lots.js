@@ -6,7 +6,7 @@ const initialState = {
 
 const lotsReducer = (state = initialState, action) => {
   switch(action.type) {
-  case actionType.INIT_LOADING_LOTS:
+  case actionType.LOTS_REQUESTED:
     return {
       ...state,
       isLoading: true

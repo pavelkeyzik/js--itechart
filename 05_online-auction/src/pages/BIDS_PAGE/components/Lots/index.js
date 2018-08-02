@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import Lot from '../Lot';
 import LotsIsLoading from '../LotsIsLoading';
-import lots from '@/shared/data/lots';
 import './index.scss';
 
 class Lots extends Component {
 
   componentDidMount() {
     this.props.initLoadingLots();
-    this.props.lotsLoaded(lots);
   }
 
   render() {
