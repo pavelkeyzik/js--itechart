@@ -17,6 +17,12 @@ const lotsReducer = (state = initialState, action) => {
       isLoading: false,
       data: action.payload,
     };
+  case actionType.LOTS_LOAD_ERROR:
+    return {
+      ...state,
+      isLoading: false,
+      error: action.error,
+    };
   default:
     return state;
   }

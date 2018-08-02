@@ -15,8 +15,18 @@ class Lots extends Component {
     if(lots.isLoading) return (
         <LotsIsLoading />
     );
+
+    if(lots.error) return (
+      <div className="lots">
+        <h1>{lots.error}</h1>
+      </div>
+    );
     
-    if(!lots.data || lots.data.length === 0) return (<p>No data..</p>);
+    if(!lots.data || lots.data.length === 0) return (
+      <div className="lots">
+        <h1>No data..</h1>
+      </div>
+    );
 
     return (
       <div className="lots">
