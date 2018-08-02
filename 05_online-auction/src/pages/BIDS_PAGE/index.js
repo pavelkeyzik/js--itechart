@@ -4,9 +4,9 @@ import LotsContainer from './containers/LotsContainer';
 class BidsPage extends Component {
   render() {
     return (
-      <div>
+      <React.Fragment>
         <LotsContainer />
-      </div>
+      </React.Fragment>
     );
   }
 }

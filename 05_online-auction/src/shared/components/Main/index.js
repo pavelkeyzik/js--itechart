@@ -12,7 +12,7 @@ class Main extends Component {
         <div className="main">
         {!localStorage.getItem('authorizedUserToken') && <Redirect to="/" />}
         {localStorage.getItem('authorizedUserToken') &&
-          <div>
+          <React.Fragment>
             <div className="main__container">
               <div className="main__navigation">
                 <LeftNavigation />
@@ -23,7 +23,7 @@ class Main extends Component {
                 </Switch>
               </div>
             </div>
-          </div>
+          </React.Fragment>
         }
         </div>
       </Route>

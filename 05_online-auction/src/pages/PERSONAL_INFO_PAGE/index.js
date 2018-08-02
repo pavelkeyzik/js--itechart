@@ -4,9 +4,9 @@ import PersonalAreaContainer from './containers/PersonalAreaContainer';
 class PersonalInfoPage extends Component {
   render() {
     return (
-      <div>
+      <React.Fragment>
         <PersonalAreaContainer />
-      </div>
+      </React.Fragment>
     );
   }
 }
