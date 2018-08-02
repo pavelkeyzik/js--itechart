@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import LeftNavigation from '../LeftNavigation';
 import { Switch, Route } from 'react-router-dom';
 import { Redirect } from 'react-router';
@@ -30,5 +31,9 @@ class Main extends Component {
     );
   }
 }
+
+Main.propTypes = {
+  routes: PropTypes.array,
+};
 
 export default Main;

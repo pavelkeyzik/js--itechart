@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Lot from '../Lot';
 import LotsIsLoading from '../LotsIsLoading';
 import './index.scss';
@@ -37,5 +38,9 @@ class Lots extends Component {
     );
   }
 }
+
+Lots.propTypes = {
+  lots: PropTypes.object,
+};
 
 export default Lots;
