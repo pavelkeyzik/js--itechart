@@ -17,6 +17,10 @@ class Authorization extends Component {
     phoneInputError: false,
   };
 
+  componentDidMount() {
+    this.phoneRef.current.focus();
+  }
+
   render() {
     return (
       <div className="authorization">

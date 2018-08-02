@@ -23,6 +23,10 @@ class Registration extends Component {
     emailInputError: false,
   };
 
+  componentDidMount() {
+    this.nameRef.current.focus();
+  }
+
   render() {
     return (
       <div className="registration">
