@@ -1,0 +1,14 @@
+.success-notification {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  padding: 15px 20px 15px 15px;
+  box-shadow: 0 6px 26px rgba(0, 0, 0, .15);
+  border-radius: 8px;
+  color: #555;
+
+  &__icon {
+    color: #b0ecb0;
+    margin-right: 10px;
+  }
+}
