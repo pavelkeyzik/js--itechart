@@ -1,14 +1,25 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
+import classNames from 'classnames';
 import './index.scss';
 import '@/shared/styles/form.scss';
 import Validator from '@/shared/utils/Validator';
 
 class Authorization extends Component {
 
+  constructor(props) {
+    super(props);
+    this.phoneRef = React.createRef();
+    this.submitRef = React.createRef();
+  }
+
   state = {
     phoneInputError: false,
   };
+
+  componentDidMount() {
+    this.phoneRef.current.focus();
+  }
 
   render() {
     return (
@@ -18,13 +29,13 @@ class Authorization extends Component {
           <div className="form__row">
             <label className="form__label" htmlFor="auth-phone-number">Phone number</label>
             <input
-              className={"form__input " + (this.state.phoneInputError ? "form__input_error" : "")}
+              className={classNames("form__input", {"form__input_error": this.state.phoneInputError})}
               onChange={this.validateText.bind(this, 'phone', 'phoneInputError', 'phone')}
-              ref="phone"
+              ref={this.phoneRef}
               type="text"
               id="reg-phone-number"/>
           </div>
-          <button ref="submit" className="form__submit" type="submit" disabled>Sign In</button>
+          <button ref={this.submitRef} className="form__submit" type="submit" disabled>Sign In</button>
         </form>
       </div>
     );
@@ -48,15 +59,15 @@ class Authorization extends Component {
   }
 
   handleKeyUp = () => {
-    if(!this.state.phoneInputError && this.refs.phone.value.length > 0) {
-      this.refs.submit.disabled = false;
+    if(!this.state.phoneInputError && this.phoneRef.current.value.length > 0) {
+      this.submitRef.current.disabled = false;
     } else {
-      this.refs.submit.disabled = true;
+      this.submitRef.current.disabled = true;
     }
   }
 
   validateText = (refName, stateField, type) => {
-    const value = this.refs[refName].value;
+    const value = this[refName + 'Ref'].current.value;
     let validated = false;
 
     switch(type) {

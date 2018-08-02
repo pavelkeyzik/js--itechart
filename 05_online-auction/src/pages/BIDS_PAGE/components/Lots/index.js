@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Lot from '../Lot';
 import LotsIsLoading from '../LotsIsLoading';
-import lots from '@/shared/data/lots';
 import './index.scss';
 
 class Lots extends Component {
 
   componentDidMount() {
     this.props.initLoadingLots();
-    this.props.lotsLoaded(lots);
   }
 
   render() {
@@ -17,8 +16,18 @@ class Lots extends Component {
     if(lots.isLoading) return (
         <LotsIsLoading />
     );
+
+    if(lots.error) return (
+      <div className="lots">
+        <h1>{lots.error}</h1>
+      </div>
+    );
     
-    if(!lots.data || lots.data.length === 0) return (<p>No data..</p>);
+    if(!lots.data || lots.data.length === 0) return (
+      <div className="lots">
+        <h1>No data..</h1>
+      </div>
+    );
 
     return (
       <div className="lots">
@@ -29,5 +38,9 @@ class Lots extends Component {
     );
   }
 }
+
+Lots.propTypes = {
+  lots: PropTypes.object,
+};
 
 export default Lots;

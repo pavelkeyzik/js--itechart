@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import LeftNavigation from '../LeftNavigation';
 import { Switch, Route } from 'react-router-dom';
 import { Redirect } from 'react-router';
@@ -12,7 +13,7 @@ class Main extends Component {
         <div className="main">
         {!localStorage.getItem('authorizedUserToken') && <Redirect to="/" />}
         {localStorage.getItem('authorizedUserToken') &&
-          <div>
+          <React.Fragment>
             <div className="main__container">
               <div className="main__navigation">
                 <LeftNavigation />
@@ -23,12 +24,16 @@ class Main extends Component {
                 </Switch>
               </div>
             </div>
-          </div>
+          </React.Fragment>
         }
         </div>
       </Route>
     );
   }
 }
+
+Main.propTypes = {
+  routes: PropTypes.array,
+};
 
 export default Main;

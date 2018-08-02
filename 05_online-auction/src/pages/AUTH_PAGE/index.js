@@ -21,15 +21,13 @@ class AuthPage extends Component {
             <Welcome />
           </div>
           <div className="auth__right">
-            <div>
-              {this.state.showBlock === regBlock && <RegistrationContainer />}
-              {this.state.showBlock === authBlock && <AuthorizationContainer />}
-            </div>
+            {this.state.showBlock === regBlock && <RegistrationContainer />}
+            {this.state.showBlock === authBlock && <AuthorizationContainer />}
             <div className="auth__alternative">
               {this.state.showBlock === regBlock &&
-                <div>Have an account? <a onClick={this.changeBlock}>Sign In</a></div>}
+                <React.Fragment>Have an account? <a onClick={this.changeBlock}>Sign In</a></React.Fragment>}
               {this.state.showBlock === authBlock &&
-                <div>Don't have an account? <a onClick={this.changeBlock}>Registration</a></div>}
+                <React.Fragment>Don't have an account? <a onClick={this.changeBlock}>Registration</a></React.Fragment>}
             </div>
           </div>
         </div>

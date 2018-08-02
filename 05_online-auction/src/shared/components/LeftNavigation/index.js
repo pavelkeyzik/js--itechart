@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { NavLink, withRouter } from 'react-router-dom';
+import classNames from 'classnames';
 import './index.scss';
 
 class LeftNavigation extends Component {
@@ -10,7 +11,7 @@ class LeftNavigation extends Component {
 
   render() {
     return (
-      <div className={"left-navigation " + (this.state.menuIsOpen ? "left-navigation_is-open" : null)}>
+      <div className={classNames("left-navigation", {"left-navigation_is-open": this.state.menuIsOpen})}>
         <div className="left-navigation__top">
           <div href="#" className="left-navigation__burger" onClick={this.toggleMenu}>
             <i className="fas fa-bars"></i>

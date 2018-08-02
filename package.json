@@ -13,6 +13,7 @@
     "babel-loader": "^7.1.5",
     "babel-preset-env": "^1.7.0",
     "browser-sync": "^2.24.5",
+    "classnames": "^2.2.6",
     "gulp": "^3.9.1",
     "gulp-sass": "^4.0.1",
     "react-redux": "^5.0.7",
