@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
+import classNames from 'classnames';
 import './index.scss';
 import '@/shared/styles/form.scss';
 import Validator from '@/shared/utils/Validator';
@@ -18,7 +19,7 @@ class Authorization extends Component {
           <div className="form__row">
             <label className="form__label" htmlFor="auth-phone-number">Phone number</label>
             <input
-              className={"form__input " + (this.state.phoneInputError ? "form__input_error" : "")}
+              className={classNames("form__input", {"form__input_error": this.state.phoneInputError})}
               onChange={this.validateText.bind(this, 'phone', 'phoneInputError', 'phone')}
               ref="phone"
               type="text"
