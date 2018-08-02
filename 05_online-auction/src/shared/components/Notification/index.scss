@@ -1,0 +1,11 @@
+.notification {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
+  transition: .6s;
+
+  &__hidden {
+    opacity: 0;
+  }
+}

@@ -5,6 +5,8 @@ import { Switch, Route } from 'react-router-dom';
 import { Redirect } from 'react-router';
 import RouteWithSubRoutes from '../RouteWithSubRoutes';
 import './index.scss';
+import Notification from '@/shared/components/Notification';
+import SuccessNotification from '@/shared/components/SuccessNotification';
 
 class Main extends Component {
   render() {
@@ -14,6 +16,9 @@ class Main extends Component {
         {!localStorage.getItem('authorizedUserToken') && <Redirect to="/" />}
         {localStorage.getItem('authorizedUserToken') &&
           <React.Fragment>
+            <Notification>
+              <SuccessNotification>You have successfully logged in!</SuccessNotification>
+            </Notification>
             <div className="main__container">
               <div className="main__navigation">
                 <LeftNavigation />
