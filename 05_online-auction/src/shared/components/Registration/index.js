@@ -7,6 +7,15 @@ import Validator from '@/shared/utils/Validator';
 
 class Registration extends Component {
 
+  constructor(props) {
+    super(props);
+    this.nameRef = React.createRef();
+    this.surnameRef = React.createRef();
+    this.emailRef = React.createRef();
+    this.phoneRef = React.createRef();
+    this.submitRef = React.createRef();
+  }
+
   state = {
     nameInputError: false,
     surNameError: false,
@@ -24,7 +33,7 @@ class Registration extends Component {
             <input
               className={classNames("form__input", {"form__input_error": this.state.nameInputError})}
               onChange={this.validateText.bind(this, 'name', 'nameInputError', 'text')}
-              ref="name"
+              ref={this.nameRef}
               type="text"
               id="reg-name"/>
           </div>
@@ -33,7 +42,7 @@ class Registration extends Component {
             <input
               className={classNames("form__input", {"form__input_error": this.state.surNameError})}
               onChange={this.validateText.bind(this, 'surname', 'surNameError', 'text')}
-              ref="surname"
+              ref={this.surnameRef}
               type="text"
               id="reg-surname"/>
           </div>
@@ -42,7 +51,7 @@ class Registration extends Component {
             <input
               className={classNames("form__input", {"form__input_error": this.state.emailInputError})}
               onChange={this.validateText.bind(this, 'email', 'emailInputError', 'email')}
-              ref="email"
+              ref={this.emailRef}
               type="email"
               id="reg-email"/>
           </div>
@@ -51,11 +60,11 @@ class Registration extends Component {
             <input
               className={classNames("form__input", {"form__input_error": this.state.phoneInputError})}
               onChange={this.validateText.bind(this, 'phone', 'phoneInputError', 'phone')}
-              ref="phone"
+              ref={this.phoneRef}
               type="text"
               id="reg-phone-number"/>
           </div>
-          <button ref="submit" className="form__submit" type="submit" disabled>Sign Up</button>
+          <button ref={this.submitRef} className="form__submit" type="submit" disabled>Sign Up</button>
         </form>
       </div>
     );
@@ -63,13 +72,13 @@ class Registration extends Component {
 
   handleKeyUp = () => {
     if(!(this.state.nameInputError || this.state.surNameError || this.state.phoneInputError) &&
-      this.refs.name.value.length > 0 &&
-      this.refs.surname.value.length > 0 &&
-      this.refs.email.value.length > 0 &&
-      this.refs.phone.value.length > 0) {
-        this.refs.submit.disabled = false;
+      this.nameRef.current.value.length > 0 &&
+      this.surnameRef.current.value.length > 0 &&
+      this.emailRef.current.value.length > 0 &&
+      this.phoneRef.current.value.length > 0) {
+        this.submitRef.current.disabled = false;
     } else {
-      this.refs.submit.disabled = true;
+      this.submitRef.current.disabled = true;
     }
   }
 
@@ -78,10 +87,10 @@ class Registration extends Component {
 
     const params = {
       id: new Date().getTime(),
-      name: this.refs.name.value,
-      surname: this.refs.surname.value,
-      email: this.refs.email.value,
-      phone: this.refs.phone.value,
+      name: this.nameRef.current.value,
+      surname: this.surnameRef.current.value,
+      email: this.emailRef.current.value,
+      phone: this.phoneRef.current.value,
     }
     this.props.userRegistredSuccessful();
 
@@ -91,7 +100,7 @@ class Registration extends Component {
   }
 
   validateText = (refName, stateField, type) => {
-    const value = this.refs[refName].value;
+    const value = this[refName + 'Ref'].current.value;
     let validated = false;
 
     switch(type) {

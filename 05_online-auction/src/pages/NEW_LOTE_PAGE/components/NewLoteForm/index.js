@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import '@/shared/styles/form.scss';
 
 class NewLoteForm extends Component {
+  
+  constructor(props) {
+    super(props);
+    this.lotFileRef = React.createRef();
+  }
 
   state = {
     selectedImage: null,
@@ -42,9 +47,9 @@ class NewLoteForm extends Component {
                 <label className="form__file-button" htmlFor="lote-file">Choose file</label>
               </div>
             </div>
-            <input onChange={this.handleFileChange} ref="lotFile" id="lote-file" type="file" hidden/>
+            <input onChange={this.handleFileChange} ref={this.lotFileRef} id="lote-file" type="file" hidden/>
           </div>
-          <button ref="submit" className="form__submit" type="submit">Add lot</button>
+          <button className="form__submit" type="submit">Add lot</button>
         </form>
       </div>
     );
@@ -57,7 +62,7 @@ class NewLoteForm extends Component {
       this.setState({selectedImage: ev.target.result});
     }
 
-    reader.readAsDataURL(this.refs.lotFile.files[0]);
+    reader.readAsDataURL(this.lotFileRef.current.files[0]);
   }
 }
 
