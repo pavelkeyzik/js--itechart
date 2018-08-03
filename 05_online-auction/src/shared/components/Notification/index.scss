@@ -4,8 +4,10 @@
   right: 20px;
   z-index: 999;
   transition: .6s;
+  visibility: visible;
 
   &__hidden {
+    visibility: hidden;
     opacity: 0;
   }
 }
