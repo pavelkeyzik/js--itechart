@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import '@/shared/styles/form.scss';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
+import CustomDatePicker from '@/shared/components/CustomDatePicker';
 import moment from 'moment';
 
 class NewLoteForm extends Component {
@@ -44,7 +43,7 @@ class NewLoteForm extends Component {
           </div>
           <div className="form__row">
             <label className="form__label" htmlFor="lote-name">Date of the end</label>
-            <DatePicker
+            <CustomDatePicker
               className="form__input"
               selected={this.state.startDate}
               onChange={this.handleChange}
