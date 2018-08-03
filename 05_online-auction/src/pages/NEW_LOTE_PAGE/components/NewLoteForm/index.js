@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import '@/shared/styles/form.scss';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import moment from 'moment';
 
 class NewLoteForm extends Component {
   
@@ -10,7 +13,14 @@ class NewLoteForm extends Component {
 
   state = {
     selectedImage: null,
+    startDate: moment(),
   };
+
+  handleChange = (date) => {
+    this.setState({
+      startDate: date,
+    });
+  }
 
   render() {
     return (
@@ -34,7 +44,15 @@ class NewLoteForm extends Component {
           </div>
           <div className="form__row">
             <label className="form__label" htmlFor="lote-name">Date of the end</label>
-            <input className="form__input" id="lote-description" type="text"/>
+            <DatePicker
+              className="form__input"
+              selected={this.state.startDate}
+              onChange={this.handleChange}
+              showTimeSelect
+              timeFormat="LT"
+              dateFormat="MMMM DD, YYYY LT"
+              minDate={moment()}
+            />
           </div>
           <div className="form__row">
             <label className="form__label" htmlFor="lote-file">Image</label>
