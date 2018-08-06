@@ -1,0 +1,39 @@
+.not-found {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to top, #222, #2a2a2a);
+  height: 100vh;
+
+  &__404 {
+    font-size: 14em;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 0 0 80px rgba(255, 255, 255, .8);
+    
+    span {
+      color: rgba(255,255,255,0.3);
+      text-shadow: 1px 5px 7px #222, 0 0 0 #000, 1px 5px 7px #222;
+    }
+  }
+
+  &__description {
+    font-size: 1.5em;
+    color: #aaa;
+  }
+}
+
+.links {
+  display: flex;
+  padding: 20px 0;
+
+  &__item {
+    color: #aaa;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

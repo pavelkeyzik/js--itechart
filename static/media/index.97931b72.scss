@@ -1,0 +1,18 @@
+.main {
+
+  &__container {
+    display: flex;
+  }
+
+  &__navigation {
+    border-right: 1px solid #ddd;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    height: 100vh;
+  }
+
+  &__content {
+    width: 100%;
+  }
+}

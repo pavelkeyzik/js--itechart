@@ -1,0 +1,70 @@
+.lots-loading {
+  display: grid;
+  grid-gap: 20px;
+  padding: 40px 20px;
+
+  &__item {
+    height: 200px;
+    background: rgba(0, 0, 0, .1);
+    border-radius: 10px;
+    box-shadow: 1px 2px 16px rgba(0, 0, 0, .1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    animation: loading infinite 2s;
+  }
+
+  &__title {
+    display: block;
+    background: rgba(255, 255, 255, .8);
+    width: 60%;
+    height: 20px;
+    border-radius: 20px;
+    box-shadow: 1px 2px 16px rgba(0, 0, 0, .05);
+  }
+
+  &__button {
+    display: block;
+    background: rgba(255, 255, 255, .8);
+    width: 30%;
+    height: 30px;
+    border-radius: 6px;
+    box-shadow: 1px 2px 16px rgba(0, 0, 0, .1);
+  }
+}
+
+@keyframes loading {
+  from {
+    opacity: .6;
+  }
+  50% {
+    opacity: 1;
+  }
+  to {
+    opacity: .6;
+  }
+}
+
+
+
+@media only screen and (min-width: 640px) {
+  
+  .lots-loading {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media only screen and (min-width: 870px) {
+  
+  .lots-loading {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media only screen and (min-width: 1240px) {
+  
+  .lots-loading {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
