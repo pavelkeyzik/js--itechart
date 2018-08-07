@@ -11,7 +11,7 @@ class Main extends Component {
 
   componentWillMount() {
     if(!localStorage.getItem('authorizedUserToken')) {
-      this.props.push('/');
+      this.props.history.push('/');
     }
   }
 
