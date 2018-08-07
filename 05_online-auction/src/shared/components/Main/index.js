@@ -1,20 +1,24 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import LeftNavigation from '../LeftNavigation';
-import { Switch, Route } from 'react-router-dom';
-import { Redirect } from 'react-router';
+import { Switch, Route, withRouter } from 'react-router-dom';
 import RouteWithSubRoutes from '../RouteWithSubRoutes';
 import './index.scss';
 import Notification from '@/shared/components/Notification';
 import SuccessNotification from '@/shared/components/SuccessNotification';
 
 class Main extends Component {
+
+  componentWillMount() {
+    if(!localStorage.getItem('authorizedUserToken')) {
+      this.props.push('/');
+    }
+  }
+
   render() {
     return (
       <Route>
         <div className="main">
-        {!localStorage.getItem('authorizedUserToken') && <Redirect to="/" />}
-        {localStorage.getItem('authorizedUserToken') &&
           <React.Fragment>
             <Notification>
               <SuccessNotification>You have successfully logged in!</SuccessNotification>
@@ -30,7 +34,6 @@ class Main extends Component {
               </div>
             </div>
           </React.Fragment>
-        }
         </div>
       </Route>
     );
@@ -41,4 +44,4 @@ Main.propTypes = {
   routes: PropTypes.array,
 };
 
-export default Main;
+export default withRouter(Main);

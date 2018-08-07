@@ -21,6 +21,7 @@ class Notification extends Component {
   }
 
   componentWillUnmount() {
+    clearTimeout(this.timer);
     notificationRoot.removeChild(this.container);
   }
 
