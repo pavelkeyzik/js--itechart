@@ -21,11 +21,13 @@ const customLoggerFormatFile = printf(d => {
 });
 
 const customLoggerFormatConsole = printf(d => {
-  const template = `[${d.timestamp}] (${d.level}): ${d.message}`;
+  const template = `[${new Date().toLocaleTimeString()}] ${d.message}`;
 
   switch (d.level) {
     case 'error':
       return chalk.white.bgRed(template);
+    case 'warn':
+      return chalk.yellow(template);
     default:
       return template;
   }
