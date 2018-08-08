@@ -1,12 +1,12 @@
 const UsersModel = require('../models/UsersModel');
+const logger = require('../../logger');
 
 class UsersController {
   getListOfUsers(req, res) {
     UsersModel.getUsers()
       .then(data => res.send(data))
       .catch(error => {
-        // Instead of logger
-        console.log(error.message);
+        logger.error(error.message);
         res.status(error.status).send(error);
       });
   }
@@ -17,8 +17,7 @@ class UsersController {
     UsersModel.getUser(id)
       .then(response => res.send(response))
       .catch(error => {
-        // Instead of logger
-        console.log(error.message);
+        logger.error(error.message);
         res.status(error.status).send(error);
       });
   }
@@ -27,7 +26,7 @@ class UsersController {
     UsersModel.addNewUser(req.body)
       .then(response => res.status(response.status).send(response))
       .catch(error => {
-        console.log(error);
+        logger.error(error.message);
         res.status(error.status).send(error);
       });
   }
