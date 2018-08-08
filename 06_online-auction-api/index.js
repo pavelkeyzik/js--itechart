@@ -2,22 +2,24 @@ const path = require('path');
 const app = require(path.resolve(__dirname, 'app'));
 const config = require(path.resolve(__dirname, 'app/config'));
 const server = app.listen(config.port);
+const logger = require('./logger');
 
 server.on('listening', () => {
-  console.log('┏━━━━━━━━━━━━━━━━━━━━━━━━┓');
-  console.log('┃   ONLINE AUCTION API   ┃');
-  console.log('┗━━━━━━━━━━━━━━━━━━━━━━━━┛');
-  console.log('==> Launch application');
-  console.log(`==> The application listens to the port::${config.port}`);
+  logger.info('┏━━━━━━━━━━━━━━━━━━━━━━━━┓');
+  logger.info('┃   ONLINE AUCTION API   ┃');
+  logger.info('┗━━━━━━━━━━━━━━━━━━━━━━━━┛');
+  logger.info('==> Launch application');
+  logger.info(`==> The application listens to the port::${config.port}`);
 });
 
 server.on('error', error => {
+  logger.error(error);
   throw error;
 });
 
 server.on('close', () => {
-  console.log();
-  console.log('<== Closing the connection...');
-  console.log();
-  console.log('😘  Bye! I hope you will be back soon.');
+  logger.info();
+  logger.info('<== Closing the connection...');
+  logger.info();
+  logger.info('😘  Bye! I hope you will be back soon.');
 });

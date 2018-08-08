@@ -11,9 +11,13 @@
   "author": "Pavel Keyzik",
   "license": "ISC",
   "devDependencies": {
+    "chalk": "^2.4.1",
     "eslint": "^5.3.0",
     "express": "^4.16.3",
+    "mongodb": "^3.1.1",
+    "mongoose": "^5.2.7",
     "nodemon": "^1.18.3",
-    "prettier": "^1.14.0"
+    "prettier": "^1.14.0",
+    "winston": "^3.0.0"
   }
 }

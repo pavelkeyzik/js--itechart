@@ -1,39 +1,68 @@
-class UserModel {
-  getUsers(cb) {
-    const data = [
-      {
-        id: 1,
-        name: 'Pavel',
-        surname: 'Keyzik',
-        email: 'pavel.keyzik@gmail.com',
-        phoneNumber: '375291234567',
-      },
-      {
-        id: 2,
-        name: 'Dmitriy',
-        surname: 'Fallow',
-        email: 'fallow.d@gmail.com',
-        phoneNumber: '71234567',
-      },
-    ];
+const db = require('../../db');
+const mongoose = require('mongoose');
 
-    cb(null, data);
+const schema = mongoose.Schema(
+  {
+    name: 'string',
+    surname: 'string',
+    email: 'string',
+    phoneNumber: 'string',
+  },
+  {
+    versionKey: false,
+  }
+);
+
+const User = db.model('User', schema);
+
+class UserModel {
+  async getUsers() {
+    return await User.find((err, users) => {
+      if (err) {
+        throw {
+          message: 'List of users is empty',
+          status: 404,
+        };
+      }
+
+      if (!users || users.length <= 0) {
+        throw {
+          message: 'List of users is empty',
+          status: 404,
+        };
+      }
+
+      return users;
+    });
   }
 
-  getUser(id, cb) {
-    this.getUsers((err, data) => {
+  async getUser(id) {
+    return await User.findOne({ _id: id }, (err, document) => {
       if (err) {
-        cb(err);
+        throw {
+          message: 'Cannot find in DataBase or bad query',
+          status: 500,
+        };
       }
 
-      const res = data.find(i => i.id === +id);
-
-      if (!res) {
-        cb(404);
-      }
-
-      cb(null, res);
+      return document;
     });
+  }
+
+  async addNewUser(data) {
+    User.create(data, err => {
+      if (err) {
+        throw {
+          message: err,
+          status: 500,
+        };
+      }
+    });
+
+    return {
+      message: 'User added successfuly',
+      status: 200,
+    };
   }
 }
 
