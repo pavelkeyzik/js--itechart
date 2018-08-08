@@ -1,6 +1,6 @@
 class UserModel {
-  getUsers(cb) {
-    const data = [
+  constructor() {
+    this.users = [
       {
         id: 1,
         name: 'Pavel',
@@ -16,8 +16,10 @@ class UserModel {
         phoneNumber: '71234567',
       },
     ];
+  }
 
-    cb(null, data);
+  getUsers(cb) {
+    cb(null, this.users);
   }
 
   getUser(id, cb) {
@@ -34,6 +36,19 @@ class UserModel {
 
       cb(null, res);
     });
+  }
+
+  addNewUser(data, cb) {
+    const newUser = {
+      id: new Date().getTime(),
+      name: data.name,
+      surname: data.surname,
+      email: data.email,
+      phoneNumber: data.phoneNumber,
+    };
+
+    this.users.push(newUser);
+    cb(null);
   }
 }
 

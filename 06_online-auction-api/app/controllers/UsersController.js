@@ -17,9 +17,21 @@ class UsersController {
     UsersModel.getUser(id, (err, data) => {
       if (err) {
         res.sendStatus(404);
+        return;
       }
 
       res.send(data);
+    });
+  }
+
+  addNewUser(req, res) {
+    UsersModel.addNewUser(req.body, err => {
+      if (err) {
+        res.sendStatus(500);
+        return;
+      }
+
+      res.sendStatus(200);
     });
   }
 }
