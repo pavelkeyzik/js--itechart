@@ -2,37 +2,34 @@ const UsersModel = require('../models/UsersModel');
 
 class UsersController {
   getListOfUsers(req, res) {
-    UsersModel.getUsers((err, data) => {
-      if (err) {
-        throw Error(err);
-      }
-
-      res.send(data);
-    });
+    UsersModel.getUsers()
+      .then(data => res.send(data))
+      .catch(error => {
+        // Instead of logger
+        console.log(error.message);
+        res.status(error.status).send(error);
+      });
   }
 
   getUser(req, res) {
     const { id } = req.params;
 
-    UsersModel.getUser(id, (err, data) => {
-      if (err) {
-        res.sendStatus(404);
-        return;
-      }
-
-      res.send(data);
-    });
+    UsersModel.getUser(id)
+      .then(response => res.send(response))
+      .catch(error => {
+        // Instead of logger
+        console.log(error.message);
+        res.status(error.status).send(error);
+      });
   }
 
   addNewUser(req, res) {
-    UsersModel.addNewUser(req.body, err => {
-      if (err) {
-        res.sendStatus(500);
-        return;
-      }
-
-      res.sendStatus(200);
-    });
+    UsersModel.addNewUser(req.body)
+      .then(response => res.status(response.status).send(response))
+      .catch(error => {
+        console.log(error);
+        res.status(error.status).send(error);
+      });
   }
 }
 

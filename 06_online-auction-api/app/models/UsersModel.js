@@ -18,27 +18,47 @@ class UserModel {
     ];
   }
 
-  getUsers(cb) {
-    cb(null, this.users);
+  async getUsers() {
+    if (!this.users || this.users.length <= 0) {
+      throw {
+        message: 'List of users is empty',
+        status: 404,
+      };
+    }
+
+    return await this.users;
   }
 
-  getUser(id, cb) {
-    this.getUsers((err, data) => {
-      if (err) {
-        cb(err);
-      }
+  async getUser(id) {
+    if (Number.isNaN(+id)) {
+      throw {
+        message: 'Cannot identify ID. ID is a number without any symbols',
+        status: 500,
+      };
+    }
 
-      const res = data.find(i => i.id === +id);
+    const users = await this.getUsers();
 
-      if (!res) {
-        cb(404);
-      }
+    if (!users) {
+      throw {
+        message: 'List of users is empty',
+        status: 404,
+      };
+    }
 
-      cb(null, res);
-    });
+    const res = users.find(i => i.id === +id);
+
+    if (!res) {
+      throw {
+        message: 'User not found',
+        status: 404,
+      };
+    }
+
+    return res;
   }
 
-  addNewUser(data, cb) {
+  async addNewUser(data) {
     const newUser = {
       id: new Date().getTime(),
       name: data.name,
@@ -47,8 +67,22 @@ class UserModel {
       phoneNumber: data.phoneNumber,
     };
 
-    this.users.push(newUser);
-    cb(null);
+    // Instead of Schema
+    if (undefined === (newUser.id && newUser.name && newUser.surname && newUser.email && newUser.phoneNumber)) {
+      throw {
+        message: 'Cannot to add new user. Please, check your fields in request',
+        status: 500,
+      };
+    }
+
+    const addedUser = await this.users.push(newUser);
+
+    if (addedUser) {
+      return {
+        message: 'User added successfuly',
+        status: 200,
+      };
+    }
   }
 }
 
