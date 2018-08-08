@@ -1,88 +1,68 @@
-class UserModel {
-  constructor() {
-    this.users = [
-      {
-        id: 1,
-        name: 'Pavel',
-        surname: 'Keyzik',
-        email: 'pavel.keyzik@gmail.com',
-        phoneNumber: '375291234567',
-      },
-      {
-        id: 2,
-        name: 'Dmitriy',
-        surname: 'Fallow',
-        email: 'fallow.d@gmail.com',
-        phoneNumber: '71234567',
-      },
-    ];
+const db = require('../../db');
+const mongoose = require('mongoose');
+
+const schema = mongoose.Schema(
+  {
+    name: 'string',
+    surname: 'string',
+    email: 'string',
+    phoneNumber: 'string',
+  },
+  {
+    versionKey: false,
   }
+);
 
+const User = db.model('User', schema);
+
+class UserModel {
   async getUsers() {
-    if (!this.users || this.users.length <= 0) {
-      throw {
-        message: 'List of users is empty',
-        status: 404,
-      };
-    }
+    return await User.find((err, users) => {
+      if (err) {
+        throw {
+          message: 'List of users is empty',
+          status: 404,
+        };
+      }
 
-    return await this.users;
+      if (!users || users.length <= 0) {
+        throw {
+          message: 'List of users is empty',
+          status: 404,
+        };
+      }
+
+      return users;
+    });
   }
 
   async getUser(id) {
-    if (Number.isNaN(+id)) {
-      throw {
-        message: 'Cannot identify ID. ID is a number without any symbols',
-        status: 500,
-      };
-    }
+    return await User.findOne({ _id: id }, (err, document) => {
+      if (err) {
+        throw {
+          message: 'Cannot find in DataBase or bad query',
+          status: 500,
+        };
+      }
 
-    const users = await this.getUsers();
-
-    if (!users) {
-      throw {
-        message: 'List of users is empty',
-        status: 404,
-      };
-    }
-
-    const res = users.find(i => i.id === +id);
-
-    if (!res) {
-      throw {
-        message: 'User not found',
-        status: 404,
-      };
-    }
-
-    return res;
+      return document;
+    });
   }
 
   async addNewUser(data) {
-    const newUser = {
-      id: new Date().getTime(),
-      name: data.name,
-      surname: data.surname,
-      email: data.email,
-      phoneNumber: data.phoneNumber,
+    User.create(data, err => {
+      if (err) {
+        throw {
+          message: err,
+          status: 500,
+        };
+      }
+    });
+
+    return {
+      message: 'User added successfuly',
+      status: 200,
     };
-
-    // Instead of Schema
-    if (undefined === (newUser.id && newUser.name && newUser.surname && newUser.email && newUser.phoneNumber)) {
-      throw {
-        message: 'Cannot to add new user. Please, check your fields in request',
-        status: 500,
-      };
-    }
-
-    const addedUser = await this.users.push(newUser);
-
-    if (addedUser) {
-      return {
-        message: 'User added successfuly',
-        status: 200,
-      };
-    }
   }
 }
 
