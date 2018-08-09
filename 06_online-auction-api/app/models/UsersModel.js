@@ -3,10 +3,22 @@ const mongoose = require('mongoose');
 
 const schema = mongoose.Schema(
   {
-    name: 'string',
-    surname: 'string',
-    email: 'string',
-    phoneNumber: 'string',
+    name: {
+      type: String,
+      required: true,
+    },
+    surname: {
+      type: String,
+      required: true,
+    },
+    email: {
+      type: String,
+      required: true,
+    },
+    phoneNumber: {
+      type: String,
+      required: true,
+    },
   },
   {
     versionKey: false,
@@ -19,17 +31,7 @@ class UserModel {
   async getUsers() {
     return await User.find((err, users) => {
       if (err) {
-        throw {
-          message: 'List of users is empty',
-          status: 404,
-        };
-      }
-
-      if (!users || users.length <= 0) {
-        throw {
-          message: 'List of users is empty',
-          status: 404,
-        };
+        return Error(err);
       }
 
       return users;
@@ -37,12 +39,9 @@ class UserModel {
   }
 
   async getUser(id) {
-    return await User.findOne({ _id: id }, (err, document) => {
+    return await User.findById(id, (err, document) => {
       if (err) {
-        throw {
-          message: 'Cannot find in DataBase or bad query',
-          status: 500,
-        };
+        return Error(err);
       }
 
       return document;
@@ -50,19 +49,13 @@ class UserModel {
   }
 
   async addNewUser(data) {
-    User.create(data, err => {
-      if (err) {
-        throw {
-          message: err,
-          status: 500,
-        };
-      }
-    });
+    const user = new User(data);
 
-    return {
-      message: 'User added successfuly',
-      status: 200,
-    };
+    try {
+      await user.save();
+    } catch (err) {
+      throw new Error(err);
+    }
   }
 }
 
