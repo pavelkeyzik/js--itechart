@@ -1,17 +1,3 @@
-const validateText = (value) => {
-  return /^[A-z]{1,}$/g.test(value);
-}
-
-const validatePhone = (value) => {
-  return /^[0-9]{7}$/.test(value);
-}
-
-const validateEmail = (value) => {
-  return /^([A-Za-z0-9_\-.+])+@([A-Za-z0-9_\-.])+\.([A-Za-z]{2,})$/.test(value);
-}
-
 export default {
-  validateText,
-  validatePhone,
-  validateEmail,
-}
+  phone: /^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,3})|(\(?\d{2,3}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$/,
+};

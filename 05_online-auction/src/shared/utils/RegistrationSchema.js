@@ -1,6 +1,6 @@
 import * as Yup from "yup";
 
-const BasicFormSchema = Yup.object().shape({
+const RegistrationSchema = Yup.object().shape({
   name: Yup.string()
     .matches(/^[A-z]{1,}$/)
     .required(),
@@ -15,4 +15,4 @@ const BasicFormSchema = Yup.object().shape({
     .required()
 });
 
-export default BasicFormSchema;
+export default RegistrationSchema;
