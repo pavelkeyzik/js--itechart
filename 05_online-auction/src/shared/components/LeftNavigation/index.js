@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { NavLink, withRouter } from 'react-router-dom';
 import classNames from 'classnames';
 import './index.scss';
 
-class LeftNavigation extends Component {
+class LeftNavigation extends PureComponent {
 
   state = {
     menuIsOpen: false,

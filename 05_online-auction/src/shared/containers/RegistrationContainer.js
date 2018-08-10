@@ -1,5 +1,4 @@
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import Registration from '../components/Registration';
 
 import {
@@ -10,8 +9,8 @@ const mapStateToProps = (state) => ({
   reg: state.reg,
 });
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({
-  userRegistredSuccessful,
-}, dispatch);
+const mapDispatchToProps = {
+  onUserRegistredSuccessful: userRegistredSuccessful,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Registration);

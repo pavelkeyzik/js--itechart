@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import RegistrationContainer from '@/shared/containers/RegistrationContainer';
 import AuthorizationContainer from '@/shared/containers/AuthorizationContainer';
 import './index.scss';
@@ -7,7 +7,7 @@ import Welcome from './components/Welcome';
 const regBlock = 'registration',
       authBlock = 'authorization';
 
-class AuthPage extends Component {
+class AuthPage extends PureComponent {
 
   state = {
     showBlock: regBlock,

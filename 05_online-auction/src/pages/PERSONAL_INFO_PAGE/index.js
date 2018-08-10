@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PersonalAreaContainer from './containers/PersonalAreaContainer';
 
-class PersonalInfoPage extends Component {
+class PersonalInfoPage extends PureComponent {
   render() {
     return (
       <React.Fragment>

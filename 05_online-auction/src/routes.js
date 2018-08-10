@@ -1,11 +1,11 @@
-import MainContainer from '@/shared/containers/MainContainer';
-import PageNotFound from '@/shared/components/PageNotFound';
+import MainContainer from './shared/containers/MainContainer';
+import PageNotFound from './shared/components/PageNotFound';
 
-import HomePage from '@/pages/HOME_PAGE';
-import BidsPage from '@/pages/BIDS_PAGE';
-import AuthPage from '@/pages/AUTH_PAGE';
-import NewLotePage from '@/pages/NEW_LOTE_PAGE';
-import PersonalInfoPage from '@/pages/PERSONAL_INFO_PAGE';
+import HomePage from './pages/HOME_PAGE';
+import BidsPage from './pages/BIDS_PAGE';
+import AuthPage from './pages/AUTH_PAGE';
+import NewLotePage from './pages/NEW_LOTE_PAGE';
+import PersonalInfoPage from './pages/PERSONAL_INFO_PAGE';
 
 const routes = [
   {

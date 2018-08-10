@@ -6,8 +6,8 @@ class ArraySorter {
   bubbleSort() {
     let result = this._array.slice();
   
-    for(var i = 0; i < result.length; i++) {
-      for(var j = 0; j < result.length; j++) {
+    for(let i = 0; i < result.length; i++) {
+      for(let j = 0; j < result.length; j++) {
         if(result[j] > result[j+1]) {
           [result[j], result[j+1]] = [result[j+1], result[j]]
         }    
@@ -20,8 +20,8 @@ class ArraySorter {
   insertionSort() {
     let array = this._array.slice();
   
-    for(var i = 1; i < array.length; i++) {
-      for(var j = i; j > 0; j--) {
+    for(let i = 1; i < array.length; i++) {
+      for(let j = i; j > 0; j--) {
         if(array[j] < array[j-1]) {
           [array[j], array[j-1]] = [array[j-1], array[j]];
         }
@@ -40,8 +40,8 @@ class ArraySorter {
   selectionSort() {
     let array = this._array.slice();
   
-    for(var i = 0; i < array.length; i++) {
-      for(var j = i + 1; j < array.length; j++) {
+    for(let i = 0; i < array.length; i++) {
+      for(let j = i + 1; j < array.length; j++) {
         if(array[i] > array[j]) {
           [array[i], array[j]] = [array[j], array[i]];
         }
@@ -54,8 +54,8 @@ class ArraySorter {
   _quick(array, low, high) {
     if(high <= low) return;
   
-    var i = low;
-    var j = high + 1;
+    let i = low;
+    let j = high + 1;
   
     do {
       while(array[++i] < array[low]) {

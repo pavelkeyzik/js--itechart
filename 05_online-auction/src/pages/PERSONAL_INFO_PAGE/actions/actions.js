@@ -1,2 +1,6 @@
-export const PERSONAL_AREA_IS_LOADING = 'PERSONAL_AREA_IS_LOADING';
-export const PERSONAL_AREA_IS_LOADED = 'PERSONAL_AREA_IS_LOADED';
+const keyMirror = require('key-mirror');
+
+export default keyMirror({
+  PERSONAL_AREA_IS_LOADING: null,
+  PERSONAL_AREA_IS_LOADED: null,
+});

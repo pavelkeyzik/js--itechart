@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
 import Lots from '../components/Lots';
-import { bindActionCreators } from 'redux';
 import {
   initLoadingLots,
   lotsLoaded,
@@ -10,9 +9,9 @@ const mapStateToProps = (state) => ({
   lots: state.lots,
 });
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({
-  initLoadingLots,
-  lotsLoaded,
-}, dispatch);
+const mapDispatchToProps = {
+  onInitLoadingLots: initLoadingLots,
+  onLotsLoaded: lotsLoaded,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Lots);

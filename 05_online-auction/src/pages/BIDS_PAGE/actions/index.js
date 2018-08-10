@@ -1,5 +1,6 @@
-import * as actionType from './actions';
+import actionType from './actions';
 import lots from '@/shared/data/lots';
+import { createAction } from 'redux-actions';
 
 export const initLoadingLots = () => (dispatch) => {
 
@@ -15,19 +16,19 @@ export const initLoadingLots = () => (dispatch) => {
     } else {
       dispatch({
         type: actionType.LOTS_LOAD_ERROR,
-        error: '404 Error. Not found data',
+        payload: '404 Error. Not found data',
       });
     }
   }, 1400);
   
 };
 
-export const lotsLoaded = (data) => ({
-  type: actionType.LOTS_LOADED_SUCCESSFUL,
-  payload: data,
-});
+export const lotsLoaded = createAction(
+  actionType.LOTS_LOADED_SUCCESSFUL,
+  lots => lots,
+);
 
-export const lotsLoadError = (error) => ({
-  type: actionType.LOTS_LOAD_ERROR,
-  error,
-});
+export const lotsLoadError = createAction(
+  actionType.LOTS_LOADED_SUCCESSFUL,
+  error => error,
+);

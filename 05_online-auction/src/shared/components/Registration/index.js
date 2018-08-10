@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { withRouter } from 'react-router-dom';
 import classNames from 'classnames';
 import './index.scss';
 import '@/shared/styles/form.scss';
 import Validator from '@/shared/utils/Validator';
 
-class Registration extends Component {
+class Registration extends PureComponent {
 
   constructor(props) {
     super(props);
@@ -96,7 +96,7 @@ class Registration extends Component {
       email: this.emailRef.current.value,
       phone: this.phoneRef.current.value,
     }
-    this.props.userRegistredSuccessful();
+    this.props.onUserRegistredSuccessful();
 
     localStorage.setItem('authorizedUserInfo', JSON.stringify(params));
     localStorage.setItem('authorizedUserToken', this.props.reg.token);

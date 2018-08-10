@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import LotsContainer from './containers/LotsContainer';
 
-class BidsPage extends Component {
+class BidsPage extends PureComponent {
   render() {
     return (
       <React.Fragment>

@@ -1,4 +1,4 @@
-var ArrayProcessingTool = {
+const ArrayProcessingTool = {
 
   /**
    * The function for counting sum of numbers
@@ -14,10 +14,10 @@ var ArrayProcessingTool = {
    * @param {Array} array Array of Numbers 
    */
   subSum(array) {
-    var maxSum = 0;
+    let maxSum = 0;
 
-    for (var i = 0; i < array.length; i++) {
-      for (var k = i; k < array.length; k++) {
+    for (let i = 0; i < array.length; i++) {
+      for (let k = i; k < array.length; k++) {
         maxSum = Math.max(maxSum, this._sumOfNumbers(array.slice(i, k + 1)));
       }
     }
@@ -30,10 +30,10 @@ var ArrayProcessingTool = {
    * @param {Array} array Array of Numbers 
    */
   subSumFast(array) {
-    var maxSoFar = 0;
-    var maxEndingHere = 0;
+    let maxSoFar = 0;
+    let maxEndingHere = 0;
 
-    for(var i = 0; i < array.length; i++) {
+    for(let i = 0; i < array.length; i++) {
       maxEndingHere = Math.max(maxEndingHere + array[i], 0);
       maxSoFar = Math.max(maxEndingHere, maxSoFar);
     }
@@ -46,8 +46,8 @@ var ArrayProcessingTool = {
    * @param {Array} array Array of Numbers 
    */
   searchMedianNumber(array) {
-    var result = 0;
-    var arrayMiddle = array.length / 2;
+    let result = 0;
+    const arrayMiddle = array.length / 2;
     array = array.sort((firstNumber,secondNumber) => firstNumber - secondNumber);
 
     if(array.length % 2 === 0) {
@@ -80,14 +80,14 @@ var ArrayProcessingTool = {
    * @param {Array} array Array of Numbers
    */
   searchMaxLengthOfIncreasingSequence(array) {
-    var startIndex = 0;
-    var res = [];
+    let startIndex = 0;
+    let res = [];
     
     if(array.length === 2) {
       return array[0] < array[1] ? array : [];
     }
 
-    for(var i = 1; i < array.length; i++) {
+    for(let i = 1; i < array.length; i++) {
       if(array[i] > array[i-1]) {
         if(i - startIndex > res.length - 1 && i === array.length - 1) {
           res = array.slice(startIndex, i + 1);

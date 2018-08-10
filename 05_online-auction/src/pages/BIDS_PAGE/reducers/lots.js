@@ -1,31 +1,34 @@
-import * as actionType from '../actions/actions';
+import actionType from '../actions/actions';
+import { handleActions } from 'redux-actions';
 
 const initialState = {
   isLoading: false,
+  error: null,
 };
 
-const lotsReducer = (state = initialState, action) => {
-  switch(action.type) {
-  case actionType.LOTS_REQUESTED:
-    return {
+const lotsReducer = handleActions(
+  {
+    [actionType.LOTS_REQUESTED]: state => ({
       ...state,
+      error: null,
       isLoading: true
-    };
-  case actionType.LOTS_LOADED_SUCCESSFUL:
-    return {
+    }),
+
+    [actionType.LOTS_LOADED_SUCCESSFUL]: (state, action) => ({
       ...state,
       isLoading: false,
-      data: action.payload,
-    };
-  case actionType.LOTS_LOAD_ERROR:
-    return {
+      error: null,
+      payload: action.payload,
+    }),
+
+    [actionType.LOTS_LOAD_ERROR]: (state, action) => ({
       ...state,
       isLoading: false,
-      error: action.error,
-    };
-  default:
-    return state;
-  }
-}
+      error: true,
+      payload: action.payload,
+    }),
+  },
+  initialState
+);
 
 export default lotsReducer;

@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import NewLoteForm from './components/NewLoteForm';
 
-class NewLotePage extends Component {
+class NewLotePage extends PureComponent {
   render() {
     return (
       <React.Fragment>

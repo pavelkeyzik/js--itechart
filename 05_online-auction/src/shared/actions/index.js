@@ -1,9 +1,10 @@
-import * as actionType from './actions';
+import actionType from './actions';
+import { createAction } from 'redux-action';
 
-export const userAuthorizedSuccessful = () => ({
-  type: actionType.USER_AUTHORIZED_SUCCESSFUL
-});
+export const userAuthorizedSuccessful = createAction(
+  actionType.USER_AUTHORIZED_SUCCESSFUL,
+);
 
-export const userRegistredSuccessful = () => ({
-  type: actionType.USER_REGISTERED_SUCCESSFUL,
-});
+export const userRegistredSuccessful = createAction(
+  actionType.USER_REGISTERED_SUCCESSFUL,
+);
