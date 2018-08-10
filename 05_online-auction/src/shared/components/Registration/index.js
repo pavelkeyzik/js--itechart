@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import './index.scss';
 import '@/shared/styles/form.scss';
 import { Formik, Field, Form } from 'formik';
-import Schema from './schema';
+import Schema from '@/shared/utils/RegistrationSchema';
 
 class Registration extends PureComponent {
   render() {
