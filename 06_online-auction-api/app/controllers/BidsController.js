@@ -38,6 +38,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage, fileFilter });
 
 const bidsNotFoundMessage = 'Bids not found';
+const bidAddedSuccessful = 'Bid added successful';
 
 class BidsController {
   getBids(req, res) {
@@ -57,11 +58,21 @@ class BidsController {
   addNewBid(req, res) {
     upload.single('image')(req, res, err => {
       if (err) {
-        res.status(500).send({ success: false });
-        return;
+        logger.error(err);
+        return res.status(500).send({ message: err });
       }
 
-      res.status(200).send({ success: true });
+      const { filename, destination } = req.file;
+      req.body.image_url = path.join(destination, filename);
+
+      BidsModel.addNewBid(req.body)
+        .then(() => {
+          res.status(200).send({ message: bidAddedSuccessful });
+        })
+        .catch(err => {
+          logger.error(err.message);
+          res.status(500).send({ message: err.message });
+        });
     });
   }
 }
