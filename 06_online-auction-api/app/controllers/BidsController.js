@@ -39,6 +39,9 @@ const upload = multer({ storage, fileFilter });
 
 const bidsNotFoundMessage = 'Bids not found';
 const bidAddedSuccessful = 'Bid added successful';
+const bidRiseOfFivePercentSuccessful = 'Bid rise of five percent successful';
+const bidRiseOfTenPercentSuccessful = 'Bid rise of ten percent successful';
+const bidRiseOfTwentyPercentSuccessful = 'Bid rise of twenty percent successful';
 
 class BidsController {
   getBids(req, res) {
@@ -74,6 +77,45 @@ class BidsController {
           res.status(500).send({ message: err.message });
         });
     });
+  }
+
+  riseOfFivePercent(req, res) {
+    const { id } = req.params;
+
+    BidsModel.riseOfFivePercent(id)
+      .then(() => {
+        res.status(200).send({ message: bidRiseOfFivePercentSuccessful });
+      })
+      .catch(err => {
+        logger.error(err.message);
+        res.status(500).send({ message: err.message });
+      });
+  }
+
+  riseOfTenPercent(req, res) {
+    const { id } = req.params;
+
+    BidsModel.riseOfTenPercent(id)
+      .then(() => {
+        res.status(200).send({ message: bidRiseOfTenPercentSuccessful });
+      })
+      .catch(err => {
+        logger.error(err.message);
+        res.status(500).send({ message: err.message });
+      });
+  }
+
+  riseOfTwentyPercent(req, res) {
+    const { id } = req.params;
+
+    BidsModel.riseOfTwentyPercent(id)
+      .then(() => {
+        res.status(200).send({ message: bidRiseOfTwentyPercentSuccessful });
+      })
+      .catch(err => {
+        logger.error(err.message);
+        res.status(500).send({ message: err.message });
+      });
   }
 }
 
