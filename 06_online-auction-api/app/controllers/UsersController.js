@@ -1,17 +1,14 @@
 const UsersModel = require('../models/UsersModel');
 const logger = require('../../logger');
-
-const userNotFoundMessage = 'User not found';
-const usersNotFoundMessage = 'Users not found';
-const userAddedSuccessfulMessage = 'User added successful';
+const messages = require('../messages');
 
 class UsersController {
   getListOfUsers(req, res) {
     UsersModel.getUsers()
       .then(data => {
         if (!data.length) {
-          logger.info(usersNotFoundMessage);
-          return res.status(404).send({ message: usersNotFoundMessage });
+          logger.info(messages.usersNotFoundMessage);
+          return res.status(404).send({ message: messages.usersNotFoundMessage });
         }
         res.status(200).send(data);
       })
@@ -27,8 +24,8 @@ class UsersController {
     UsersModel.getUser(id)
       .then(data => {
         if (!data) {
-          logger.info(userNotFoundMessage);
-          return res.status(404).send({ message: userNotFoundMessage });
+          logger.info(messages.userNotFoundMessage);
+          return res.status(404).send({ message: messages.userNotFoundMessage });
         }
         res.status(200).send(data);
       })
@@ -44,7 +41,7 @@ class UsersController {
   addNewUser(req, res) {
     UsersModel.addNewUser(req.body)
       .then(() => {
-        res.status(200).send({ message: userAddedSuccessfulMessage });
+        res.status(200).send({ message: messages.userAddedSuccessfulMessage });
       })
       .catch(error => {
         logger.error(error.message);

@@ -5,6 +5,7 @@ const config = require('../config');
 const crypto = require('crypto');
 const fs = require('fs');
 const path = require('path');
+const messages = require('../messages');
 
 const fileFilter = (req, file, cb) => {
   const filetypes = config.supportedFilesBids;
@@ -37,19 +38,13 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage, fileFilter });
 
-const bidsNotFoundMessage = 'Bids not found';
-const bidAddedSuccessful = 'Bid added successful';
-const bidRiseOfFivePercentSuccessful = 'Bid rise of five percent successful';
-const bidRiseOfTenPercentSuccessful = 'Bid rise of ten percent successful';
-const bidRiseOfTwentyPercentSuccessful = 'Bid rise of twenty percent successful';
-
 class BidsController {
   getBids(req, res) {
     BidsModel.getBids()
       .then(data => {
         if (!data.length) {
-          logger.info(bidsNotFoundMessage);
-          return res.status(404).send({ message: bidsNotFoundMessage });
+          logger.info(messages.bidsNotFoundMessage);
+          return res.status(404).send({ message: messages.bidsNotFoundMessage });
         }
         res.status(200).send(data);
       })
@@ -70,7 +65,7 @@ class BidsController {
 
       BidsModel.addNewBid(req.body)
         .then(() => {
-          res.status(200).send({ message: bidAddedSuccessful });
+          res.status(200).send({ message: messages.bidAddedSuccessful });
         })
         .catch(err => {
           logger.error(err.message);
@@ -84,7 +79,7 @@ class BidsController {
 
     BidsModel.riseOfFivePercent(id)
       .then(() => {
-        res.status(200).send({ message: bidRiseOfFivePercentSuccessful });
+        res.status(200).send({ message: messages.bidRiseOfFivePercentSuccessful });
       })
       .catch(err => {
         logger.error(err.message);
@@ -97,7 +92,7 @@ class BidsController {
 
     BidsModel.riseOfTenPercent(id)
       .then(() => {
-        res.status(200).send({ message: bidRiseOfTenPercentSuccessful });
+        res.status(200).send({ message: messages.bidRiseOfTenPercentSuccessful });
       })
       .catch(err => {
         logger.error(err.message);
@@ -110,7 +105,7 @@ class BidsController {
 
     BidsModel.riseOfTwentyPercent(id)
       .then(() => {
-        res.status(200).send({ message: bidRiseOfTwentyPercentSuccessful });
+        res.status(200).send({ message: messages.bidRiseOfTwentyPercentSuccessful });
       })
       .catch(err => {
         logger.error(err.message);
