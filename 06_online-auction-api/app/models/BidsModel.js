@@ -41,6 +41,16 @@ class BidsModel {
       return bids;
     });
   }
+
+  async addNewBid(data) {
+    const bid = new Bid(data);
+
+    try {
+      await bid.save();
+    } catch (err) {
+      throw new Error(err);
+    }
+  }
 }
 
 module.exports = new BidsModel();
