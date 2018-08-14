@@ -51,6 +51,29 @@ class BidsModel {
       throw new Error(err);
     }
   }
+
+  async riseOfFivePercent(id) {
+    return this.riseOfPercent(id, 1.05);
+  }
+
+  async riseOfTenPercent(id) {
+    this.riseOfPercent(id, 1.1);
+  }
+
+  async riseOfTwentyPercent(id) {
+    this.riseOfPercent(id, 1.2);
+  }
+
+  async riseOfPercent(id, count) {
+    try {
+      await Bid.findById(id).then(data => {
+        data.current_bid = (data.current_bid * count).toFixed(2);
+        data.save();
+      });
+    } catch (err) {
+      throw new Error(err);
+    }
+  }
 }
 
 module.exports = new BidsModel();

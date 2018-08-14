@@ -16,6 +16,7 @@
     "classnames": "^2.2.6",
     "gulp": "^3.9.1",
     "gulp-sass": "^4.0.1",
+    "mongoose-double": "^0.0.1",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
     "redux": "^4.0.0"
