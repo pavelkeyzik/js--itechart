@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const api = require('./api');
-const login = require('./login');
+const auth = require('./auth');
 const logger = require('../../logger');
 const passport = require('passport');
 const authorizationStraregy = require('../authorizationStraregy');
@@ -19,6 +19,6 @@ router.use((req, res, next) => {
 router.use(passport.initialize());
 router.use(passport.session());
 router.use('/api', passport.authenticate('jwt', { session: false }), api);
-router.use('/login', login);
+router.use('/auth', auth);
 
 module.exports = router;

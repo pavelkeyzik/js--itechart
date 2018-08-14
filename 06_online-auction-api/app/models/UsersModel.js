@@ -52,7 +52,8 @@ class UserModel {
     const user = new User(data);
 
     try {
-      await user.save();
+      await user.save((err, info) => info);
+      return user;
     } catch (err) {
       throw new Error(err);
     }
