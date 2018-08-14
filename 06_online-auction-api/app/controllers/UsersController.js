@@ -37,17 +37,6 @@ class UsersController {
         });
       });
   }
-
-  addNewUser(req, res) {
-    UsersModel.addNewUser(req.body)
-      .then(() => {
-        res.status(200).send({ message: messages.userAddedSuccessfulMessage });
-      })
-      .catch(error => {
-        logger.error(error.message);
-        res.status(500).send({ message: error.message });
-      });
-  }
 }
 
 module.exports = new UsersController();
