@@ -52,8 +52,7 @@ class LeftNavigation extends PureComponent {
   }
 
   signOut = () => {
-    localStorage.clear();
-    this.props.history.push('/');
+    this.props.onLogOut();
   }
 }
 
