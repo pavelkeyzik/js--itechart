@@ -7,6 +7,7 @@ const messages = {
   userNotFoundMessage: 'User not found',
   usersNotFoundMessage: 'Users not found',
   userAddedSuccessfulMessage: 'User added successful',
+  cannotAddNewUser: 'Cannot add new user',
 };
 
 module.exports = messages;
