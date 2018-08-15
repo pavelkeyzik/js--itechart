@@ -13,6 +13,17 @@ class Api {
       body: JSON.stringify(data)
     });
   }
+
+  registration(data) {
+    return fetch(`${this.baseURL}/auth/registration`, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+  }
 }
 
 export default new Api();

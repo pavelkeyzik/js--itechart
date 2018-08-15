@@ -3,6 +3,9 @@ import Registration from '../components/Registration';
 
 import {
   userRegistredSuccessful,
+  userRegistrationRequested,
+  userRegistrationError,
+  userRegistrationRequest,
 } from '../actions';
 
 const mapStateToProps = (state) => ({
@@ -11,6 +14,9 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
   onUserRegistredSuccessful: userRegistredSuccessful,
+  onUserRegistrationRequested: userRegistrationRequested,
+  onUserRegistrationError: userRegistrationError,
+  onUserRegistrationRequest: userRegistrationRequest
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Registration);

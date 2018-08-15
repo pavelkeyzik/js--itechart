@@ -8,7 +8,12 @@ export const userAuthorizationRequest = data => dispatch => {
   dispatch(userAuthorizationRequested());
 
   Api.login(data)
-    .then(res => res.json())
+    .then(res => {
+      if(!res.ok) {
+        return Promise.reject(res.json(d => d.message));
+      }
+      return res.json();
+    })
     .then(data => {
       if(data.message) {
         return dispatch(userAuthorizationError(data.message));
@@ -41,8 +46,38 @@ export const userAuthorizedSuccessful = createAction(
   token => token
 );
 
+export const userRegistrationRequest = data => dispatch => {
+  dispatch(userRegistrationRequested());
+
+  Api.registration(data)
+    .then(res => {
+      if(!res.ok) {
+        return Promise.reject(res.json(d => d.message));
+      }
+      return res.json();
+    })
+    .then((data) => {
+      localStorage.setItem('authorizedUserToken', JSON.stringify(data.token));
+      dispatch(userRegistredSuccessful(data));
+      history.push('/app');
+    })
+    .catch(err => {
+      return dispatch(userRegistrationError(err))
+    });
+}
+
+export const userRegistrationRequested = createAction(
+  actionType.USER_REGISTRATION_REQUESTED
+);
+
 export const userRegistredSuccessful = createAction(
-  actionType.USER_REGISTERED_SUCCESSFUL
+  actionType.USER_REGISTERED_SUCCESSFUL,
+  token => token
+);
+
+export const userRegistrationError = createAction(
+  actionType.USER_REGISTRATION_ERROR,
+  error => error
 );
 
 export const userLoggedOuted = createAction(

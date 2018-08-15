@@ -31,7 +31,7 @@ class Authorization extends PureComponent {
                     className={classNames("form__input", {"form__input_error": errors.phone && touched.phone })}
                   />
                 </div>
-                <span className="form__span form__span_error">{auth.error}</span>
+                <span className="form__span form__span_error">{auth.error.message}</span>
                 <button className="form__submit" type="submit">Sign In</button>
               </Form>
             )}
