@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import LeftNavigation from '../LeftNavigation';
+import LeftNavigationContainer from '../../containers/LeftNavigationContainer';
 import { Switch, Route, withRouter } from 'react-router-dom';
 import RouteWithSubRoutes from '../RouteWithSubRoutes';
 import './index.scss';
@@ -25,7 +25,7 @@ class Main extends PureComponent {
             </Notification>
             <div className="main__container">
               <div className="main__navigation">
-                <LeftNavigation />
+                <LeftNavigationContainer />
               </div>
               <div className="main__content">
                 <Switch>

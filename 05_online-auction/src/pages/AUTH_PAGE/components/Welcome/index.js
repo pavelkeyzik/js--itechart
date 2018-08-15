@@ -3,13 +3,7 @@ import './index.scss';
 import { withRouter } from 'react-router-dom';
 
 class Welcome extends PureComponent {
-
-  componentWillMount() {
-    if(localStorage.getItem('authorizedUserToken')) {
-      this.props.history.push('/app');
-    }
-  }
-
+  
   render() {
     return (
       <div className="welcome">
