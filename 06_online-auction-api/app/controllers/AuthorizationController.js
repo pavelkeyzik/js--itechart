@@ -5,7 +5,7 @@ const messages = require('../messages');
 
 class AuthorizationController {
   login(req, res) {
-    UsersModel.getUser(req.body.id)
+    UsersModel.getUserByPhone(req.body.phoneNumber)
       .then(user => {
         if (!user) {
           return res.status(404).send({ message: messages.userNotFoundMessage });
@@ -34,6 +34,10 @@ class AuthorizationController {
   registration(req, res) {
     UsersModel.addNewUser(req.body)
       .then(user => {
+        if(!user) {
+          return res.status(500).send({ message: messages.cannotAddNewUser });
+        }
+
         const { id, name, surname } = user;
         const userInfo = { id, name, surname };
 
@@ -47,8 +51,8 @@ class AuthorizationController {
 }
 
 const generateToken = userInfo =>
-  jwt.sign(userInfo, config.jwt_secret, {
+  `bearer ${jwt.sign(userInfo, config.jwt_secret, {
     expiresIn: config.jwt_expiration_time,
-  });
+  })}`;
 
 module.exports = new AuthorizationController();
