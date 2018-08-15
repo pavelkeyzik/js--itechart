@@ -1,136 +1,80 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { withRouter } from 'react-router-dom';
 import classNames from 'classnames';
 import './index.scss';
 import '@/shared/styles/form.scss';
-import Validator from '@/shared/utils/Validator';
+import { Formik, Field, Form } from 'formik';
+import Schema from '@/shared/utils/RegistrationSchema';
 
-class Registration extends Component {
-
-  constructor(props) {
-    super(props);
-    this.nameRef = React.createRef();
-    this.surnameRef = React.createRef();
-    this.emailRef = React.createRef();
-    this.phoneRef = React.createRef();
-    this.submitRef = React.createRef();
-  }
-
-  state = {
-    nameInputError: false,
-    surNameError: false,
-    phoneInputError: false,
-    emailInputError: false,
-  };
-
-  componentDidMount() {
-    this.nameRef.current.focus();
-  }
-
+class Registration extends PureComponent {
   render() {
     return (
       <div className="registration">
         <h1 className="registration__title">Registration</h1>
-        <form className="form" onSubmit={this.onSubmit} onKeyUp={this.handleKeyUp}>
-          <div className="form__row">
-            <label className="form__label" htmlFor="reg-name">First name</label>
-            <input
-              className={classNames("form__input", {"form__input_error": this.state.nameInputError})}
-              onChange={this.validateText.bind(this, 'name', 'nameInputError', 'text')}
-              ref={this.nameRef}
-              type="text"
-              id="reg-name"/>
-          </div>
-          <div className="form__row">
-            <label className="form__label" htmlFor="reg-surname">Last name</label>
-            <input
-              className={classNames("form__input", {"form__input_error": this.state.surNameError})}
-              onChange={this.validateText.bind(this, 'surname', 'surNameError', 'text')}
-              ref={this.surnameRef}
-              type="text"
-              id="reg-surname"/>
-          </div>
-          <div className="form__row">
-            <label className="form__label" htmlFor="reg-email">E-mail</label>
-            <input
-              className={classNames("form__input", {"form__input_error": this.state.emailInputError})}
-              onChange={this.validateText.bind(this, 'email', 'emailInputError', 'email')}
-              ref={this.emailRef}
-              type="email"
-              id="reg-email"/>
-          </div>
-          <div className="form__row">
-            <label className="form__label" htmlFor="reg-phone-number">Phone number</label>
-            <input
-              className={classNames("form__input", {"form__input_error": this.state.phoneInputError})}
-              onChange={this.validateText.bind(this, 'phone', 'phoneInputError', 'phone')}
-              ref={this.phoneRef}
-              type="text"
-              id="reg-phone-number"/>
-          </div>
-          <button ref={this.submitRef} className="form__submit" type="submit" disabled>Sign Up</button>
-        </form>
+        <Formik
+          initialValues={{
+            name: '',
+            surname: '',
+            email: '',
+            phone: '',
+          }}
+          onSubmit={values => this.onSubmit(values)}
+          validationSchema={Schema}
+          render={({ errors, touched }) => (
+            <Form className="form">
+              <div className="form__row">
+                <label className="form__label" htmlFor="name">First name</label>
+                <Field
+                  name="name"
+                  type="text"
+                  className={classNames("form__input", {"form__input_error": errors.name && touched.name })}
+                />
+              </div>
+              <div className="form__row">
+                <label className="form__label" htmlFor="surname">Last name</label>
+                <Field
+                  name="surname"
+                  type="text"
+                  className={classNames("form__input", {"form__input_error": errors.surname && touched.surname })}
+                />
+              </div>
+              <div className="form__row">
+                <label className="form__label" htmlFor="email">E-mail</label>
+                <Field
+                  name="email"
+                  type="email"
+                  className={classNames("form__input", {"form__input_error": errors.email && touched.email })}
+                />
+              </div>
+              <div className="form__row">
+                <label className="form__label" htmlFor="phone">Phone number</label>
+                <Field
+                  name="phone"
+                  type="text"
+                  className={classNames("form__input", {"form__input_error": errors.phone && touched.phone })}
+                />
+              </div>
+              <button className="form__submit" type="submit">Sign Up</button>
+            </Form>
+          )}
+        />
       </div>
     );
   }
 
-  handleKeyUp = () => {
-    if(!(this.state.nameInputError || this.state.surNameError || this.state.phoneInputError) &&
-      this.nameRef.current.value.length > 0 &&
-      this.surnameRef.current.value.length > 0 &&
-      this.emailRef.current.value.length > 0 &&
-      this.phoneRef.current.value.length > 0) {
-        this.submitRef.current.disabled = false;
-    } else {
-      this.submitRef.current.disabled = true;
-    }
-  }
-
-  onSubmit = (ev) => {
-    ev.preventDefault();
-
+  onSubmit = (values) => {
     const params = {
       id: new Date().getTime(),
-      name: this.nameRef.current.value,
-      surname: this.surnameRef.current.value,
-      email: this.emailRef.current.value,
-      phone: this.phoneRef.current.value,
+      name: values.name,
+      surname: values.surname,
+      email: values.email,
+      phone: values.phone,
     }
-    this.props.userRegistredSuccessful();
+    this.props.onUserRegistredSuccessful();
 
     localStorage.setItem('authorizedUserInfo', JSON.stringify(params));
     localStorage.setItem('authorizedUserToken', this.props.reg.token);
     this.props.history.push('/app');
-  }
-
-  validateText = (refName, stateField, type) => {
-    const value = this[refName + 'Ref'].current.value;
-    let validated = false;
-
-    switch(type) {
-    case 'text':
-      validated = Validator.validateText(value);
-      break;
-    case 'phone':
-      validated = Validator.validatePhone(value);
-      break;
-    case 'email':
-      validated = Validator.validateEmail(value);
-      break;
-    default:
-      validated = false;
-      break;
-    }
-
-    if(!validated) {
-      this.setState({
-        [stateField]: true,
-      });
-    } else if(this.state[stateField]) {
-      this.setState({
-        [stateField]: false,
-      });
-    }
   }
 }
 

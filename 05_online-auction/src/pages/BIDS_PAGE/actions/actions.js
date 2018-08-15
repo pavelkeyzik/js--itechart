@@ -1,3 +1,7 @@
-export const LOTS_REQUESTED = 'LOTS_REQUESTED';
-export const LOTS_LOADED_SUCCESSFUL = 'LOTS_LOADED_SUCCESSFUL';
-export const LOTS_LOAD_ERROR = 'LOTS_LOAD_ERROR';
+const keyMirror = require('key-mirror');
+
+export default keyMirror({
+  LOTS_REQUESTED: null,
+  LOTS_LOADED_SUCCESSFUL: null,
+  LOTS_LOAD_ERROR: null,
+});

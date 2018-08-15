@@ -1,2 +1,6 @@
-export const USER_AUTHORIZED_SUCCESSFUL = 'USER_AUTHORIZED_SUCCESSFUL';
-export const USER_REGISTERED_SUCCESSFUL = 'USER_REGISTERED_SUCCESSFUL';
+const keyMirror = require('key-mirror');
+
+export default keyMirror({
+  USER_AUTHORIZED_SUCCESSFUL: null,
+  USER_REGISTERED_SUCCESSFUL: null,
+});

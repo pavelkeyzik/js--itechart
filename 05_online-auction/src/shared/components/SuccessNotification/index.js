@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import './index.scss';
 
-class SuccessNotification extends Component {
+class SuccessNotification extends PureComponent {
   render() {
     return (
       <div className="success-notification">

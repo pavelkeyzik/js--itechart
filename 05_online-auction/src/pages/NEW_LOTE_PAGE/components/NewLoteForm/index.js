@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import '@/shared/styles/form.scss';
 import CustomDatePicker from '@/shared/components/CustomDatePicker';
 import moment from 'moment';
 
-class NewLoteForm extends Component {
+class NewLoteForm extends PureComponent {
   
   constructor(props) {
     super(props);

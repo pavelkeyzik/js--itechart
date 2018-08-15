@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Lot from '../Lot';
 import LotsIsLoading from '../LotsIsLoading';
 import './index.scss';
 
-class Lots extends Component {
+class Lots extends PureComponent {
 
   componentDidMount() {
-    this.props.initLoadingLots();
+    this.props.onInitLoadingLots();
   }
 
   render() {
@@ -19,11 +19,11 @@ class Lots extends Component {
 
     if(lots.error) return (
       <div className="lots">
-        <h1>{lots.error}</h1>
+        <h1>{lots.payload}</h1>
       </div>
     );
     
-    if(!lots.data || lots.data.length === 0) return (
+    if(!lots.payload || lots.payload.length === 0) return (
       <div className="lots">
         <h1>No data..</h1>
       </div>
@@ -32,7 +32,7 @@ class Lots extends Component {
     return (
       <div className="lots">
         <div className="lots__items">
-          {lots.data.map(lot => <Lot className="lots__item" key={lot.id} data={lot} />)}
+          {lots.payload.map(lot => <Lot className="lots__item" key={lot.id} data={lot} />)}
         </div>
       </div>
     );

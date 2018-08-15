@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import LeftNavigation from '../LeftNavigation';
 import { Switch, Route, withRouter } from 'react-router-dom';
 import RouteWithSubRoutes from '../RouteWithSubRoutes';
 import './index.scss';
-import Notification from '@/shared/components/Notification';
-import SuccessNotification from '@/shared/components/SuccessNotification';
+import Notification from '..//Notification';
+import SuccessNotification from '../SuccessNotification';
 
-class Main extends Component {
+class Main extends PureComponent {
 
   componentWillMount() {
     if(!localStorage.getItem('authorizedUserToken')) {

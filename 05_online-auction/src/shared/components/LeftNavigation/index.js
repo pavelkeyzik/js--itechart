@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { NavLink, withRouter } from 'react-router-dom';
 import classNames from 'classnames';
 import './index.scss';
 
-class LeftNavigation extends Component {
+class LeftNavigation extends PureComponent {
 
   state = {
     menuIsOpen: false,
@@ -17,19 +17,19 @@ class LeftNavigation extends Component {
             <i className="fas fa-bars"></i>
           </div>
           <nav className="left-navigation__menu">
-            <NavLink exact to="/app/" activeClassName="left-navigation__link_active" className="left-navigation__link">
+            <NavLink replace exact to="/app/" activeClassName="left-navigation__link_active" className="left-navigation__link">
               <i className="fas fa-home"></i>
               <span className="left-navigation__link-text">Home</span>
             </NavLink>
-            <NavLink to="/app/new-lote" activeClassName="left-navigation__link_active" className="left-navigation__link">
+            <NavLink replace to="/app/new-lote" activeClassName="left-navigation__link_active" className="left-navigation__link">
               <i className="fas fa-plus-square"></i>
               <span className="left-navigation__link-text">Add new lot</span>
             </NavLink>
-            <NavLink to="/app/bids" activeClassName="left-navigation__link_active" className="left-navigation__link">
+            <NavLink replace to="/app/bids" activeClassName="left-navigation__link_active" className="left-navigation__link">
               <i className="fas fa-gem"></i>
               <span className="left-navigation__link-text">All bids</span>
             </NavLink>
-            <NavLink to="/app/personal-info" activeClassName="left-navigation__link_active" className="left-navigation__link">
+            <NavLink replace to="/app/personal-info" activeClassName="left-navigation__link_active" className="left-navigation__link">
               <i className="fas fa-user-circle"></i>
               <span className="left-navigation__link-text">Presonal info</span>
             </NavLink>

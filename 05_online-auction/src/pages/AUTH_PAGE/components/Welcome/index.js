@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import './index.scss';
 import { withRouter } from 'react-router-dom';
 
-class Welcome extends Component {
+class Welcome extends PureComponent {
 
   componentWillMount() {
     if(localStorage.getItem('authorizedUserToken')) {

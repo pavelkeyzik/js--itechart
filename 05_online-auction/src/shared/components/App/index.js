@@ -3,7 +3,7 @@ import { Switch, HashRouter as Router } from 'react-router-dom';
 import routes from '@/routes';
 import RouteWithSubRoutes from '../RouteWithSubRoutes';
 
-class App extends React.Component {
+class App extends React.PureComponent {
   render() {
     return (
       <Router>

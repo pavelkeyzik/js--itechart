@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import ReactDOM from 'react-dom';
 import './index.scss';
 
 const notificationRoot = document.getElementById('notification');
 
-class Notification extends Component {
+class Notification extends PureComponent {
 
   constructor(props) {
     super(props);

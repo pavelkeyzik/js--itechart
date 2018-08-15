@@ -1,5 +1,4 @@
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import Main from '../components/Main';
 import {
   userAuthorizedSuccessful,
@@ -9,8 +8,8 @@ const mapStateToProps = (state) => ({
   auth: state.auth,
 });
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({
-  userAuthorizedSuccessful,
-}, dispatch);
+const mapDispatchToProps = {
+  onUserAuthorizedSuccessful: userAuthorizedSuccessful,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Main);

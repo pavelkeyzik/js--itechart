@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import userInfo from '@/shared/data/personalUserInfo';
 import './index.scss';
 
-class PersonalArea extends Component {
+class PersonalArea extends PureComponent {
 
-  componentWillMount() {
-    this.props.personalAreaIsLoading();
-    this.props.personalAreaIsLoaded(userInfo);
+  componentDidMount() {
+    this.props.onPersonalAreaLoading();
+    this.props.onPersonalAreaLoaded(userInfo);
   }
 
   render() {

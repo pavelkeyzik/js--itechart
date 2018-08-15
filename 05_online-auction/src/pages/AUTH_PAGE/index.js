@@ -1,50 +1,37 @@
-import React, { Component } from 'react';
-import RegistrationContainer from '@/shared/containers/RegistrationContainer';
-import AuthorizationContainer from '@/shared/containers/AuthorizationContainer';
+import React, { PureComponent } from 'react';
 import './index.scss';
 import Welcome from './components/Welcome';
 
-const regBlock = 'registration',
-      authBlock = 'authorization';
+import { Switch, Route, NavLink } from 'react-router-dom';
+import RouteWithSubRoutes from '@/shared/components/RouteWithSubRoutes';
 
-class AuthPage extends Component {
-
-  state = {
-    showBlock: regBlock,
-  };
+class AuthPage extends PureComponent {
 
   render() {
+    const { pathname } = this.props.location;
+
     return (
-      <div className="auth">
-        <div className="auth__content">
-          <div className="auth__left">
-            <Welcome />
-          </div>
-          <div className="auth__right">
-            {this.state.showBlock === regBlock && <RegistrationContainer />}
-            {this.state.showBlock === authBlock && <AuthorizationContainer />}
-            <div className="auth__alternative">
-              {this.state.showBlock === regBlock &&
-                <React.Fragment>Have an account? <a onClick={this.changeBlock}>Sign In</a></React.Fragment>}
-              {this.state.showBlock === authBlock &&
-                <React.Fragment>Don't have an account? <a onClick={this.changeBlock}>Registration</a></React.Fragment>}
+        <div className="auth">
+          <div className="auth__content">
+            <div className="auth__left">
+              <Welcome />
+            </div>
+            <div className="auth__right">
+              <Route>
+                <Switch>
+                  {this.props.routes.map((route, i) => <RouteWithSubRoutes key={i} {...route} />)}
+                </Switch>
+              </Route>
+              <div className="auth__alternative">
+                {pathname === '/auth/registration' &&
+                  <React.Fragment>Have an account? <NavLink to="/auth">Sign In</NavLink></React.Fragment>}
+                {pathname === '/auth' &&
+                  <React.Fragment>Don't have an account? <NavLink to="/auth/registration">Registration</NavLink></React.Fragment>}
+              </div>
             </div>
           </div>
         </div>
-      </div>
     );
-  }
-
-  changeBlock = () => {
-    if(this.state.showBlock === regBlock) {
-      return this.setState({
-        showBlock: authBlock,
-      });
-    }
-
-    this.setState({
-      showBlock: regBlock,
-    });
   }
 }
 
