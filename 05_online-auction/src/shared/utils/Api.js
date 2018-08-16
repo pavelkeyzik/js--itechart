@@ -31,6 +31,10 @@ class Api {
     return this._get('/api/bids');
   }
 
+  getPersonalInfo() {
+    return this._get('/api/users/personal-info');
+  }
+
   _get(path) {
     return fetch(`${this.baseURL}${path}`, {
       method: 'GET',
