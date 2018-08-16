@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from '@/shared/components/App';
+import App from './shared/components/App';
 import rootReducer from './rootReducer';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';

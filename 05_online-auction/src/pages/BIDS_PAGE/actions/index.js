@@ -1,33 +1,39 @@
-import * as actionType from './actions';
-import lots from '@/shared/data/lots';
+import actionType from './actions';
+import { createAction } from 'redux-actions';
+import Api from '@/shared/utils/Api';
+import config from '@/config';
 
 export const initLoadingLots = () => (dispatch) => {
 
-  dispatch({type: actionType.LOTS_REQUESTED});
+  dispatch(lotsRequested());
 
-  // To simulate server delay
-  setTimeout(() => {
-    if(lots) {
-      dispatch({
-        type: actionType.LOTS_LOADED_SUCCESSFUL,
-        payload: lots,
-      });
-    } else {
-      dispatch({
-        type: actionType.LOTS_LOAD_ERROR,
-        error: '404 Error. Not found data',
-      });
-    }
-  }, 1400);
-  
+  Api.getBids()
+    .then(res => {
+      if(!res.ok) {
+        return Promise.reject(res.json(d => d.message));
+      }
+
+      return res.json();
+    })
+    .then(lots => {
+      dispatch(lotsLoaded(lots.map(lot => {
+        lot.image_url = `${config.baseApiURL}/${lot.image_url.replace(/\\/g, '/')}`;
+        return lot;
+      })));
+    })
+    .catch(err => dispatch(lotsLoadError(err.message)));
 };
 
-export const lotsLoaded = (data) => ({
-  type: actionType.LOTS_LOADED_SUCCESSFUL,
-  payload: data,
-});
+export const lotsRequested = createAction(
+  actionType.LOTS_REQUESTED,
+);
 
-export const lotsLoadError = (error) => ({
-  type: actionType.LOTS_LOAD_ERROR,
-  error,
-});
+export const lotsLoaded = createAction(
+  actionType.LOTS_LOADED_SUCCESSFUL,
+  lots => lots,
+);
+
+export const lotsLoadError = createAction(
+  actionType.LOTS_LOADED_SUCCESSFUL,
+  error => error,
+);

@@ -1,15 +1,9 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import './index.scss';
 import { withRouter } from 'react-router-dom';
 
-class Welcome extends Component {
-
-  componentWillMount() {
-    if(localStorage.getItem('authorizedUserToken')) {
-      this.props.history.push('/app');
-    }
-  }
-
+class Welcome extends PureComponent {
+  
   render() {
     return (
       <div className="welcome">

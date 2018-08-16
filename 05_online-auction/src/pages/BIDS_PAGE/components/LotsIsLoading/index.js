@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import './index.scss';
 
-class LotsIsLoading extends Component {
+class LotsIsLoading extends PureComponent {
   render() {
     return (
       <div className="lots-loading">

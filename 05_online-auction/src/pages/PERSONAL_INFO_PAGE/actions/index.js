@@ -1,14 +1,11 @@
-import * as typeAction from './actions';
+import typeAction from './actions';
+import { createAction } from 'redux-action';
 
-export const personalAreaIsLoading = () => {
-  return {
-    type: typeAction.PERSONAL_AREA_IS_LOADING,
-  }
-}
+export const personalAreaIsLoading = createAction(
+  typeAction.PERSONAL_AREA_IS_LOADING,
+);
 
-export const personalAreaIsLoaded = (information) => {
-  return {
-    type: typeAction.PERSONAL_AREA_IS_LOADED,
-    payload: information,
-  }
-}
+export const personalAreaIsLoaded = createAction(
+  typeAction.PERSONAL_AREA_IS_LOADED,
+  information => information,
+);

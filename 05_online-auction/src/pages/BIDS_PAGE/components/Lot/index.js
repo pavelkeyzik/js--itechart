@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import './index.scss';
 import moment from 'moment';
 
-class Lot extends Component {
+class Lot extends PureComponent {
 
   state = {
     timer: 'Loading...',

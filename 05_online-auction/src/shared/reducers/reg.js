@@ -1,16 +1,33 @@
-import * as actionType from '../actions/actions';
+import actionType from '../actions/actions';
+import { handleActions } from 'redux-actions';
 
 const initialState = {
   token: null,
+  registered: false,
+  error: false,
 };
 
-const registerReducer = (state = initialState, action) => {
-  switch(action.type) {
-  case actionType.USER_REGISTERED_SUCCESSFUL:
-    return {...state, token: 'unique_token:1233'};
-  default:
-    return state;
-  }
-};
+const registerReducer = handleActions(
+  {
+    [actionType.USER_REGISTERED_SUCCESSFUL]: (state, action) => {
+      const { token } = action.payload;
+      return {
+        ...state,
+        token,
+        error: false,
+        registered: true
+      };
+    },
+    [actionType.USER_LOGGED_OUT]: () => initialState,
+    [actionType.USER_REGISTRATION_ERROR]: (state, action) => {
+      return {
+        ...state,
+        registered: false,
+        error: action.payload
+      };
+    }
+  },
+  initialState
+);
 
 export default registerReducer;
