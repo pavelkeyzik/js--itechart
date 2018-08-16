@@ -18,8 +18,8 @@ class UsersController {
       });
   }
 
-  getUser(req, res) {
-    const { id } = req.params;
+  getPersonalInfo(req, res) {
+    const { id } = req.user;
 
     UsersModel.getUser(id)
       .then(data => {
