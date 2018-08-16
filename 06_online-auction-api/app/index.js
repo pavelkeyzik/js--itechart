@@ -8,6 +8,6 @@ const cors = require('cors');
 app.use(cors());
 app.use(bodyParser.json());
 app.use(routes);
-app.use('/assets', express.static(path.resolve(__dirname, '../public')));
+app.use('/public', express.static(path.resolve(__dirname, '../public')));
 
 module.exports = app;
