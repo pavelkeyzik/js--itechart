@@ -27,6 +27,17 @@ class Api {
     });
   }
 
+  getBids() {
+    return this._get('/api/bids');
+  }
+
+  _get(path) {
+    return fetch(`${this.baseURL}${path}`, {
+      method: 'GET',
+      headers: this.headers,
+    });
+  }
+
   setHeadersToken(value) {
     this.setHeaders(config.keyForSaveToken, value);
   }

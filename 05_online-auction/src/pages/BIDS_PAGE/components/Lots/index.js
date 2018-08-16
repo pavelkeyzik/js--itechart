@@ -32,7 +32,7 @@ class Lots extends PureComponent {
     return (
       <div className="lots">
         <div className="lots__items">
-          {lots.payload.map(lot => <Lot className="lots__item" key={lot.id} data={lot} />)}
+          {lots.payload.map(lot => <Lot className="lots__item" key={lot._id} data={lot} />)}
         </div>
       </div>
     );
