@@ -1,4 +1,5 @@
 import Cookies from 'js-cookie';
+import config from '@/config';
 
 class Api {
   constructor() {
@@ -7,7 +8,7 @@ class Api {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
     });
-    this.setHeadersToken(Cookies.get('Authorization'));
+    this.setHeadersToken(Cookies.get(config.keyForSaveToken));
   }
 
   login(data) {
@@ -27,7 +28,7 @@ class Api {
   }
 
   setHeadersToken(value) {
-    this.setHeaders('Authorization', value);
+    this.setHeaders(config.keyForSaveToken, value);
   }
 
   setHeaders(key, value) {

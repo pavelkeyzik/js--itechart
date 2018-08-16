@@ -3,6 +3,7 @@ import { createAction } from 'redux-action';
 import Api from '../utils/Api';
 import { createHashHistory } from 'history';
 import Cookies from 'js-cookie';
+import config from '@/config';
 
 const history = createHashHistory();
 
@@ -21,7 +22,7 @@ export const userAuthorizationRequest = data => dispatch => {
         return dispatch(userAuthorizationError(data.message));
       }
       localStorage.setItem('authorizedUserToken', JSON.stringify(data.token));
-      Cookies.set('Authorization', data.token);
+      Cookies.set(config.keyForSaveToken, data.token);
       Api.setHeadersToken(data.token);
       dispatch(userAuthorizedSuccessful(data));
     })
@@ -62,7 +63,7 @@ export const userRegistrationRequest = data => dispatch => {
     })
     .then((data) => {
       localStorage.setItem('authorizedUserToken', JSON.stringify(data.token));
-      Cookies.set('Authorization', data.token);
+      Cookies.set(config.keyForSaveToken, data.token);
       Api.setHeadersToken(data.token);
       dispatch(userRegistredSuccessful(data));
       history.push('/app');
