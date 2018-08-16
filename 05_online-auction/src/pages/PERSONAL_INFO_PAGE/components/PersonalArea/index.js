@@ -1,24 +1,23 @@
 import React, { PureComponent } from 'react';
-import userInfo from '@/shared/data/personalUserInfo';
 import './index.scss';
 
 class PersonalArea extends PureComponent {
 
   componentDidMount() {
-    this.props.onPersonalAreaLoading();
-    this.props.onPersonalAreaLoaded(userInfo);
+    this.props.onPersonalAreaRequest();
   }
 
   render() {
     if(this.props.personalArea.isLoading) return (<h1>Loading data...</h1>);
 
-    const {userInformation} = this.props.personalArea;
+    const userInformation = this.props.personalArea.payload;
+
     return (
       <div className="personal">
         <div className="personal__content">
           <div className="personal__row">
             <div className="personal__label">Id</div>
-            <div className="personal__field">{userInformation.id}</div>
+            <div className="personal__field">{userInformation._id}</div>
           </div>
           <div className="personal__row">
             <div className="personal__label">Name</div>

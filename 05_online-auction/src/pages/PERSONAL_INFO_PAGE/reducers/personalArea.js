@@ -7,14 +7,14 @@ const initialState = {
 
 const personalAreaReducer = handleActions(
   {
-    [typeAction.PERSONAL_AREA_IS_LOADING]: state => ({
+    [typeAction.PERSONAL_AREA_REQUESTED]: state => ({
       ...state,
       isLoading: true,
     }),
 
-    [typeAction.PERSONAL_AREA_IS_LOADED]: (state, action) => ({
+    [typeAction.PERSONAL_AREA_LOADED_SUCCESSFUL]: (state, action) => ({
       ...state,
-      userInformation: action.payload,
+      payload: action.payload,
       isLoading: false,
     })
   },
