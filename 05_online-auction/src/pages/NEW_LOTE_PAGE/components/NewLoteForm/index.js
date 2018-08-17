@@ -22,15 +22,15 @@ class NewLoteForm extends PureComponent {
         <Formik
           initialValues={{
             description: '',
-            startPrice: 0,
+            current_bid: 0,
             category: 'electronics',
-            dateOfTheEnd: moment(),
-            file: '',
+            time_to_end: moment(),
+            image: '',
           }}
           onSubmit={values => this.onSubmit(values)}
           validationSchema={Schema}
           render={({ handleChange, values, errors, touched }) => (
-            <Form className="form">
+            <Form className="form" encType="multipart/form-data">
               <div className="form__row">
                 <label className="form__label" htmlFor="description">Lote description</label>
                 <Field
@@ -41,12 +41,12 @@ class NewLoteForm extends PureComponent {
                 />
               </div>
               <div className="form__row">
-                <label className="form__label" htmlFor="startPrice">Start price ($)</label>
+                <label className="form__label" htmlFor="current_bid">Start price ($)</label>
                 <Field
-                  name="startPrice"
-                  id="startPrice"
+                  name="current_bid"
+                  id="current_bid"
                   type="number"
-                  className={classNames("form__input", {"form__input_error": errors.startPrice && touched.startPrice })}
+                  className={classNames("form__input", {"form__input_error": errors.current_bid && touched.current_bid })}
                 />
               </div>
               <div className="form__row">
@@ -63,9 +63,9 @@ class NewLoteForm extends PureComponent {
                 </Field>
               </div>
               <div className="form__row">
-                <label className="form__label" htmlFor="dateOfTheEnd">Date of the end</label>
+                <label className="form__label" htmlFor="time_to_end">Date of the end</label>
                 <Field
-                  name="dateOfTheEnd"
+                  name="time_to_end"
                   render={({ form, field }) => (
                     <CustomDatePicker
                       className="form__input"
@@ -73,7 +73,7 @@ class NewLoteForm extends PureComponent {
                       onChange={this.handleChange.bind(this, form, field)}
                       showTimeSelect
                       timeFormat="LT"
-                      id="dateOfTheEnd"
+                      id="time_to_end"
                       dateFormat="MMMM DD, YYYY LT"
                       minDate={moment()}
                     />
@@ -81,26 +81,24 @@ class NewLoteForm extends PureComponent {
                 />
               </div>
               <div className="form__row">
-                <label className="form__label" htmlFor="file">Image</label>
+                <label className="form__label" htmlFor="image">Image</label>
+                <div className="form__file">
+                  <div className="form__file-image">
+                    {this.state.selectedImage && <img src={this.state.selectedImage} alt="Lololo"/>}
+                  </div>
+                  <div className="form__file-content">
+                    <span className="form__file-text">Click button for load</span>
+                    <label className="form__file-button" htmlFor="image">Choose file</label>
+                  </div>
+                </div>
                 <Field
-                  name="file"
+                  name="image"
                   render={({ form, field }) => (
-                    <React.Fragment>
-                      <div className="form__file">
-                        <div className="form__file-image">
-                          {this.state.selectedImage && <img src={this.state.selectedImage} alt="Lololo"/>}
-                        </div>
-                        <div className="form__file-content">
-                          <span className="form__file-text">Click button for load</span>
-                          <label className="form__file-button" htmlFor="file">Choose file</label>
-                        </div>
-                      </div>
-                      <input onChange={this.handleFileChange.bind(this, form, field)} id="file" type="file" accept="image/x-png,image/jpeg" hidden/>
-                    </React.Fragment>
+                    <input onChange={this.handleFileChange.bind(this, form, field)} id="image" type="file" accept="image/x-png,image/jpeg" hidden/>
                   )}
                 />
               </div>
-              <button className="form__submit" type="submit">Add lot</button>
+              <button className="form__submit" type="submit" disabled={this.props.newLot.isLoading}>Add lot</button>
             </Form>
           )}
         />
@@ -109,10 +107,18 @@ class NewLoteForm extends PureComponent {
   }
 
   onSubmit = (values) => {
-    // TODO: send form with 'values' to Back-End
+    const formData = new FormData();
+    
+    formData.append('image', values.image);
+    formData.append('description', values.description);
+    formData.append('time_to_end', values.time_to_end.format());
+    formData.append('current_bid', values.current_bid);
+    formData.append('category', values.category);
+
+    this.props.onNewLoteSend(formData);
   }
 
-  handleFileChange = (form, field, ev) => {
+  handleFileChange = (form, field, ev, value) => {
     const reader = new FileReader();
 
     reader.onload = (ev) => {
