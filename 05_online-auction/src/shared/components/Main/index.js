@@ -1,20 +1,15 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import LeftNavigationContainer from '../../containers/LeftNavigationContainer';
-import { Switch, Route, withRouter } from 'react-router-dom';
+import { Switch, Route, withRouter, Redirect } from 'react-router-dom';
 import RouteWithSubRoutes from '../RouteWithSubRoutes';
 import './index.scss';
 import Notification from '..//Notification';
 import SuccessNotification from '../SuccessNotification';
+import Cookies from 'js-cookie';
+import config from '@/config';
 
 class Main extends PureComponent {
-
-  componentWillMount() {
-    if(!localStorage.getItem('authorizedUserToken')) {
-      this.props.history.push('/');
-    }
-  }
-
   render() {
     return (
       <Route>
@@ -29,6 +24,7 @@ class Main extends PureComponent {
               </div>
               <div className="main__content">
                 <Switch>
+                  {!Cookies.get(config.keyForSaveToken) ? <Redirect to='/auth'/> : null}
                   {this.props.routes.map((route, i) => <RouteWithSubRoutes key={i} {...route} />)}
                 </Switch>
               </div>
