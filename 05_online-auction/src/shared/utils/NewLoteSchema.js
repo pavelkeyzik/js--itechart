@@ -3,12 +3,12 @@ import * as Yup from "yup";
 const NewLoteSchema = Yup.object().shape({
   description: Yup.string()
     .required(),
-  startPrice: Yup.number()
+  current_bid: Yup.number()
     .min(0)
     .required(),
   category: Yup.string()
     .required(),
-  file: Yup.string()
+  image: Yup.string()
     .required(),
 });
 
