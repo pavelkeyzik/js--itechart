@@ -6,7 +6,6 @@ class Api {
     this.baseURL = 'http://localhost:3000';
     this.headers = new Headers({
       'Accept': 'application/json',
-      'Content-Type': 'application/json',
     });
     this.setHeadersToken(Cookies.get(config.keyForSaveToken));
   }
@@ -35,10 +34,22 @@ class Api {
     return this._get('/api/users/personal-info');
   }
 
+  addNewLote(data) {
+    return this._post('/api/bids', data);
+  }
+
   _get(path) {
     return fetch(`${this.baseURL}${path}`, {
       method: 'GET',
       headers: this.headers,
+    });
+  }
+
+  _post(path, body) {
+    return fetch(`${this.baseURL}${path}`, {
+      method: 'POST',
+      headers: this.headers,
+      body,
     });
   }
 

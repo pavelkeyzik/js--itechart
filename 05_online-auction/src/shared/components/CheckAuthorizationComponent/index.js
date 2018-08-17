@@ -1,11 +1,12 @@
 import React, { PureComponent } from 'react';
 import { withRouter } from 'react-router-dom';
-
+import Cookies from 'js-cookie';
+import config from '@/config';
 
 class CheckAuthorizationComponent extends PureComponent {
 
   componentWillMount() {
-    if(localStorage.getItem('authorizedUserToken')) {
+    if(Cookies.get(config.keyForSaveToken)) {
       this.props.history.push('/app');
     } else {
       this.props.history.push('/auth');
