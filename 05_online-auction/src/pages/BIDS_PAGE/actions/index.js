@@ -37,3 +37,24 @@ export const lotsLoadError = createAction(
   actionType.LOTS_LOADED_SUCCESSFUL,
   error => error,
 );
+
+export const lotRise = (id, percent) => (dispatch) => {
+  dispatch(lotRiseRequested());
+
+  Api.riseBid(id, percent)
+    .then(() => dispatch(lotRiseSuccessful()))
+    .catch(err => dispatch(lotRiseError(err)))
+};
+
+export const lotRiseRequested = createAction(
+  actionType.LOT_RISE_OF_REQUESTED,
+);
+
+export const lotRiseSuccessful = createAction(
+  actionType.LOT_RISE_OF_SUCCESSFUL,
+);
+
+export const lotRiseError = createAction(
+  actionType.LOT_RISE_OF_ERROR,
+  error => error,
+);

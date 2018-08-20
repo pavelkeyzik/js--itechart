@@ -7,6 +7,7 @@ import shared from './shared/reducers';
 const appReducers = combineReducers({
   personalArea: personalInfoPage.personalArea,
   lots: bidsPage.lots,
+  lot: bidsPage.lot,
   newLot: newLotePage.newLot,
   auth: shared.auth,
   reg: shared.reg,
