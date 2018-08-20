@@ -51,14 +51,17 @@ class Lot extends PureComponent {
   }
   
   raseByFivePercent = () => {
+    this.props.onLotRise(this.props.data._id, 5);
     this.rasePrice(1.05);
   }
 
   raseByTenPercent = () => {
+    this.props.onLotRise(this.props.data._id, 10);
     this.rasePrice(1.10);
   }
 
   raseByTwenyPercent = () => {
+    this.props.onLotRise(this.props.data._id, 20);
     this.rasePrice(1.20);
   }
 

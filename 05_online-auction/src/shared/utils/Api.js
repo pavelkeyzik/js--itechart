@@ -39,6 +39,19 @@ class Api {
     return this._postWithImage('/api/bids', data);
   }
 
+  riseBid(id, percent) {
+    switch(percent) {
+      case 5:
+        return this._post(`/api/bids/raise-five/${id}`); 
+      case 10:
+        return this._post(`/api/bids/raise-ten/${id}`); 
+      case 20:
+        return this._post(`/api/bids/raise-twenty/${id}`);
+      default:
+        return;
+    }
+  }
+
   _get(path) {
     return fetch(`${this.baseURL}${path}`, {
       method: 'GET',

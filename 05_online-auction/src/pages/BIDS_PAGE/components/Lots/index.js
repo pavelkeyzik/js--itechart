@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import Lot from '../Lot';
 import LotsIsLoading from '../LotsIsLoading';
 import './index.scss';
+import LotContainer from '../../containers/LotContainer';
 
 class Lots extends PureComponent {
 
@@ -32,7 +32,7 @@ class Lots extends PureComponent {
     return (
       <div className="lots">
         <div className="lots__items">
-          {lots.payload.map(lot => <Lot className="lots__item" key={lot._id} data={lot} />)}
+          {lots.payload.map(lot => <LotContainer className="lots__item" key={lot._id} data={lot} />)}
         </div>
       </div>
     );
