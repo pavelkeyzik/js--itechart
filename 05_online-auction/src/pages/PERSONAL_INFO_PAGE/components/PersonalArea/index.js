@@ -9,6 +9,7 @@ class PersonalArea extends PureComponent {
 
   render() {
     if(this.props.personalArea.isLoading) return (<h1>Loading data...</h1>);
+    if(this.props.personalArea.error) return (<h1>{this.props.personalArea.payload}</h1>);
 
     const userInformation = this.props.personalArea.payload;
 

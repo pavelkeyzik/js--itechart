@@ -3,7 +3,7 @@ import PersonalArea from '../components/PersonalArea';
 import {
   personalAreaRequest,
   personalAreaRequested,
-  personalAreaLoadedError,
+  personalAreaLoadError,
   personalAreaLoadedSuccessful,
 } from '../actions';
 
@@ -14,7 +14,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
   onPersonalAreaRequest: personalAreaRequest,
   onPersonalAreaRequested: personalAreaRequested,
-  onPersonalAreaLoadedError: personalAreaLoadedError,
+  onPersonalAreaLoadError: personalAreaLoadError,
   onPersonalAreaLoadedSuccessful: personalAreaLoadedSuccessful,
 };
 

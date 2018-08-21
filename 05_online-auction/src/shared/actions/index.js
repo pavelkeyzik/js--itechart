@@ -13,7 +13,7 @@ export const userAuthorizationRequest = data => dispatch => {
   Api.login(data)
     .then(res => {
       if(!res.ok) {
-        return Promise.reject(res.json(d => d.message));
+        return Promise.reject(res.json().then(d => d));
       }
       return res.json();
     })
@@ -56,7 +56,7 @@ export const userRegistrationRequest = data => dispatch => {
   Api.registration(data)
     .then(res => {
       if(!res.ok) {
-        return Promise.reject(res.json(d => d.message));
+        return Promise.reject(res.json().then(d => d));
       }
       return res.json();
     })
