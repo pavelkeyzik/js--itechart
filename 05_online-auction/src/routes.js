@@ -32,6 +32,7 @@ const routes = [
       },
       {
         path: '/app/new-lote',
+        adminOnly: true,
         component: NewLotePage,
       },
       {

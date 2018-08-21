@@ -6,7 +6,7 @@ import config from '@/config';
 class CheckAuthorizationComponent extends PureComponent {
 
   componentWillMount() {
-    if(Cookies.get(config.keyForSaveToken)) {
+    if(Cookies.getJSON(config.userInfo)) {
       this.props.history.push('/app');
     } else {
       this.props.history.push('/auth');
