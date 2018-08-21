@@ -14,15 +14,15 @@ export const personalAreaRequest = () => dispatch => {
       return res.json();
     })
     .then(information => dispatch(personalAreaLoadedSuccessful(information)))
-    .catch(err => dispatch(personalAreaLoadedError(err.message)));
+    .catch(err => dispatch(personalAreaLoadError(err.message)));
 }
 
 export const personalAreaRequested = createAction(
   typeAction.PERSONAL_AREA_REQUESTED,
 );
 
-export const personalAreaLoadedError = createAction(
-  typeAction.PERSONAL_AREA_LOADED_ERROR,
+export const personalAreaLoadError = createAction(
+  typeAction.PERSONAL_AREA_LOAD_ERROR,
 );
 
 export const personalAreaLoadedSuccessful = createAction(

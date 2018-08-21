@@ -10,7 +10,7 @@ export const initLoadingLots = () => (dispatch) => {
   Api.getBids()
     .then(res => {
       if(!res.ok) {
-        return Promise.reject(res.json(d => d.message));
+        return Promise.reject(res.json().then(d => d.message));
       }
 
       return res.json();
@@ -21,7 +21,9 @@ export const initLoadingLots = () => (dispatch) => {
         return lot;
       })));
     })
-    .catch(err => dispatch(lotsLoadError(err.message)));
+    .catch(err => {
+      dispatch(lotsLoadError(err.message))
+    });
 };
 
 export const lotsRequested = createAction(
@@ -34,7 +36,7 @@ export const lotsLoaded = createAction(
 );
 
 export const lotsLoadError = createAction(
-  actionType.LOTS_LOADED_SUCCESSFUL,
+  actionType.LOTS_LOAD_ERROR,
   error => error,
 );
 
