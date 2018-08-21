@@ -21,7 +21,7 @@ export const userAuthorizationRequest = data => dispatch => {
       if(data.message) {
         return dispatch(userAuthorizationError(data.message));
       }
-      Cookies.set(config.keyForSaveToken, data.token, { expires: config.tokenExpirationTime });
+      Cookies.set(config.userInfo, data, { expires: config.tokenExpirationTime });
       Api.setHeadersToken(data.token);
       dispatch(userAuthorizedSuccessful(data));
     })
@@ -31,7 +31,7 @@ export const userAuthorizationRequest = data => dispatch => {
 };
 
 export const userLogOut = () => dispatch => {
-  Cookies.remove(config.keyForSaveToken);
+  Cookies.remove(config.userInfo);
   dispatch(userLoggedOuted());
   history.push('/');
 };
@@ -61,7 +61,7 @@ export const userRegistrationRequest = data => dispatch => {
       return res.json();
     })
     .then((data) => {
-      Cookies.set(config.keyForSaveToken, data.token, { expires: config.tokenExpirationTime });
+      Cookies.set(config.userInfo, data, { expires: config.tokenExpirationTime });
       Api.setHeadersToken(data.token);
       dispatch(userRegistredSuccessful(data));
       history.push('/app');

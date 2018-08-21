@@ -8,7 +8,9 @@ class Api {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
     });
-    this.setHeadersToken(Cookies.get(config.keyForSaveToken));
+    if(Cookies.getJSON(config.userInfo)) {
+      this.setHeadersToken(Cookies.getJSON(config.userInfo).token);
+    }
   }
 
   login(data) {
@@ -64,7 +66,7 @@ class Api {
       method: 'POST',
       headers: new Headers({
         'Accept': 'application/json',
-        'Authorization': Cookies.get(config.keyForSaveToken),
+        [config.keyForSaveToken]: Cookies.getJSON(config.userInfo).token,
       }),
       body,
     });

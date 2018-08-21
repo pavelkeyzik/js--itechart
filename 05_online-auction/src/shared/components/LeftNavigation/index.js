@@ -2,8 +2,16 @@ import React, { PureComponent } from 'react';
 import { NavLink, withRouter } from 'react-router-dom';
 import classNames from 'classnames';
 import './index.scss';
+import Cookies from 'js-cookie';
+import config from '@/config';
+
 
 class LeftNavigation extends PureComponent {
+
+  constructor(props) {
+    super(props);
+    this.userInfo = Cookies.getJSON(config.userInfo);
+  }
 
   state = {
     menuIsOpen: false,
@@ -21,10 +29,12 @@ class LeftNavigation extends PureComponent {
               <i className="fas fa-home"></i>
               <span className="left-navigation__link-text">Home</span>
             </NavLink>
-            <NavLink replace to="/app/new-lote" activeClassName="left-navigation__link_active" className="left-navigation__link">
-              <i className="fas fa-plus-square"></i>
-              <span className="left-navigation__link-text">Add new lot</span>
-            </NavLink>
+            {this.userInfo && this.userInfo.role !== config.adminRole ? null :
+              <NavLink replace to="/app/new-lote" activeClassName="left-navigation__link_active" className="left-navigation__link">
+                <i className="fas fa-plus-square"></i>
+                <span className="left-navigation__link-text">Add new lot</span>
+              </NavLink>
+            }
             <NavLink replace to="/app/bids" activeClassName="left-navigation__link_active" className="left-navigation__link">
               <i className="fas fa-gem"></i>
               <span className="left-navigation__link-text">All bids</span>

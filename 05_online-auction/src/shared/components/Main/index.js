@@ -24,7 +24,7 @@ class Main extends PureComponent {
               </div>
               <div className="main__content">
                 <Switch>
-                  {!Cookies.get(config.keyForSaveToken) ? <Redirect to='/auth'/> : null}
+                  {!Cookies.get(config.userInfo) ? <Redirect to='/auth'/> : null}
                   {this.props.routes.map((route, i) => <RouteWithSubRoutes key={i} {...route} />)}
                 </Switch>
               </div>
