@@ -11,16 +11,18 @@ class AuthorizationController {
           return res.status(404).send({ message: messages.userNotFoundMessage });
         }
 
-        const { id, name, surname } = user;
-        const userInfo = { id, name, surname };
+        const { id, name, surname, role } = user;
+        const userInfo = { id, name, surname, role };
 
         req.login(userInfo, err => {
           if (err) {
             res.send(err);
           }
 
+          console.log(userInfo);
+
           const token = generateToken(userInfo);
-          return res.send({ token });
+          return res.send({ token, role: userInfo.role });
         });
       })
       .catch(error => {
@@ -38,11 +40,11 @@ class AuthorizationController {
           return res.status(500).send({ message: messages.cannotAddNewUser });
         }
 
-        const { id, name, surname } = user;
-        const userInfo = { id, name, surname };
+        const { id, name, surname, role } = user;
+        const userInfo = { id, name, surname, role };
 
         const token = generateToken(userInfo);
-        res.status(200).send({ message: messages.userAddedSuccessfulMessage, token });
+        res.status(200).send({ message: messages.userAddedSuccessfulMessage, token, role: userInfo.role });
       })
       .catch(error => {
         res.status(500).send({ message: error.message });
