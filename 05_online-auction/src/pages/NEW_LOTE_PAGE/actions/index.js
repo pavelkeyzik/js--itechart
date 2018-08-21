@@ -6,7 +6,7 @@ export const newLoteSend = values => dispatch => {
   dispatch(newLoteSended());
 
   Api.addNewLote(values)
-    .then(() => dispatch(newLoteSendedSuccessful()))
+    .then((data) => data.json().then(d => dispatch(newLoteSendedSuccessful(d))))
     .catch(err => dispatch(newLoteSendedError(err)));
 }
 
@@ -16,6 +16,7 @@ export const newLoteSended = createAction(
 
 export const newLoteSendedSuccessful = createAction(
   actionType.NEW_LOTE_SENDED_SUCCESSFUL,
+  data => data,
 );
 
 export const newLoteSendedError = createAction(

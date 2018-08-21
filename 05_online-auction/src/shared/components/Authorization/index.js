@@ -5,6 +5,8 @@ import './index.scss';
 import '@/shared/styles/form.scss';
 import { Formik, Field, Form } from 'formik';
 import Schema from '@/shared/utils/AuthorizationSchema';
+import Notification from '../Notification';
+import ErrorNotification from '../ErrorNotification';
 
 class Authorization extends PureComponent {
   render() {
@@ -13,6 +15,11 @@ class Authorization extends PureComponent {
     return (
       <div>
         {auth.loggedIn && <Redirect to="/app" />}
+        {auth.error && 
+          <Notification>
+            <ErrorNotification>{auth.error.message}</ErrorNotification>
+          </Notification>
+        }
         <div className="authorization">
           <h1 className="authorization__title">Authorization</h1>
           <Formik
@@ -31,7 +38,6 @@ class Authorization extends PureComponent {
                     className={classNames("form__input", {"form__input_error": errors.phone && touched.phone })}
                   />
                 </div>
-                <span className="form__span form__span_error">{auth.error.message}</span>
                 <button className="form__submit" type="submit">Sign In</button>
               </Form>
             )}
