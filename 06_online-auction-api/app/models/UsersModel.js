@@ -21,6 +21,10 @@ const schema = mongoose.Schema(
       required: true,
       unique: true,
     },
+    role: {
+      type: String,
+      default: 'user',
+    },
   },
   {
     versionKey: false,

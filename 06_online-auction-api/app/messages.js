@@ -8,6 +8,7 @@ const messages = {
   usersNotFoundMessage: 'Users not found',
   userAddedSuccessfulMessage: 'User added successful',
   cannotAddNewUser: 'Cannot add new user',
+  notHavePermission: 'Sorry... But you do not have permission to this route!'
 };
 
 module.exports = messages;

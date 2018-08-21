@@ -54,6 +54,9 @@ class BidsController {
   }
 
   addNewBid(req, res) {
+    if(req.user.role !== 'admin') {
+      return res.status(403).send({ message: messages.notHavePermission });
+    }
     upload.single('image')(req, res, err => {
       if (err) {
         logger.error(err);
