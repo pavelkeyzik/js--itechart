@@ -4,6 +4,7 @@ import { handleActions } from 'redux-actions';
 const initialState = {
   isLoading: false,
   error: null,
+  addedSuccessful: false,
 };
 
 const newLotReducer = handleActions(
@@ -18,6 +19,8 @@ const newLotReducer = handleActions(
       ...state,
       isLoading: false,
       error: null,
+      addedSuccessful: true,
+      payload: action.payload,
     }),
 
     [actionType.NEW_LOTE_SENDED_ERROR]: (state, action) => ({

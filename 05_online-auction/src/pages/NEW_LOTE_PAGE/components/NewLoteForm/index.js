@@ -5,6 +5,9 @@ import moment from 'moment';
 import classNames from 'classnames';
 import { Formik, Field, Form } from 'formik';
 import Schema from '@/shared/utils/NewLoteSchema';
+import Notification from '@/shared/components/Notification';
+import ErrorNotification from '@/shared/components/ErrorNotification';
+import SuccessNotification from '@/shared/components/SuccessNotification';
 
 class NewLoteForm extends PureComponent {
   
@@ -17,8 +20,20 @@ class NewLoteForm extends PureComponent {
   }
 
   render() {
+    const { newLot } = this.props;
+
     return (
       <div className="new-lote">
+        {newLot.error &&
+          <Notification>
+            <ErrorNotification>{newLot.payload.message}</ErrorNotification>
+          </Notification>
+        }
+        {newLot.addedSuccessful &&
+          <Notification>
+            <SuccessNotification>{newLot.payload.message}</SuccessNotification>
+          </Notification>
+        }
         <Formik
           initialValues={{
             description: '',
