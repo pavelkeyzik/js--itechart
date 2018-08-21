@@ -19,8 +19,6 @@ class AuthorizationController {
             res.send(err);
           }
 
-          console.log(userInfo);
-
           const token = generateToken(userInfo);
           return res.send({ token, role: userInfo.role });
         });
