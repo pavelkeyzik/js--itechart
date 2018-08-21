@@ -9,6 +9,8 @@ const initialState = {
 
 const authReducer = handleActions(
   {
+    [actionType.USER_AUTHORIZATION_REQUESTED]: () => initialState,
+
     [actionType.USER_AUTHORIZED_SUCCESSFUL]: (state, action) => {
       const { token } = action.payload;
       return {

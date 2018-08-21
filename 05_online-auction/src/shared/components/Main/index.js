@@ -4,7 +4,7 @@ import LeftNavigationContainer from '../../containers/LeftNavigationContainer';
 import { Switch, Route, withRouter, Redirect } from 'react-router-dom';
 import RouteWithSubRoutes from '../RouteWithSubRoutes';
 import './index.scss';
-import Notification from '..//Notification';
+import Notification from '../Notification';
 import SuccessNotification from '../SuccessNotification';
 import Cookies from 'js-cookie';
 import config from '@/config';

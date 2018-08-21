@@ -9,6 +9,8 @@ const initialState = {
 
 const registerReducer = handleActions(
   {
+    [actionType.USER_REGISTRATION_REQUESTED]: () => initialState,
+
     [actionType.USER_REGISTERED_SUCCESSFUL]: (state, action) => {
       const { token } = action.payload;
       return {

@@ -5,6 +5,8 @@ import './index.scss';
 import '@/shared/styles/form.scss';
 import { Formik, Field, Form } from 'formik';
 import Schema from '@/shared/utils/RegistrationSchema';
+import Notification from '../Notification';
+import ErrorNotification from '../ErrorNotification';
 
 class Registration extends PureComponent {
   render() {
@@ -13,6 +15,11 @@ class Registration extends PureComponent {
     return (
       <React.Fragment>
         {reg.registered && <Redirect to="/app" />}
+        {reg.error && 
+          <Notification>
+            <ErrorNotification>{reg.error.message}</ErrorNotification>
+          </Notification>
+        }
         <div className="registration">
           <h1 className="registration__title">Registration</h1>
           <Formik
@@ -58,7 +65,6 @@ class Registration extends PureComponent {
                     className={classNames("form__input", {"form__input_error": errors.phone && touched.phone })}
                   />
                 </div>
-                <span className="form__span form__span_error">{reg.error.message}</span>
                 <button className="form__submit" type="submit">Sign Up</button>
               </Form>
             )}
