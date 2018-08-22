@@ -5,11 +5,15 @@ const initialState = {
   token: null,
   loggedIn: false,
   error: false,
+  isLoading: false,
 };
 
 const authReducer = handleActions(
   {
-    [actionType.USER_AUTHORIZATION_REQUESTED]: () => initialState,
+    [actionType.USER_AUTHORIZATION_REQUESTED]: (state) => ({
+      ...state,
+      isLoading: true,
+    }),
 
     [actionType.USER_AUTHORIZED_SUCCESSFUL]: (state, action) => {
       const { token } = action.payload;
@@ -17,7 +21,8 @@ const authReducer = handleActions(
         ...state,
         token,
         error: false,
-        loggedIn: true
+        loggedIn: true,
+        isLoading: false,
       };
     },
     [actionType.USER_LOGGED_OUT]: () => initialState,
@@ -25,7 +30,8 @@ const authReducer = handleActions(
       return {
         ...state,
         loggedIn: false,
-        error: action.payload
+        error: action.payload,
+        isLoading: false,
       };
     }
   },

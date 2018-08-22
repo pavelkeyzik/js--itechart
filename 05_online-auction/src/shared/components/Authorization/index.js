@@ -7,6 +7,7 @@ import { Formik, Field, Form } from 'formik';
 import Schema from '@/shared/utils/AuthorizationSchema';
 import Notification from '../Notification';
 import ErrorNotification from '../ErrorNotification';
+import AuthentificationLoader from '../AuthentificationLoader';
 
 class Authorization extends PureComponent {
   render() {
@@ -20,6 +21,7 @@ class Authorization extends PureComponent {
             <ErrorNotification>{auth.error.message}</ErrorNotification>
           </Notification>
         }
+        {auth.isLoading && <AuthentificationLoader />}
         <div className="authorization">
           <h1 className="authorization__title">Authorization</h1>
           <Formik
