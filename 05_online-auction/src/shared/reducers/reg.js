@@ -5,11 +5,15 @@ const initialState = {
   token: null,
   registered: false,
   error: false,
+  isLoading: false,
 };
 
 const registerReducer = handleActions(
   {
-    [actionType.USER_REGISTRATION_REQUESTED]: () => initialState,
+    [actionType.USER_REGISTRATION_REQUESTED]: (state) => ({
+      ...state,
+      isLoading: true,
+    }),
 
     [actionType.USER_REGISTERED_SUCCESSFUL]: (state, action) => {
       const { token } = action.payload;
@@ -17,7 +21,8 @@ const registerReducer = handleActions(
         ...state,
         token,
         error: false,
-        registered: true
+        registered: true,
+        isLoading: false,
       };
     },
     [actionType.USER_LOGGED_OUT]: () => initialState,
@@ -25,7 +30,8 @@ const registerReducer = handleActions(
       return {
         ...state,
         registered: false,
-        error: action.payload
+        error: action.payload,
+        isLoading: false,
       };
     }
   },

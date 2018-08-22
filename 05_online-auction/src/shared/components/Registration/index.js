@@ -7,6 +7,7 @@ import { Formik, Field, Form } from 'formik';
 import Schema from '@/shared/utils/RegistrationSchema';
 import Notification from '../Notification';
 import ErrorNotification from '../ErrorNotification';
+import AuthentificationLoader from '../AuthentificationLoader';
 
 class Registration extends PureComponent {
   render() {
@@ -20,6 +21,7 @@ class Registration extends PureComponent {
             <ErrorNotification>{reg.error.message}</ErrorNotification>
           </Notification>
         }
+        {reg.isLoading && <AuthentificationLoader />}
         <div className="registration">
           <h1 className="registration__title">Registration</h1>
           <Formik
