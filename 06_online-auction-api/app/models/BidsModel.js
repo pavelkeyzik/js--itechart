@@ -57,18 +57,19 @@ class BidsModel {
   }
 
   async riseOfTenPercent(id) {
-    this.riseOfPercent(id, 1.1);
+    return this.riseOfPercent(id, 1.1);
   }
 
   async riseOfTwentyPercent(id) {
-    this.riseOfPercent(id, 1.2);
+    return this.riseOfPercent(id, 1.2);
   }
 
   async riseOfPercent(id, count) {
     try {
-      await Bid.findById(id).then(data => {
+      return await Bid.findById(id).then(data => {
         data.current_bid = (data.current_bid * count).toFixed(2);
         data.save();
+        return data;
       });
     } catch (err) {
       throw new Error(err);
