@@ -8,4 +8,6 @@ export default keyMirror({
   LOT_RISE_OF_REQUESTED: null,
   LOT_RISE_OF_SUCCESSFUL: null,
   LOT_RISE_OF_ERROR: null,
+
+  UPDATE_LOTE: null,
 });

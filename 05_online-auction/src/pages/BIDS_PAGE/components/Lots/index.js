@@ -10,6 +10,10 @@ class Lots extends PureComponent {
     this.props.onInitLoadingLots();
   }
 
+  componentWillUnmount() {
+    this.props.onSocketConnectionClose();
+  }
+
   render() {
     const { lots } = this.props;
 
@@ -32,7 +36,7 @@ class Lots extends PureComponent {
     return (
       <div className="lots">
         <div className="lots__items">
-          {lots.payload.map(lot => <LotContainer className="lots__item" key={lot._id} data={lot} />)}
+          {lots.payload.map(lot => <LotContainer className="lots__item" price={lot.current_bid} key={lot._id} data={lot} />)}
         </div>
       </div>
     );
