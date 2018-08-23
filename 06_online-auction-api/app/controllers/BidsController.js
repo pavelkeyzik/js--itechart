@@ -6,6 +6,7 @@ const crypto = require('crypto');
 const fs = require('fs');
 const path = require('path');
 const messages = require('../messages');
+const socket = require('../socket');
 
 const fileFilter = (req, file, cb) => {
   const filetypes = config.supportedFilesBids;
@@ -81,7 +82,8 @@ class BidsController {
     const { id } = req.params;
 
     BidsModel.riseOfFivePercent(id)
-      .then(() => {
+      .then((data) => {
+        socket.sendAll(data);
         res.status(200).send({ message: messages.bidRiseOfFivePercentSuccessful });
       })
       .catch(err => {
@@ -94,7 +96,8 @@ class BidsController {
     const { id } = req.params;
 
     BidsModel.riseOfTenPercent(id)
-      .then(() => {
+      .then((data) => {
+        socket.sendAll(data);
         res.status(200).send({ message: messages.bidRiseOfTenPercentSuccessful });
       })
       .catch(err => {
@@ -107,7 +110,8 @@ class BidsController {
     const { id } = req.params;
 
     BidsModel.riseOfTwentyPercent(id)
-      .then(() => {
+      .then((data) => {
+        socket.sendAll(data);
         res.status(200).send({ message: messages.bidRiseOfTwentyPercentSuccessful });
       })
       .catch(err => {
