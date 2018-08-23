@@ -27,6 +27,20 @@ const lotsReducer = handleActions(
       error: true,
       payload: action.payload,
     }),
+    
+    [actionType.UPDATE_LOTE]: (state, action) => {
+      const newPayload = state.payload.map(i => {
+        if(i._id === action.payload._id) {
+          i.current_bid = action.payload.current_bid;
+        }
+        return i;
+      })
+
+      return {
+        ...state,
+        payload: newPayload,
+      }
+    },
   },
   initialState
 );

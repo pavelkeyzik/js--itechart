@@ -22,7 +22,7 @@ class Lot extends PureComponent {
   }
 
   render() {
-    const { data } = this.props;
+    const { data, price } = this.props;
 
     return (
       <div className="lot">
@@ -37,7 +37,7 @@ class Lot extends PureComponent {
           <div className="lot__bottom">
             <div className="lot__left">
               <div className="lot__timer">{this.state.timer}</div>
-              <button className="lot__price">Current bid ${this.state.currentBid}</button>
+              <button className="lot__price">Current bid ${price}</button>
             </div>
             <div className="lot__upper-buttons">
               <button className="lot__upper-button" onClick={this.raseByFivePercent}>+5%</button>

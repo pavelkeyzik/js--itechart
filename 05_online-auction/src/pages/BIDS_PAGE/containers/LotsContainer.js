@@ -3,6 +3,7 @@ import Lots from '../components/Lots';
 import {
   initLoadingLots,
   lotsLoaded,
+  socketConnectionClose,  
 } from '../actions';
 
 const mapStateToProps = (state) => ({
@@ -12,6 +13,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
   onInitLoadingLots: initLoadingLots,
   onLotsLoaded: lotsLoaded,
+  onSocketConnectionClose: socketConnectionClose,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Lots);

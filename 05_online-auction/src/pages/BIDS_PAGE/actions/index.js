@@ -2,8 +2,15 @@ import actionType from './actions';
 import { createAction } from 'redux-actions';
 import Api from '@/shared/utils/Api';
 import config from '@/config';
+let socket;
 
 export const initLoadingLots = () => (dispatch) => {
+  socket = new WebSocket(config.bidsWebSocketURL);
+  
+  socket.addEventListener('message', (ev) => {
+    const data = JSON.parse(ev.data);
+    dispatch(updateLote(data));
+  });
 
   dispatch(lotsRequested());
 
@@ -44,7 +51,10 @@ export const lotRise = (id, percent) => (dispatch) => {
   dispatch(lotRiseRequested());
 
   Api.riseBid(id, percent)
-    .then(() => dispatch(lotRiseSuccessful()))
+    .then(() => {
+      socket.send(JSON.stringify({ id }))
+      dispatch(lotRiseSuccessful());
+    })
     .catch(err => dispatch(lotRiseError(err)))
 };
 
@@ -60,3 +70,12 @@ export const lotRiseError = createAction(
   actionType.LOT_RISE_OF_ERROR,
   error => error,
 );
+
+export const updateLote = createAction(
+  actionType.UPDATE_LOTE,
+  data => data,
+);
+
+export const socketConnectionClose = () => dispatch => {
+  socket.close();
+}
