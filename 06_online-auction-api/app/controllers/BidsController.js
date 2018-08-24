@@ -119,6 +119,19 @@ class BidsController {
         res.status(500).send({ message: err.message });
       });
   }
+  
+  removeBid(req, res) {
+    const { id } = req.params;
+
+    BidsModel.removeBid(id)
+      .then((data) => {
+        res.status(200).send({ message: messages.bidRemovedSuccessful, data });
+      })
+      .catch(err => {
+        logger.error(err);
+        res.status(500).send({ message: err.message });
+      });
+  }
 }
 
 module.exports = new BidsController();
