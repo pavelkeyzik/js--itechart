@@ -102,6 +102,10 @@
     margin-bottom: 6px;
     border-radius: 3px;
     font-size: .8em;
+
+    &_outgoing {
+      background: rgba(255, 0, 55, .5);
+    }
   }
 
   &__price {

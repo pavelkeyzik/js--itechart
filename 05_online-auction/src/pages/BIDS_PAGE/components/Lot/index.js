@@ -9,6 +9,8 @@ class Lot extends PureComponent {
   state = {
     timer: 'Loading...',
     currentBid: null,
+    outgoing: false,
+    canRiseUp: false,
   };
 
   componentDidMount() {
@@ -42,13 +44,17 @@ class Lot extends PureComponent {
           </div>
           <div className="lot__bottom">
             <div className="lot__left">
-              <div className="lot__timer">{this.state.timer}</div>
+              {this.state.outgoing ?
+                <div className="lot__timer lot__timer_outgoing">Outgoing</div>
+                :
+                <div className="lot__timer">{this.state.timer}</div>
+              }
               <button className="lot__price">Current bid ${price}</button>
             </div>
             <div className="lot__upper-buttons">
-              <button className="lot__upper-button" onClick={this.raseByFivePercent}>+5%</button>
-              <button className="lot__upper-button" onClick={this.raseByTenPercent}>+10%</button>
-              <button className="lot__upper-button" onClick={this.raseByTwenyPercent}>+20%</button>
+              <button className="lot__upper-button" onClick={this.raseByFivePercent} hidden={!this.state.canRiseUp}>+5%</button>
+              <button className="lot__upper-button" onClick={this.raseByTenPercent} hidden={!this.state.canRiseUp}>+10%</button>
+              <button className="lot__upper-button" onClick={this.raseByTwenyPercent} hidden={!this.state.canRiseUp}>+20%</button>
             </div>
           </div>
         </div>
@@ -86,11 +92,17 @@ class Lot extends PureComponent {
   }
 
   dateFormat = (date) => {
-    const d = moment(moment.utc(date).diff(moment.utc())).utc();
+    const d = moment.duration(moment.utc(date) - moment.utc());
     this.timeToEndOfBidInterval = setInterval(() => {
       d.subtract(1, 'seconds');
+      if(d <= 0) {
+        clearInterval(this.timeToEndOfBidInterval);
+        this.setState({ outgoing: true, canRiseUp: false });
+        return;
+      }
       this.setState({
         timer: `${d.hours()}h ${d.minutes()}m ${d.seconds()}s`,
+        canRiseUp: true,
       })
     }, 1000);
   } 
