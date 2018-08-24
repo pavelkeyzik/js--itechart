@@ -10,4 +10,7 @@ export default keyMirror({
   LOT_RISE_OF_ERROR: null,
 
   UPDATE_LOTE: null,
+
+  REMOVE_LOTE_REQUESTED: null,
+  REMOVE_LOTE_SUCCESSFUL: null,
 });
