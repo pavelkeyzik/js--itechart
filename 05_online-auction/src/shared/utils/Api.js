@@ -41,6 +41,10 @@ class Api {
     return this._postWithImage('/api/bids', data);
   }
 
+  removeLote(id) {
+    return this._delete(`/api/bids/remove-bid/${id}`)
+  }
+
   riseBid(id, percent) {
     switch(percent) {
       case 5:
@@ -77,6 +81,13 @@ class Api {
       method: 'POST',
       headers: this.headers,
       body,
+    });
+  }
+
+  _delete(path) {
+    return fetch(`${this.baseURL}${path}`, {
+      method: 'DELETE',
+      headers: this.headers,
     });
   }
 

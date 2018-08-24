@@ -79,3 +79,25 @@ export const updateLote = createAction(
 export const socketConnectionClose = () => dispatch => {
   socket.close();
 }
+
+export const onLoteRemove = id => dispatch => {
+  dispatch(loteRemoveRequested(id));
+
+  Api.removeLote(id)
+    .then((res) => {
+      res.json().then(data => {
+        dispatch(loteRemoveSuccessful(data.data));
+      })
+    })
+    .catch(err => console.log('REMOVED ERROR', err))
+};
+
+export const loteRemoveRequested = createAction(
+  actionType.REMOVE_LOTE_REQUESTED,
+  id => id,
+);
+
+export const loteRemoveSuccessful = createAction(
+  actionType.REMOVE_LOTE_SUCCESSFUL,
+  data => data
+);

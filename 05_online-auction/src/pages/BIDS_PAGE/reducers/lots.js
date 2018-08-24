@@ -41,6 +41,15 @@ const lotsReducer = handleActions(
         payload: newPayload,
       }
     },
+
+    [actionType.REMOVE_LOTE_SUCCESSFUL]: (state, action) => {
+      const newPayload = state.payload.filter(i => i._id !== action.payload._id);
+
+      return {
+        ...state,
+        payload: newPayload,
+      }
+    },
   },
   initialState
 );

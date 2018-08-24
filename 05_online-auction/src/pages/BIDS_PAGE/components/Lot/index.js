@@ -27,8 +27,13 @@ class Lot extends PureComponent {
 
     return (
       <div className="lot">
+        <div className="lot__remove" onClick={this.handleRemove}>
+          <i className="fas fa-trash"></i>
+        </div>
         <div className="lot__image">
-          <img src={data.image_url} onError={this.handleImageError} alt={data.description}/>
+          <div className="lot__image-content">
+            <img src={data.image_url} onError={this.handleImageError} alt={data.description}/>
+          </div>
         </div>
         <div className="lot__content">
           <div className="lot__top">
@@ -49,6 +54,10 @@ class Lot extends PureComponent {
         </div>
       </div>
     );
+  }
+
+  handleRemove = () => {
+    this.props.onLoteRemove(this.props.data._id);
   }
 
   handleImageError = (ev) => {
