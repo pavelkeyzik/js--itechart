@@ -25,13 +25,15 @@ class Lot extends PureComponent {
   }
 
   render() {
-    const { data, price } = this.props;
+    const { data, price, canRemove } = this.props;
 
     return (
       <div className="lot">
-        <div className="lot__remove" onClick={this.handleRemove}>
-          <i className="fas fa-trash"></i>
-        </div>
+        {canRemove &&
+          <div className="lot__remove" onClick={this.handleRemove}>
+            <i className="fas fa-trash"></i>
+          </div>
+        }
         <div className="lot__image">
           <div className="lot__image-content">
             <img src={data.image_url} onError={this.handleImageError} alt={data.description}/>

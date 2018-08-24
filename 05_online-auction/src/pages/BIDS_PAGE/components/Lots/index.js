@@ -3,8 +3,15 @@ import PropTypes from 'prop-types';
 import LotsIsLoading from '../LotsIsLoading';
 import './index.scss';
 import LotContainer from '../../containers/LotContainer';
+import Cookies from 'js-cookie';
+import config from '@/config';
 
 class Lots extends PureComponent {
+
+  constructor(props) {
+    super(props);
+    this.userInfo = Cookies.getJSON(config.userInfo);
+  }
 
   componentDidMount() {
     this.props.onInitLoadingLots();
@@ -36,7 +43,15 @@ class Lots extends PureComponent {
     return (
       <div className="lots">
         <div className="lots__items">
-          {lots.payload.map(lot => <LotContainer className="lots__item" price={lot.current_bid} key={lot._id} data={lot} />)}
+          {lots.payload.map(lot =>
+            <LotContainer
+              className="lots__item"
+              canRemove={this.userInfo.role === config.adminRole}
+              price={lot.current_bid}
+              key={lot._id}
+              data={lot}
+            />)
+          }
         </div>
       </div>
     );
