@@ -75,6 +75,16 @@ class BidsModel {
       throw new Error(err);
     }
   }
+
+  async removeBid(id) {
+    return await Bid.findByIdAndRemove(id, (err, doc) => {
+      if(err) {
+        return Error(err);
+      }
+
+      return doc;
+    });
+  }
 }
 
 module.exports = new BidsModel();
