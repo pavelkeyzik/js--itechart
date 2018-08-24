@@ -77,13 +77,12 @@ class BidsModel {
   }
 
   async removeBid(id) {
-    return await Bid.findByIdAndRemove(id, (err, doc) => {
-      if(err) {
-        return Error(err);
-      }
-
-      return doc;
-    });
+    try {
+      const data = await Bid.findOneAndRemove({ _id: id }).then(data => data);
+      return data;
+    } catch (err) {
+      throw new Error(err);
+    }
   }
 }
 
