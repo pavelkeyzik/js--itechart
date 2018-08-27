@@ -47,7 +47,10 @@ class Lot extends PureComponent {
           <div className="lot__bottom">
             <div className="lot__left">
               {this.state.outgoing ?
-                <div className="lot__timer lot__timer_outgoing">Outgoing</div>
+                <div className="lot__notification">
+                  <div className="lot__timer lot__timer_outgoing">Outgoing</div>
+                  {data.last_user && <div className="lot__winner">Winner id: {data.last_user}</div>}
+                </div>
                 :
                 <div className="lot__timer">{this.state.timer}</div>
               }
@@ -103,11 +106,25 @@ class Lot extends PureComponent {
         return;
       }
       this.setState({
-        timer: `${d.hours()}h ${d.minutes()}m ${d.seconds()}s`,
+        timer: this.timerFormat(d),
         canRiseUp: true,
       })
     }, 1000);
-  } 
+  }
+
+  timerFormat(date) {
+    if(date.years()) {
+      return `${date.years()}y ${date.days()}d ${date.hours()}h ${date.minutes()}m ${date.seconds()}s`;
+    } else if (date.days() > 0) {
+      return `${date.days()}d ${date.hours()}h ${date.minutes()}m ${date.seconds()}s`;
+    } else if (date.hours()) {
+      return `${date.hours()}h ${date.minutes()}m ${date.seconds()}s`;
+    } else if (date.minutes()) {
+      return `${date.minutes()}m ${date.seconds()}s`;
+    } else {
+      return `${date.seconds()}s`;
+    }
+  }
 }
 
 Lot.propTypes = {
