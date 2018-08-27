@@ -23,6 +23,9 @@ const schema = mongoose.Schema(
       type: String,
       required: true,
     },
+    last_user: {
+      type: String
+    }
   },
   {
     versionKey: false,
@@ -52,25 +55,35 @@ class BidsModel {
     }
   }
 
-  async riseOfFivePercent(id) {
-    return this.riseOfPercent(id, 1.05);
+  async riseOfFivePercent(id, userId) {
+    return this.riseOfPercent(id, 1.05, userId);
   }
 
-  async riseOfTenPercent(id) {
-    return this.riseOfPercent(id, 1.1);
+  async riseOfTenPercent(id, userId) {
+    return this.riseOfPercent(id, 1.1, userId);
   }
 
-  async riseOfTwentyPercent(id) {
-    return this.riseOfPercent(id, 1.2);
+  async riseOfTwentyPercent(id, userId) {
+    return this.riseOfPercent(id, 1.2, userId);
   }
 
-  async riseOfPercent(id, count) {
+  async riseOfPercent(id, count, userId) {
     try {
       return await Bid.findById(id).then(data => {
         data.current_bid = (data.current_bid * count).toFixed(2);
+        data.last_user = userId;
         data.save();
         return data;
       });
+    } catch (err) {
+      throw new Error(err);
+    }
+  }
+
+  async removeBid(id) {
+    try {
+      const data = await Bid.findOneAndRemove({ _id: id }).then(data => data);
+      return data;
     } catch (err) {
       throw new Error(err);
     }

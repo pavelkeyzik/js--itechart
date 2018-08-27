@@ -81,7 +81,7 @@ class BidsController {
   riseOfFivePercent(req, res) {
     const { id } = req.params;
 
-    BidsModel.riseOfFivePercent(id)
+    BidsModel.riseOfFivePercent(id, req.user._id)
       .then((data) => {
         socket.sendAll(data);
         res.status(200).send({ message: messages.bidRiseOfFivePercentSuccessful });
@@ -95,7 +95,7 @@ class BidsController {
   riseOfTenPercent(req, res) {
     const { id } = req.params;
 
-    BidsModel.riseOfTenPercent(id)
+    BidsModel.riseOfTenPercent(id, req.user._id)
       .then((data) => {
         socket.sendAll(data);
         res.status(200).send({ message: messages.bidRiseOfTenPercentSuccessful });
@@ -109,13 +109,26 @@ class BidsController {
   riseOfTwentyPercent(req, res) {
     const { id } = req.params;
 
-    BidsModel.riseOfTwentyPercent(id)
+    BidsModel.riseOfTwentyPercent(id, req.user._id)
       .then((data) => {
         socket.sendAll(data);
         res.status(200).send({ message: messages.bidRiseOfTwentyPercentSuccessful });
       })
       .catch(err => {
         logger.error(err.message);
+        res.status(500).send({ message: err.message });
+      });
+  }
+  
+  removeBid(req, res) {
+    const { id } = req.params;
+
+    BidsModel.removeBid(id)
+      .then((data) => {
+        res.status(200).send({ message: messages.bidRemovedSuccessful, data });
+      })
+      .catch(err => {
+        logger.error(err);
         res.status(500).send({ message: err.message });
       });
   }
