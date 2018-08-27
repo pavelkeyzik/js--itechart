@@ -47,7 +47,10 @@ class Lot extends PureComponent {
           <div className="lot__bottom">
             <div className="lot__left">
               {this.state.outgoing ?
-                <div className="lot__timer lot__timer_outgoing">Outgoing</div>
+                <div className="lot__notification">
+                  <div className="lot__timer lot__timer_outgoing">Outgoing</div>
+                  {data.last_user && <div className="lot__winner">Winner id: {data.last_user}</div>}
+                </div>
                 :
                 <div className="lot__timer">{this.state.timer}</div>
               }

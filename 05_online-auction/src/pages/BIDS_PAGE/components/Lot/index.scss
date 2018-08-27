@@ -46,6 +46,20 @@
     transform: scale(1);
   }
 
+  &__notification {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  &__winner {
+    background: rgba(0, 0, 0, .5);
+    font-size: .8em;
+    padding: 4px 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+  }
+
   &__remove {
     position: absolute;
     top: -5px;
