@@ -17,7 +17,7 @@ export const initLoadingLots = () => (dispatch) => {
   Api.getBids()
     .then(res => {
       if(!res.ok) {
-        return Promise.reject(res.json().then(d => d.message));
+        return Promise.reject(res);
       }
 
       return res.json();
@@ -29,7 +29,7 @@ export const initLoadingLots = () => (dispatch) => {
       })));
     })
     .catch(err => {
-      dispatch(lotsLoadError(err.message))
+      dispatch(lotsLoadError(err.status))
     });
 };
 
