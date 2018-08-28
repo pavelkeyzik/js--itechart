@@ -8,9 +8,17 @@ import Notification from '../Notification';
 import SuccessNotification from '../SuccessNotification';
 import Cookies from 'js-cookie';
 import config from '@/config';
+import jwt from 'jwt-decode';
 
 class Main extends PureComponent {
   render() {
+    if(!this.props.auth.loggedIn) return <Redirect to="/" />
+
+    if(!Cookies.getJSON(config.userInfo) || (jwt(Cookies.getJSON(config.userInfo).token).exp - Math.floor(new Date().getTime() / 1000) < 0)) {
+      this.props.onLogOut();
+      return (<h2>Redirecting...</h2>);
+    }
+
     return (
       <Route>
         <div className="main">
@@ -24,7 +32,6 @@ class Main extends PureComponent {
               </div>
               <div className="main__content">
                 <Switch>
-                  {!Cookies.get(config.userInfo) ? <Redirect to='/auth'/> : null}
                   {this.props.routes.map((route, i) => <RouteWithSubRoutes key={i} {...route} />)}
                 </Switch>
               </div>

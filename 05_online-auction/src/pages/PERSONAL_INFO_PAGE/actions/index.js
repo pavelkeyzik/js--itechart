@@ -8,13 +8,15 @@ export const personalAreaRequest = () => dispatch => {
   Api.getPersonalInfo()
     .then(res => {
       if(!res.ok) {
-        return Promise.reject(res.json(d => d.message));
+        return Promise.reject(res);
       }
 
       return res.json();
     })
     .then(information => dispatch(personalAreaLoadedSuccessful(information)))
-    .catch(err => dispatch(personalAreaLoadError(err.message)));
+    .catch(err => {
+      dispatch(personalAreaLoadError(err.status))
+    });
 }
 
 export const personalAreaRequested = createAction(

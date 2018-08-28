@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import Main from '../components/Main';
 import {
   userAuthorizedSuccessful,
+  userLogOut,
 } from '../actions';
 
 const mapStateToProps = (state) => ({
@@ -10,6 +11,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
   onUserAuthorizedSuccessful: userAuthorizedSuccessful,
+  onLogOut: userLogOut,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Main);
