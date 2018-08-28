@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import LeftNavigationContainer from '../../containers/LeftNavigationContainer';
-import { Switch, Route, withRouter, Redirect } from 'react-router-dom';
+import { Switch, Route, withRouter } from 'react-router-dom';
 import RouteWithSubRoutes from '../RouteWithSubRoutes';
 import './index.scss';
 import Notification from '../Notification';
@@ -12,8 +12,6 @@ import jwt from 'jwt-decode';
 
 class Main extends PureComponent {
   render() {
-    if(!this.props.auth.loggedIn) return <Redirect to="/" />
-
     if(!Cookies.getJSON(config.userInfo) || (jwt(Cookies.getJSON(config.userInfo).token).exp - Math.floor(new Date().getTime() / 1000) < 0)) {
       this.props.onLogOut();
       return (<h2>Redirecting...</h2>);
