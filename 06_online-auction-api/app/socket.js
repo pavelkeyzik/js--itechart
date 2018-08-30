@@ -5,7 +5,10 @@ class Socket {
   constructor() {
     this.clients = {};
     this.connectionCounter = 0;
-    this.wss = new WebSocket.Server({ port: 8080 });
+  }
+
+  init(server) {
+    this.wss = new WebSocket.Server({ server });
     this.wss.on('connection', (ws) => this._newConnection(ws));
   }
 

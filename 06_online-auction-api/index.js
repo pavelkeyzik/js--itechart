@@ -3,6 +3,9 @@ const app = require(path.resolve(__dirname, 'app'));
 const config = require(path.resolve(__dirname, 'app/config'));
 const server = app.listen(config.port);
 const logger = require('./logger');
+const socket = require('./app/socket');
+
+socket.init(server);
 
 server.on('listening', () => {
   logger.info('┏━━━━━━━━━━━━━━━━━━━━━━━━┓');
